@@ -3,13 +3,8 @@ import math
 ##########################################################################################
 ##########################################################################################
 # TO DOs: 
-# 1. Add support for bits beyond standard python sizes (eg 64 bits)
-#       maybe look into making arrays or something 
-# 2. Update some of the fixed point logic
-# 3. Add checks for factoring out factors of 2 and adding it back in at the end
-# 4. Update bit_length to work with the longer bit lengths as well
-# 5. Update allign_b to work with larger numbers
-# 6. Add counter to count how many iterations it's been to reach a gcd
+# 1. What to do if residual is negative
+# 2. Add checks for factoring out factors of 2 and adding it back in at the end
 ##########################################################################################
 ##########################################################################################
 
@@ -22,9 +17,8 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
     :param total_bits: The fixed total bit-width we assume for a and b.
     :param approx_bits: Number of bits for the approximate division step.
                         The first bit is treated as integer '1', and the next (approx_bits-1) bits are fractional.
-    :param rounding_mode: How to handle the fractional part. Can be 'truncate', 'floor', or 'round' (to nearest),
-                          or 'ceil' as you see fit.
-    :return: The GCD of a_in and b_in according to the custom iteration.
+    :param rounding_mode: How to handle the fractional part. Can be 'truncate', or 'round' (to nearest)
+    :return: The GCD of a_in and b_in according to the custom iteration and iteration counts
     """
 
     # ----------------------------------------------------------------------------------------
@@ -77,77 +71,46 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             shift_amount = 0
         return b_shifted, shift_amount
     
-    def get_fixed_point_approx(x_val, approx_bits):
+    def get_fixed_top_bits(x_val, approx_bits):
         """
-        Extract the top `approx_bits` from x_val's leading bits and interpret as:
-            1 . (approx_bits-1 fractional bits) in fixed point
-                i.e. approx_bits = 4, x_val = 110001110, turn it into 1.100
-
-        If x_val has fewer than approx_bits bits, we pad the fractional bits with zeros.
-
-        Returns the *floating* or *fractional* representation (depending on rounding_mode).
+        Extract the top `approx_bits` bits of x_val as an integer.
+        - If x_val = 0 => return 0.
+        - If x_val has fewer than approx_bits bits, we left-shift it so it becomes exactly approx_bits bits.
+        - Otherwise we shift down so we only keep the top approx_bits bits.
+        
+        Example: approx_bits=4
+          - x_val in binary: 1100 1010 0111 ...
+          - we keep top 4 bits: 1100 (which is 12 decimal)
         """
-        # If x_val == 0, return 0.0 directly:
         if x_val == 0:
-            return 0.0
+            return 0
 
         length = bit_length(x_val)
         if length <= approx_bits:
-            # The topmost bit is '1' (assuming x_val>0), remainder are fraction
-            # i.e. x_val = 0b101 ===> length=3 ===> approx_bits=4 ===> top=101 ===> treat as 1.01 in binary
-            bits_to_pad = approx_bits - length
-            x_val = x_val << bits_to_pad
-            length = approx_bits
-
-        # length > approx_bits => we need to cut the top 'approx_bits' bits out
-        shift_down = length - approx_bits
-        top_bits = x_val >> shift_down  # This extracts the top 'approx_bits' bits
-
-        # The top bit is the integer '1' in the fixed-point sense, rest are fractional
-        fractional_length = approx_bits - 1  # # of fraction bits
-        frac_part = top_bits & ((1 << fractional_length) - 1)
-        
-        # Now interpret top_bits as: 1.<frac_part> in binary
-        # fraction = frac_part / 2^(fractional_length)
-        # Now build the fractional value:
-        # binary fraction = frac_part / 2^(fractional_length)
-        # but frac_part includes the leftover bits after the topmost '1'.
-        # For instance, if top_bits=5(=0b101), fractional_length=3 => leadisng bit=1, fraction=0b01 => 1 + 1/4
-        fraction_value = frac_part / float(1 << fractional_length)
-        approx_value = 1.0 + fraction_value
-
-        return approx_value
+            # shift up so it becomes exactly approx_bits bits
+            return x_val << (approx_bits - length)
+        else:
+            # shift down so we only keep top approx_bits
+            shift_down = length - approx_bits
+            return x_val >> shift_down
     
 
-    ## truncating would mean 1/2^fractional bits times, it will round up?
-    def lut_result(q_val, approx_bits):
+    def lut_result(a_top, b_top, approx_bits, rounding_mode):
         """
-        This would approximate what we would have in a hardware LUT. 
-        It will return a float with approx_bits of precision in fixed point representation.
-        For ex. if q_val is 1.95 and we have 3 fractional bits
-            With rounding, we should get 2.0
-            With truncating, we should get 1.875
-        Another ex. again with 3 fractional bits, if q_val is 1.82
-            With rounding, we should get 1.875
-            With truncating we should get 1.75.
-        Returns a floating point number representing the fixed point approximation
-        for our selected preision
+        Compute the ratio (a_top / b_top) in fixed-point with 'approx_bits' fractional bits,
+        *as an integer* = floor( (a_top << approx_bits) / b_top ) or a rounding variant.
         """
-        # Scale the value by 2^(approx_bits)
-        scale = 1 << approx_bits
-        scaled_val = q_val * scale
+        if b_top == 0:
+            return 0  # avoid div by zero (should not happen if b!=0, but just in case)
 
+        numerator = a_top << approx_bits  # up-shift a_top by approx_bits
         if rounding_mode == "round":
-            # Standard Python round (ties to even).  
-            # If you want "round half away from zero" instead, you can implement it yourself:
-            # scaled_int = int(math.floor(scaled_val + 0.5)) if scaled_val >= 0 else int(math.ceil(scaled_val - 0.5))
-            scaled_int = round(scaled_val)
+            # do integer division with rounding:
+            # equivalent to floor( (numerator + b_top/2 ) / b_top )
+            return (numerator + (b_top >> 1)) // b_top
         else:
-            # Default is truncate => floor for positive numbers
-            scaled_int = math.floor(scaled_val)
-
-        # Convert back by dividing by 2^(approx_bits)
-        return scaled_int / scale
+            # default: truncate / floor
+            return numerator // b_top
 
     ##########################################################################################
     ##########################################################################################
@@ -157,7 +120,13 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
     ##########################################################################################
     ##########################################################################################
     ##########################################################################################
+
+    iteration_count = 0  # to track how many loop iterations
+
     while b != 0:
+
+        iteration_count += 1
+
         # STEP 2) Align b so that the leading 1 matches a's leading 1 
         b_aligned, shift_amount = align_b(a, b)
 
@@ -166,32 +135,23 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             break
 
         # STEP 3) Approximate division with approx_bits
-        # Extract top approx_bits from a => a_approx
-        a_approx = get_fixed_point_approx(a, approx_bits)
-        # Extract top approx_bits from b_aligned => b_approx
-        # (We use b_aligned rather than b so that the leading '1' of b_aligned lines up with a)
-        b_approx = get_fixed_point_approx(b_aligned, approx_bits)
+        # Extract top approx_bits
+        a_top = get_fixed_top_bits(a, approx_bits)
+        b_top = get_fixed_top_bits(b_aligned, approx_bits)
 
-        if b_approx == 0.0: 
-            # avoid div by 0
-            quotient = 0.0
-        else:
-            float_q = a_approx / b_approx  # floating approx
-            quotient = lut_result(float_q, approx_bits) # convert to what would be in our LUT
+        quotient = lut_result(a_top, b_top, approx_bits, rounding_mode)
         
         # STEP 4) Shift the quotient by shift_amount => multiply by 2^(shift_amount)
-        shifted_q = quotient * (1 << shift_amount)
-        
         # STEP 5) Take the integer part of shifted_q => Q
-        Q = int(shifted_q)  # floor/truncate to get the integer portion
+        Q = (quotient << shift_amount) >> approx_bits
 
         # STEP 6) b_adjusted = Q * b (the original b, not b_aligned)
         b_adjusted = b * Q
 
         # a_new = a - b_adjusted
         residual = a - b_adjusted
-        # if a_new < 0:
-        #     a_new = abs(a_new)
+        if residual < 0:
+            residual = -residual
 
         # STEP 7) Prepare next iteration: 
         #    the old b becomes new a, the result becomes new b
@@ -205,7 +165,7 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             a, b = b, residual
 
     # When b=0, a is the GCD
-    return a
+    return (a, iteration_count)
 
 # -------------------------------------------------------------------------
 # A small demo/test
@@ -216,13 +176,36 @@ if __name__ == "__main__":
     # a_in = int(input("Enter first number: "))
     # b_in = int(input("Enter second number: "))
 
-    # Or hard-code a small example
+    # 1) A small example
     a_in = 128
     b_in = 56
+    gcd_val, count = xgcd_bitwise(a_in, b_in,
+                                  total_bits=8,
+                                  approx_bits=4,
+                                  rounding_mode='truncate')
+    print(f"(Small) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
 
-    gcd_val = xgcd_bitwise(a_in, b_in,
-                           total_bits=8,
-                           approx_bits=4,
-                           rounding_mode='truncate')
-    
-    print(f"GCD of {a_in} and {b_in} (via custom XGCD) is {gcd_val}")
+    # 2) A bigger example (still within 16 bits)
+    a_in = 34470   # 1100111110101011 in binary (16 bits)
+    b_in = 45960   # 1011001111011000 in binary (16 bits)
+    gcd_val, count = xgcd_bitwise(a_in, b_in,
+                                  total_bits=16,
+                                  approx_bits=4,
+                                  rounding_mode='truncate')
+    print(f"(Medium) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
+
+    # 3) A large example: let’s do 256-bit numbers
+    #    We can define them in hex and then parse via int(...)
+    A_HEX = "F123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF"
+    B_HEX = "EFFF88889999AAAA77775555CCCFA123ABCDEF9876543210FABCD123456789AA"
+    a_in = int(A_HEX, 16)
+    b_in = int(B_HEX, 16)
+
+    # We'll set total_bits=256 to clamp them at 256 bits, approx_bits=8 for a bigger approximation
+    gcd_val, count = xgcd_bitwise(a_in, b_in,
+                                  total_bits=256,
+                                  approx_bits=8,
+                                  rounding_mode='round')
+
+    print(f"(Large 256-bit) GCD is {gcd_val}")
+    print(f"  Found in {count} iterations.")
