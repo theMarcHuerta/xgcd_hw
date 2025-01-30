@@ -5,6 +5,7 @@ import math
 # TO DOs: 
 # 1. What to do if residual is negative
 # 2. Add checks for factoring out factors of 2 and adding it back in at the end
+# 3. Add bit clears
 ##########################################################################################
 ##########################################################################################
 
@@ -97,8 +98,7 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
 
     def lut_result(a_top, b_top, approx_bits, rounding_mode):
         """
-        Compute the ratio (a_top / b_top) in fixed-point with 'approx_bits' fractional bits,
-        *as an integer* = floor( (a_top << approx_bits) / b_top ) or a rounding variant.
+        Compute the ratio (a_top / b_top) in fixed-point with 'approx_bits' fractional bits
         """
         if b_top == 0:
             return 0  # avoid div by zero (should not happen if b!=0, but just in case)
