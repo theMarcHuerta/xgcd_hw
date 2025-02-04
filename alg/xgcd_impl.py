@@ -282,8 +282,8 @@ if __name__ == "__main__":
                                                            total_bits=256,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
-                                                           integer_rounding=False,
-                                                           plus_minus=False,
+                                                           integer_rounding=True,
+                                                           plus_minus=True,
                                                            enable_plotting=True)
 
     print(f"(Large 256-bit) GCD is {gcd_val}")
