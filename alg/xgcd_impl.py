@@ -193,7 +193,7 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             # a_new is smaller => a = b, b = a_new
             a, b = b, residual
 
-    bit_clears_list[-1] += 1 + bit_length(a)# last element is off by 1 clear so we just adjust it
+    bit_clears_list[-1] += bit_length(a)# last element is off by A bits clear so we just adjust it
 
     gcd_val = a
     if iteration_count > 0:
@@ -253,7 +253,7 @@ if __name__ == "__main__":
                                                            total_bits=8,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
-                                                           integer_rounding=False,
+                                                           integer_rounding=True,
                                                            plus_minus=False,
                                                            enable_plotting=False)
     print(f"(Small) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
@@ -283,8 +283,8 @@ if __name__ == "__main__":
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
-                                                           plus_minus=True,
-                                                           enable_plotting=True)
+                                                           plus_minus=False,
+                                                           enable_plotting=False)
 
     print(f"(Large 256-bit) GCD is {gcd_val}")
     print(f"  Found in {count} iterations.")

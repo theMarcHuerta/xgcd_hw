@@ -9,7 +9,8 @@ def brute_force_xgcd(bits=8,
                      approx_bits=4, 
                      skip_symmetry=True, 
                      skip_zeros=True,
-                     force_a_msb=True):
+                     force_a_msb=True,
+                     int_rounding=True):
     """
     Enumerates (a, b) within 'bits'-bit range, applying custom filters:
       - skip_symmetry  => avoid duplicates (b,a) if we've done (a,b)
@@ -56,7 +57,7 @@ def brute_force_xgcd(bits=8,
     round_min_clears_pair = (0, 0)
 
     print(f"Brute forcing all pairs for {bits}-bit range.")
-    print(f"Options: skip_symmetry={skip_symmetry}, skip_zeros={skip_zeros}, force_a_msb={force_a_msb}")
+    print(f"Options: skip_symmetry={skip_symmetry}, skip_zeros={skip_zeros}, force_a_msb={force_a_msb}, integer_rounding={int_rounding}")
     print(f"Approx bits = {approx_bits}.\n")
 
     counter = 0
@@ -77,6 +78,8 @@ def brute_force_xgcd(bits=8,
             gcd_t, it_t, clr_t = xgcd_bitwise(a, b,
                                             total_bits=bits,
                                             approx_bits=approx_bits,
+                                            integer_rounding=int_rounding,
+                                            plus_minus=False,
                                             rounding_mode='truncate')
             trunc_iters.append(it_t)
             trunc_clears.append(clr_t)
@@ -98,6 +101,8 @@ def brute_force_xgcd(bits=8,
             gcd_r, it_r, clr_r = xgcd_bitwise(a, b,
                                             total_bits=bits,
                                             approx_bits=approx_bits,
+                                            integer_rounding=int_rounding,
+                                            plus_minus=False,
                                             rounding_mode='round')
             round_iters.append(it_r)
             round_clears.append(clr_r)
@@ -160,7 +165,7 @@ def brute_force_xgcd(bits=8,
 
 def main():
     parser = argparse.ArgumentParser(description="Brute force XGCD over (a,b) for a given bit-width, with extra filters.")
-    parser.add_argument("--bits", type=int, default=13, help="Bit width for enumerating all pairs.")
+    parser.add_argument("--bits", type=int, default=12, help="Bit width for enumerating all pairs.")
     parser.add_argument("--approx_bits", type=int, default=4, help="Approx bits for XGCD.")
     parser.add_argument("--skip_symmetry", action="store_true", 
                         help="If set, skip symmetrical pairs (b,a) if we've done (a,b).")
@@ -175,7 +180,8 @@ def main():
                      approx_bits=args.approx_bits,
                      skip_symmetry=True,
                      skip_zeros=True,
-                     force_a_msb=True)
+                     force_a_msb=False,
+                     int_rounding=False)
 
 
 if __name__ == "__main__":
