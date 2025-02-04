@@ -3,12 +3,12 @@ import math
 ##########################################################################################
 ##########################################################################################
 # TO DOs: 
-# 1. Add checks for factoring out factors of 2 and adding it back in at the end
+# 1. What to do if residual is negative
+# 2. Add checks for factoring out factors of 2 and adding it back in at the end
 ##########################################################################################
 ##########################################################################################
 
-def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncate', 
-                 integer_rounding=True, plus_minus=False, enable_plotting=False):
+def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncate', enable_plotting=False):
     """
     Compute the GCD of a_in and b_in using the custom XGCD bitwise approach from Kavya's Thesis
     
@@ -128,8 +128,6 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
 
     iteration_count = 0 
 
-    plus = False
-
     bit_clears_list = []  # store how many bits we clear each iteration
 
     while b != 0:
@@ -152,27 +150,15 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
         
         # STEP 4) Shift the quotient by shift_amount => multiply by 2^(shift_amount)
         # STEP 5) Take the integer part of shifted_q => Q
-        # Q = (quotient << shift_amount) >> approx_bits
-        Q_pre_round = (quotient << shift_amount) >> (approx_bits-1)
-        Q = Q_pre_round >> 1
-
-        if (Q_pre_round&1 and integer_rounding):
-            Q += 1
+        Q = (quotient << shift_amount) >> approx_bits
 
         # STEP 6) b_adjusted = Q * b (the original b, not b_aligned)
         b_adjusted = b * Q
 
-        # will turn the following residual calc into a plus by making this negative
-        if (plus_minus):
-            b_adjusted = -b_adjusted
-
         # a_new = a - b_adjusted
         residual = a - b_adjusted
-
-        plus = False
         if residual < 0:
             residual = -residual
-            plus = True
 
 
         msb_a = bit_length(a)
@@ -193,11 +179,10 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             # a_new is smaller => a = b, b = a_new
             a, b = b, residual
 
-    bit_clears_list[-1] += 1 + bit_length(a)# last element is off by 1 clear so we just adjust it
+    bit_clears_list[-1] += 1 # last element is off by 1 clear so we just adjust it
 
     gcd_val = a
     if iteration_count > 0:
-        # avg_bit_clears = total_bits*2 / iteration_count
         avg_bit_clears = sum(bit_clears_list) / iteration_count
     else:
         avg_bit_clears = 0.0
@@ -253,8 +238,6 @@ if __name__ == "__main__":
                                                            total_bits=8,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
-                                                           integer_rounding=False,
-                                                           plus_minus=False,
                                                            enable_plotting=False)
     print(f"(Small) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
     print(f"  Average bit clears: {avg_clears:.3f}")
@@ -266,9 +249,7 @@ if __name__ == "__main__":
                                                            total_bits=16,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
-                                                           integer_rounding=False,
-                                                           plus_minus=False,
-                                                           enable_plotting=False)
+                                                           enable_plotting=True)
     print(f"(Medium) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
     print(f"  Average bit clears: {avg_clears:.3f}")
 
@@ -280,11 +261,9 @@ if __name__ == "__main__":
 
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
                                                            total_bits=256,
-                                                           approx_bits=4,
+                                                           approx_bits=8,
                                                            rounding_mode='truncate',
-                                                           integer_rounding=False,
-                                                           plus_minus=False,
-                                                           enable_plotting=True)
+                                                           enable_plotting=False)
 
     print(f"(Large 256-bit) GCD is {gcd_val}")
     print(f"  Found in {count} iterations.")
