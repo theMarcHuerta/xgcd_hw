@@ -45,14 +45,16 @@ def brute_force_xgcd(bits=8,
     trunc_iters = []
     trunc_clears = []
     trunc_max_iter = -1
-    trunc_max_iter_pair = (0, 0)
+    # trunc_max_iter_pair = (0, 0)
+    trunc_max_iter_pairs = []
     trunc_min_clears = float('inf')
     trunc_min_clears_pair = (0, 0)
 
     round_iters = []
     round_clears = []
     round_max_iter = -1
-    round_max_iter_pair = (0, 0)
+    # round_max_iter_pairs = (0, 0)
+    round_max_iter_pairs = []
     round_min_clears = float('inf')
     round_min_clears_pair = (0, 0)
 
@@ -90,9 +92,13 @@ def brute_force_xgcd(bits=8,
                 print(f"ERROR: Mismatch for (a={a}, b={b}) → xgcd_bitwise() returned {gcd_t}, but math.gcd() says {expected_gcd}")
 
             # Track max/min cases
+
             if it_t > trunc_max_iter:
                 trunc_max_iter = it_t
-                trunc_max_iter_pair = (a, b)
+                trunc_max_iter_pairs = []
+                trunc_max_iter_pairs.append((a, b))
+            elif it_t == trunc_max_iter:
+                trunc_max_iter_pairs.append((a, b))
             if clr_t < trunc_min_clears:
                 trunc_min_clears = clr_t
                 trunc_min_clears_pair = (a, b)
@@ -113,7 +119,10 @@ def brute_force_xgcd(bits=8,
 
             if it_r > round_max_iter:
                 round_max_iter = it_r
-                round_max_iter_pair = (a, b)
+                round_max_iter_pairs = []
+                round_max_iter_pairs.append((a, b))
+            elif (it_r==round_max_iter):
+                round_max_iter_pairs.append((a, b))
             if clr_r < round_min_clears:
                 round_min_clears = clr_r
                 round_min_clears_pair = (a, b)
@@ -149,7 +158,8 @@ def brute_force_xgcd(bits=8,
     print(f"  Median Iterations   : {trunc_iter_median:.3f}")
     print(f"  Mean Bit Clears     : {trunc_clears_mean:.3f}")
     print(f"  Median Bit Clears   : {trunc_clears_median:.3f}")
-    print(f"  Max Iterations      : {trunc_max_iter} for pair a={trunc_max_iter_pair[0]}, b={trunc_max_iter_pair[1]}")
+    # print(f"  Max Iterations      : {trunc_max_iter} for pair a={trunc_max_iter_pair[0]}, b={trunc_max_iter_pair[1]}")
+    print(f"  Max Iterations      : {trunc_max_iter} for pairs {trunc_max_iter_pairs}")
     print(f"  Min Avg Bit Clears  : {trunc_min_clears:.3f} for pair a={trunc_min_clears_pair[0]}, b={trunc_min_clears_pair[1]}")
 
     print("\n===== RESULTS (ROUND) =====")
@@ -157,7 +167,8 @@ def brute_force_xgcd(bits=8,
     print(f"  Median Iterations   : {round_iter_median:.3f}")
     print(f"  Mean Bit Clears     : {round_clears_mean:.3f}")
     print(f"  Median Bit Clears   : {round_clears_median:.3f}")
-    print(f"  Max Iterations      : {round_max_iter} for pair a={round_max_iter_pair[0]}, b={round_max_iter_pair[1]}")
+    # print(f"  Max Iterations      : {round_max_iter} for pair a={round_max_iter_pair[0]}, b={round_max_iter_pair[1]}")
+    print(f"  Max Iterations      : {round_max_iter} for pairs {round_max_iter_pairs}")
     print(f"  Min Avg Bit Clears  : {round_min_clears:.3f} for pair a={round_min_clears_pair[0]}, b={round_min_clears_pair[1]}")
 
     print("\n--- End of brute force test ---\n")
@@ -165,7 +176,7 @@ def brute_force_xgcd(bits=8,
 
 def main():
     parser = argparse.ArgumentParser(description="Brute force XGCD over (a,b) for a given bit-width, with extra filters.")
-    parser.add_argument("--bits", type=int, default=12, help="Bit width for enumerating all pairs.")
+    parser.add_argument("--bits", type=int, default=14, help="Bit width for enumerating all pairs.")
     parser.add_argument("--approx_bits", type=int, default=4, help="Approx bits for XGCD.")
     parser.add_argument("--skip_symmetry", action="store_true", 
                         help="If set, skip symmetrical pairs (b,a) if we've done (a,b).")
@@ -180,8 +191,8 @@ def main():
                      approx_bits=args.approx_bits,
                      skip_symmetry=True,
                      skip_zeros=True,
-                     force_a_msb=False,
-                     int_rounding=False)
+                     force_a_msb=True,
+                     int_rounding=True)
 
 
 if __name__ == "__main__":

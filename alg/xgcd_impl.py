@@ -260,15 +260,15 @@ if __name__ == "__main__":
     print(f"  Average bit clears: {avg_clears:.3f}")
 
     # 2) Another example with 16 bits
-    a_in = 34443
-    b_in = 45960
+    a_in = 15065
+    b_in = 10489
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
-                                                           total_bits=16,
+                                                           total_bits=14,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
-                                                           integer_rounding=False,
+                                                           integer_rounding=True,
                                                            plus_minus=False,
-                                                           enable_plotting=False)
+                                                           enable_plotting=True)
     print(f"(Medium) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
     print(f"  Average bit clears: {avg_clears:.3f}")
 
@@ -280,7 +280,7 @@ if __name__ == "__main__":
 
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
                                                            total_bits=256,
-                                                           approx_bits=4,
+                                                           approx_bits=2,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
                                                            plus_minus=False,

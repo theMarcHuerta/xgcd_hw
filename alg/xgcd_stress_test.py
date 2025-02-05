@@ -56,6 +56,8 @@ def run_xgcd_stress_test(num_pairs=100,
         gcd_t, iter_t, clears_t = xgcd_bitwise(a, b,
                                               total_bits=total_bits,
                                               approx_bits=approx_bits,
+                                              integer_rounding=True,
+                                              plus_minus=False,
                                               rounding_mode='truncate')
         trunc_iter_counts.append(iter_t)
         trunc_bit_clears.append(clears_t)
@@ -72,6 +74,8 @@ def run_xgcd_stress_test(num_pairs=100,
         gcd_r, iter_r, clears_r = xgcd_bitwise(a, b,
                                               total_bits=total_bits,
                                               approx_bits=approx_bits,
+                                              integer_rounding=True,
+                                              plus_minus=False,
                                               rounding_mode='round')
         round_iter_counts.append(iter_r)
         round_bit_clears.append(clears_r)
@@ -132,7 +136,7 @@ def main():
     """
     import argparse
     parser = argparse.ArgumentParser(description="XGCD Stress Test Script.")
-    parser.add_argument("--num_pairs", type=int, default=100000, help="Number of random pairs to test.")
+    parser.add_argument("--num_pairs", type=int, default=1000000, help="Number of random pairs to test.")
     parser.add_argument("--total_bits", type=int, default=256, help="Bit-width of the random numbers.")
     parser.add_argument("--approx_bits", type=int, default=2, help="Approx bits for the XGCD.")
     args = parser.parse_args()
