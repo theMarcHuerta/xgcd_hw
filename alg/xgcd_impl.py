@@ -126,9 +126,8 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
     ##########################################################################################
     ##########################################################################################
 
+    avg_q = 0
     iteration_count = 0 
-
-    plus = False
 
     bit_clears_list = []  # store how many bits we clear each iteration
 
@@ -159,21 +158,15 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
         if (Q_pre_round&1 and integer_rounding):
             Q += 1
 
+        avg_q += Q
         # STEP 6) b_adjusted = Q * b (the original b, not b_aligned)
         b_adjusted = b * Q
-
-        # will turn the following residual calc into a plus by making this negative
-        if (plus_minus):
-            b_adjusted = -b_adjusted
 
         # a_new = a - b_adjusted
         residual = a - b_adjusted
 
-        plus = False
         if residual < 0:
             residual = -residual
-            plus = True
-
 
         msb_a = bit_length(a)
         msb_res = bit_length(residual)
@@ -202,6 +195,7 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
     else:
         avg_bit_clears = 0.0
 
+    print(f"  Average q val: {avg_q/iteration_count:.3f}")
     # ----------------------------------------------------------------------------------------
     # Optional Plotting
     # ----------------------------------------------------------------------------------------
@@ -247,10 +241,10 @@ if __name__ == "__main__":
     # b_in = int(input("Enter second number: "))
 
     # 1) Small example
-    a_in = 225
-    b_in = 100
+    a_in = 14
+    b_in = 9
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
-                                                           total_bits=8,
+                                                           total_bits=4,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
@@ -260,15 +254,15 @@ if __name__ == "__main__":
     print(f"  Average bit clears: {avg_clears:.3f}")
 
     # 2) Another example with 16 bits
-    a_in = 15065
-    b_in = 10489
+    a_in = 14905
+    b_in = 10376
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
                                                            total_bits=14,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
                                                            plus_minus=False,
-                                                           enable_plotting=True)
+                                                           enable_plotting=False)
     print(f"(Medium) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
     print(f"  Average bit clears: {avg_clears:.3f}")
 
@@ -280,7 +274,7 @@ if __name__ == "__main__":
 
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
                                                            total_bits=256,
-                                                           approx_bits=2,
+                                                           approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
                                                            plus_minus=False,
