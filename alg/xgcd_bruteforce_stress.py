@@ -176,7 +176,7 @@ def brute_force_xgcd(bits=8,
 
 def main():
     parser = argparse.ArgumentParser(description="Brute force XGCD over (a,b) for a given bit-width, with extra filters.")
-    parser.add_argument("--bits", type=int, default=4, help="Bit width for enumerating all pairs.")
+    parser.add_argument("--bits", type=int, default=12, help="Bit width for enumerating all pairs.")
     parser.add_argument("--approx_bits", type=int, default=4, help="Approx bits for XGCD.")
     parser.add_argument("--skip_symmetry", action="store_true", 
                         help="If set, skip symmetrical pairs (b,a) if we've done (a,b).")

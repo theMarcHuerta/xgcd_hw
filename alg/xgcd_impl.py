@@ -195,7 +195,7 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
     else:
         avg_bit_clears = 0.0
 
-    print(f"  Average q val: {avg_q/iteration_count:.3f}")
+    # print(f"  Average q val: {avg_q/iteration_count:.3f}")
     # ----------------------------------------------------------------------------------------
     # Optional Plotting
     # ----------------------------------------------------------------------------------------
