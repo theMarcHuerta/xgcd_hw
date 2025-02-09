@@ -1,0 +1,18 @@
+# Ignore Python bytecode and cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore C++ compiled files
+bruteforce
+*.o
+*.out
+*.exe
+*.dSYM/
+
+# Ignore temporary files
+*.log
+*.tmp
+*.swp
+*.bak

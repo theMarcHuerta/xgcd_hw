@@ -28,16 +28,20 @@ using namespace std;
 
 struct ThreadResult {
     // For truncate mode:
-    vector<int> trunc_iters;
-    vector<double> trunc_clears;
+    // vector<int> trunc_iters;
+    // vector<double> trunc_clears;
+    uint64_t sum_iters_trunc = 0;
+    double sum_trunc_clears = 0;
     int trunc_max_iter;
     vector<pair<int, int>> trunc_max_iter_pairs;
     double trunc_min_clears;
     pair<int, int> trunc_min_clears_pair;
 
     // For round mode:
-    vector<int> round_iters;
-    vector<double> round_clears;
+    // vector<int> round_iters;
+    // vector<double> round_clears;
+    uint64_t sum_iters_round = 0;
+    double sum_round_clears = 0;
     int round_max_iter;
     vector<pair<int, int>> round_max_iter_pairs;
     double round_min_clears;
@@ -99,8 +103,10 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
 
             // Run xgcd_bitwise in "truncate" mode.
             XgcdResult res_trunc = xgcd_bitwise(a, b, bits, approx_bits, "truncate", int_rounding);
-            result.trunc_iters.push_back(res_trunc.iterations);
-            result.trunc_clears.push_back(res_trunc.avgBitClears);
+            // result.trunc_iters.push_back(res_trunc.iterations);
+            // result.trunc_clears.push_back(res_trunc.avgBitClears);
+            result.sum_iters_trunc+=res_trunc.iterations;
+            result.sum_trunc_clears+=res_trunc.avgBitClears;
 
             // Verify against std::gcd.
             int expected_gcd = std::gcd(a, b);
@@ -126,8 +132,10 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
 
             // Run xgcd_bitwise in "round" mode.
             XgcdResult res_round = xgcd_bitwise(a, b, bits, approx_bits, "round", int_rounding);
-            result.round_iters.push_back(res_round.iterations);
-            result.round_clears.push_back(res_round.avgBitClears);
+            // result.round_iters.push_back(res_round.iterations);
+            // result.round_clears.push_back(res_round.avgBitClears);
+            result.sum_iters_round+=res_round.iterations;
+            result.sum_round_clears+=res_round.avgBitClears;
 
             if (res_round.gcd != static_cast<uint32_t>(expected_gcd)) {
                 lock_guard<mutex> lock(print_mutex);
@@ -152,7 +160,7 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
             // Update the global progress counter.
             uint64_t current = ++global_counter;
             // If this thread is designated as the progress reporter, print progress every so often.
-            if (progress_thread && current % (total_pairs / 50 + 1) == 0) {
+            if (progress_thread && current % (total_pairs / 200 + 1) == 0) {
                 double pct = 100.0 * current / total_pairs;
                 lock_guard<mutex> lock(print_mutex);
                 cout << "\rProgress: " << current << " / " << total_pairs << " (" 
@@ -272,15 +280,19 @@ int main(int argc, char* argv[]) {
     cout << "\nAll threads completed.\n";
 
     // Aggregate results from all threads.
-    vector<int> all_trunc_iters;
-    vector<double> all_trunc_clears;
+    // vector<int> all_trunc_iters;
+    // vector<double> all_trunc_clears;
+    uint64_t total_trunc_iters = 0;
+    double total_trunc_clears = 0;
     int global_trunc_max_iter = -1;
     vector<pair<int, int>> global_trunc_max_iter_pairs;
     double global_trunc_min_clears = numeric_limits<double>::max();
     pair<int, int> global_trunc_min_clears_pair;
 
-    vector<int> all_round_iters;
-    vector<double> all_round_clears;
+    // vector<int> all_round_iters;
+    // vector<double> all_round_clears;
+    uint64_t total_round_iters = 0;
+    double total_round_clears = 0;
     int global_round_max_iter = -1;
     vector<pair<int, int>> global_round_max_iter_pairs;
     double global_round_min_clears = numeric_limits<double>::max();
@@ -291,8 +303,10 @@ int main(int argc, char* argv[]) {
     for (const auto &res : thread_results) {
         total_valid_pairs += res.valid_pairs;
         // Truncate mode.
-        all_trunc_iters.insert(all_trunc_iters.end(), res.trunc_iters.begin(), res.trunc_iters.end());
-        all_trunc_clears.insert(all_trunc_clears.end(), res.trunc_clears.begin(), res.trunc_clears.end());
+        total_trunc_iters += res.sum_iters_trunc;
+        total_trunc_clears += res.sum_trunc_clears;
+        // all_trunc_iters.insert(all_trunc_iters.end(), res.trunc_iters.begin(), res.trunc_iters.end());
+        // all_trunc_clears.insert(all_trunc_clears.end(), res.trunc_clears.begin(), res.trunc_clears.end());
         if (res.trunc_max_iter > global_trunc_max_iter) {
             global_trunc_max_iter = res.trunc_max_iter;
             global_trunc_max_iter_pairs = res.trunc_max_iter_pairs;
@@ -306,8 +320,10 @@ int main(int argc, char* argv[]) {
             global_trunc_min_clears_pair = res.trunc_min_clears_pair;
         }
         // Round mode.
-        all_round_iters.insert(all_round_iters.end(), res.round_iters.begin(), res.round_iters.end());
-        all_round_clears.insert(all_round_clears.end(), res.round_clears.begin(), res.round_clears.end());
+        total_round_iters += res.sum_iters_round;
+        total_round_clears += res.sum_round_clears;
+        // all_round_iters.insert(all_round_iters.end(), res.round_iters.begin(), res.round_iters.end());
+        // all_round_clears.insert(all_round_clears.end(), res.round_clears.begin(), res.round_clears.end());
         if (res.round_max_iter > global_round_max_iter) {
             global_round_max_iter = res.round_max_iter;
             global_round_max_iter_pairs = res.round_max_iter_pairs;
@@ -323,22 +339,22 @@ int main(int argc, char* argv[]) {
     }
 
     // Compute means and medians.
-    double trunc_iter_mean = compute_mean(all_trunc_iters);
-    double trunc_iter_median = compute_median(all_trunc_iters);
-    double trunc_clears_mean = compute_mean(all_trunc_clears);
-    double trunc_clears_median = compute_median(all_trunc_clears);
+    double trunc_iter_mean = double(total_trunc_iters) / double(global_counter);
+    // double trunc_iter_median = compute_median(all_trunc_iters);
+    double trunc_clears_mean = (total_trunc_clears / total_trunc_iters) * trunc_iter_mean;
+    // double trunc_clears_median = compute_median(all_trunc_clears);
 
-    double round_iter_mean = compute_mean(all_round_iters);
-    double round_iter_median = compute_median(all_round_iters);
-    double round_clears_mean = compute_mean(all_round_clears);
-    double round_clears_median = compute_median(all_round_clears);
+    double round_iter_mean = double(total_round_iters) / double(global_counter);
+    // double round_iter_median = compute_median(all_round_iters);
+    double round_clears_mean = (total_round_clears / total_round_iters) * round_iter_mean;
+    // double round_clears_median = compute_median(all_round_clears);
 
     // Print final results.
     cout << "\n===== RESULTS (TRUNCATE MODE) =====\n";
     cout << "  Mean Iterations     : " << fixed << setprecision(3) << trunc_iter_mean << "\n";
-    cout << "  Median Iterations   : " << trunc_iter_median << "\n";
+    // cout << "  Median Iterations   : " << trunc_iter_median << "\n";
     cout << "  Mean Bit Clears     : " << trunc_clears_mean << "\n";
-    cout << "  Median Bit Clears   : " << trunc_clears_median << "\n";
+    // cout << "  Median Bit Clears   : " << trunc_clears_median << "\n";
     cout << "  Max Iterations      : " << global_trunc_max_iter << " for pairs: ";
     for (auto &p : global_trunc_max_iter_pairs)
         cout << "(" << p.first << "," << p.second << ") ";
@@ -348,9 +364,9 @@ int main(int argc, char* argv[]) {
 
     cout << "\n===== RESULTS (ROUND MODE) =====\n";
     cout << "  Mean Iterations     : " << round_iter_mean << "\n";
-    cout << "  Median Iterations   : " << round_iter_median << "\n";
+    // cout << "  Median Iterations   : " << round_iter_median << "\n";
     cout << "  Mean Bit Clears     : " << round_clears_mean << "\n";
-    cout << "  Median Bit Clears   : " << round_clears_median << "\n";
+    // cout << "  Median Bit Clears   : " << round_clears_median << "\n";
     cout << "  Max Iterations      : " << global_round_max_iter << " for pairs: ";
     for (auto &p : global_round_max_iter_pairs)
         cout << "(" << p.first << "," << p.second << ") ";
