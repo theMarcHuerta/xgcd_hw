@@ -2,6 +2,7 @@
 import math
 import random
 import sys
+from xgcd_impl import xgcd_bitwise
 
 ###########################################################################
 # Helper Functions (extracted and slightly adjusted)
@@ -52,66 +53,6 @@ def lut_result(a_top, b_top, approx_bits, rounding_mode):
     else:
         return numerator // b_top
 
-###########################################################################
-# xgcd_bitwise (your algorithm, unchanged in spirit)
-###########################################################################
-
-def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncate',
-                 integer_rounding=True, plus_minus=False, enable_plotting=False):
-    """
-    Compute the GCD of a_in and b_in using the custom XGCD bitwise approach.
-    Returns a tuple: (gcd, iteration_count, avg_bit_clears)
-    """
-    mask = (1 << total_bits) - 1
-    a = a_in & mask
-    b = b_in & mask
-
-    if b > a:
-        a, b = b, a
-    if b == 0:
-        return (a, 0, 0.0)
-    if a == 0:
-        return (b, 0, 0.0)
-
-    iteration_count = 0
-    bit_clears_list = []
-
-    while b != 0:
-        iteration_count += 1
-        b_aligned, shift_amount = align_b(a, b)
-        if b_aligned == 0:
-            break
-
-        a_top = get_fixed_top_bits(a, approx_bits)
-        b_top = get_fixed_top_bits(b_aligned, approx_bits)
-        quotient = lut_result(a_top, b_top, approx_bits, rounding_mode)
-
-        Q_pre_round = (quotient << shift_amount) >> (approx_bits - 1)
-        Q = Q_pre_round >> 1
-        if (Q_pre_round & 1) and integer_rounding:
-            Q += 1
-
-        b_adjusted = b * Q
-        residual = a - b_adjusted
-        if residual < 0:
-            residual = -residual
-
-        msb_a = bit_length(a)
-        msb_res = bit_length(residual)
-        clears_this_iter = msb_a - msb_res
-        if clears_this_iter < 0:
-            clears_this_iter = 0
-        bit_clears_list.append(clears_this_iter)
-
-        if residual > b:
-            a = residual
-        else:
-            a, b = b, residual
-
-    if bit_clears_list:
-        bit_clears_list[-1] += bit_length(a)
-    avg_bit_clears = sum(bit_clears_list) / iteration_count if iteration_count > 0 else 0.0
-    return (a, iteration_count, avg_bit_clears)
 
 ###########################################################################
 # 1. LUT Analysis with Ratio Information
@@ -143,7 +84,7 @@ def lut_analysis(approx_bits, rounding_mode='truncate', target_ratio=None):
 # 2. Reverse Algorithm Candidate (Targeted)
 ###########################################################################
 
-def reverse_candidate_target(total_bits, target_ratio=1.43666):
+def reverse_candidate_target(total_bits, target_ratio=1.43648):
     """
     Construct a candidate pair using a target ratio.
     One idea: choose b as round((2^total_bits - 1) / (target_ratio + 1))
@@ -159,7 +100,7 @@ def reverse_candidate_target(total_bits, target_ratio=1.43666):
 ###########################################################################
 
 def hill_climb_xgcd_target(total_bits, approx_bits=4, rounding_mode='truncate',
-                           target_ratio=1.43666, iterations=2000, weight=10, seed=None):
+                           target_ratio=1.43648, iterations=2000, weight=10, seed=None):
     """
     Hill climbing with a fitness that rewards high iteration count and penalizes deviation from target_ratio.
     Fitness = iteration_count - weight * |(a/b) - target_ratio|
@@ -202,7 +143,7 @@ def hill_climb_xgcd_target(total_bits, approx_bits=4, rounding_mode='truncate',
 ###########################################################################
 
 def hybrid_bottom_up_xgcd_target(initial_bits, target_bits, approx_bits=4, rounding_mode='truncate',
-                                 target_ratio=1.43666, neighborhood=8, weight=10):
+                                 target_ratio=1.43648, neighborhood=8, weight=10):
     """
     First, brute-force the worst-case pair for a small bit-width (initial_bits)
     using iteration count. Then "grow" the candidate one bit at a time,
@@ -267,7 +208,7 @@ if __name__ == "__main__":
     approx_bits = 4
     rounding_mode = 'truncate'  # or 'round'
     # For TRUNCATE mode, try target_ratio ~1.43666; for ROUND mode, you might try 1.56.
-    target_ratio = 1.43666
+    target_ratio = 1.43648
 
     print("=== 0. Testing the xgcd_bitwise function ===")
     a_test = 12370

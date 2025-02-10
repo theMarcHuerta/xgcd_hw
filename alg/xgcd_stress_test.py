@@ -136,9 +136,9 @@ def main():
     """
     import argparse
     parser = argparse.ArgumentParser(description="XGCD Stress Test Script.")
-    parser.add_argument("--num_pairs", type=int, default=1000000, help="Number of random pairs to test.")
+    parser.add_argument("--num_pairs", type=int, default=10000, help="Number of random pairs to test.")
     parser.add_argument("--total_bits", type=int, default=256, help="Bit-width of the random numbers.")
-    parser.add_argument("--approx_bits", type=int, default=2, help="Approx bits for the XGCD.")
+    parser.add_argument("--approx_bits", type=int, default=4, help="Approx bits for the XGCD.")
     args = parser.parse_args()
 
     run_xgcd_stress_test(num_pairs=args.num_pairs,
