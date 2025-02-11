@@ -3,7 +3,7 @@
 import math
 
 ##############################################################################
-# 1) Your Approximate XGCD Implementation (slightly cleaned up)
+# 1) Approximate XGCD Implementation
 ##############################################################################
 
 def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, 

@@ -213,8 +213,8 @@ def generate_candidate(total_bits, approx_bits, rounding_mode, integer_rounding=
     """
     # Seed pair: for example, use a=9 (binary 1001) and b=8 (binary 1000) in the seed domain.
     seed_bits = approx_bits
-    a = normalize(9, seed_bits)
-    b = normalize(8, seed_bits)
+    a = normalize(15, seed_bits)
+    b = normalize(11, seed_bits)
     current_bits = seed_bits
     generative_path = []
     
