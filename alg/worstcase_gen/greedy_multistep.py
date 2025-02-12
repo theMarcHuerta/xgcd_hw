@@ -34,6 +34,7 @@ APPROX_BITS      = 4          # Bit‑width of the seed domain (numbers in [2^(A
 BITS_PER_STEP    = 1          # Number of bits added per generative extension
 ROUNDING_MODE    = "truncate" # "truncate" or "round" (for the fixed‑point division)
 INTEGER_ROUNDING = True       # Whether to adjust quotient by integer rounding
+LOOKAHEAD_DEPTH = 3
 
 ##########################
 # HELPER FUNCTIONS
@@ -144,7 +145,7 @@ def simulate_step(a, b):
         clears = 0
 
     if residual > b:
-        print("NO SWAP")
+        # print("NO SWAP")
         a_next = residual
         b_next = b
     else:
@@ -170,62 +171,87 @@ def enumerate_seed_pairs(seed_bits):
                 seeds.append((a, b))
     return seeds
 
+def lookahead_score(a, b, depth):
+    """
+    Recursively compute the minimal cumulative bit clears for candidate pair (a, b)
+    by simulating candidate extensions for a given lookahead depth.
+    We assume that in each future step, we append BITS_PER_STEP bits for both a and b.
+    Returns the minimal total clears achievable in the next 'depth' steps.
+    """
+    if depth == 0:
+        return 0
+    best_total = float('inf')
+    # Loop over all possible extension bits (for both a and b)
+    for gen_bits_a in range(2 ** BITS_PER_STEP):
+        # Determine shift for a (ensure nonnegative)
+        shift_a_by = bit_length(a) - APPROX_BITS - BITS_PER_STEP
+        if shift_a_by < 0:
+            shift_a_by = 0
+        a_test = ((a >> shift_a_by) + gen_bits_a) << shift_a_by
+        for gen_bits_b in range(2 ** BITS_PER_STEP):
+            shift_b_by = bit_length(b) - APPROX_BITS - BITS_PER_STEP
+            if shift_b_by < 0:
+                shift_b_by = 0
+            b_test = ((b >> shift_b_by) + gen_bits_b) << shift_b_by
+            Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(a_test, b_test)
+            total_clears = clears + lookahead_score(a_next, b_next, depth - 1)
+            if total_clears < best_total:
+                best_total = total_clears
+    return best_total
+
+
 def choose_best_seed(seed_pairs):
     """
-    For all seed pairs, simulate one xgcd step and choose the candidate
-    with the minimal bit clears.
+    For all seed pairs, simulate one extension and use lookahead to choose
+    the candidate with the minimal cumulative bit clears over future steps.
     """
-    lowest_clears = float('inf')
+    lowest_score = float('inf')
     best_pairs = []
     for (a, b) in seed_pairs:
-        # Extend the seed by BITS_PER_STEP bits (shifting and adding a small offset)
         full_a = a << BITS_PER_STEP
         full_b = b << BITS_PER_STEP
         for i in range(2 ** BITS_PER_STEP):
             a_test = full_a + i
             for j in range(2 ** BITS_PER_STEP):
                 b_test = full_b + j
-                # Extend to near TOTAL_BITS (this scaling is heuristic)
                 a_test_ext = a_test << (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)
                 b_test_ext = b_test << (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)
                 Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(a_test_ext, b_test_ext)
-                if clears < lowest_clears:
-                    lowest_clears = clears
+                future_score = lookahead_score(a_next, b_next, LOOKAHEAD_DEPTH)
+                total_score = clears + future_score
+                if total_score < lowest_score:
+                    lowest_score = total_score
                     best_pairs = [(a_test_ext, b_test_ext)]
-                elif clears == lowest_clears:
+                elif total_score == lowest_score:
                     best_pairs.append((a_test_ext, b_test_ext))
-
     return random.choice(best_pairs)
+
 
 def choose_best_step(a, b, bits_to_gen_a, bits_to_gen_b):
     """
-    Given the current candidate pair (a, b), try all possible extensions by
-    appending bits to each number. For each candidate extension:
-      - Compute the new numbers by shifting and appending extension bits.
-      - Simulate one xgcd step.
-      - Score the candidate by its bit clears.
+    Given the current candidate pair (a, b), try all possible extensions by appending bits.
+    For each candidate extension, simulate one xgcd step and add the lookahead score.
     Return the updated candidate pair along with the extension bits chosen.
     """
-    lowest_clears = float('inf')
+    lowest_score = float('inf')
     best_candidates = []
-    # Loop over all possible extension bits for A
     for gen_bits_a in range(2 ** bits_to_gen_a):
-        # Calculate a shifted version; note: be cautious if the shift becomes negative.
         shift_a_by = bit_length(a) - APPROX_BITS - BITS_PER_STEP
         if shift_a_by < 0:
             shift_a_by = 0
         a_test = ((a >> shift_a_by) + gen_bits_a) << shift_a_by
-        # Loop over all possible extension bits for B
         for gen_bits_b in range(2 ** bits_to_gen_b):
             shift_b_by = bit_length(b) - APPROX_BITS - BITS_PER_STEP
             if shift_b_by < 0:
                 shift_b_by = 0
             b_test = ((b >> shift_b_by) + gen_bits_b) << shift_b_by
             Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(a_test, b_test)
-            if clears < lowest_clears:
-                lowest_clears = clears
+            future_score = lookahead_score(a_next, b_next, LOOKAHEAD_DEPTH)
+            total_score = clears + future_score
+            if total_score < lowest_score:
+                lowest_score = total_score
                 best_candidates = [(a_test, b_test, gen_bits_a, gen_bits_b)]
-            elif clears == lowest_clears:
+            elif total_score == lowest_score:
                 best_candidates.append((a_test, b_test, gen_bits_a, gen_bits_b))
     new_a, new_b, ext_a, ext_b = random.choice(best_candidates)
     return new_a, new_b, ext_a, ext_b
@@ -334,14 +360,8 @@ def generative_process(seed_bits):
 
     while current_b != 0:
         iteration_count += 1
-        # print((current_a))
-        # print((current_b))
         # Determine number of bits to generate (this formula is heuristic)
         bits_to_gen_a = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_a) - lowest_bit_position_generated_a + 1)
-        # print(bits_to_gen_a)
-
-        # bitlen_b = bit_length(current_b)
-        # if (bitlen_b)
 
         bits_to_gen_b = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_b) - lowest_bit_position_generated_b + 1)
 
@@ -351,15 +371,8 @@ def generative_process(seed_bits):
         if (lowest_bit_position_generated_b - bits_to_gen_b < 1):
             bits_to_gen_b = lowest_bit_position_generated_b - 1
 
-        # if (bit_length(current_b) < APPROX_BITS + BITS_PER_STEP)
-
-        # print(bits_to_gen_b)
-        # if (bits_to_gen_b < 0):
-        print("BIT LENGTH: ", bit_length(current_b), "  lowest bit pos: ", lowest_bit_position_generated_b)
         # Choose best extension (now returns extension bits as well)
         current_a, current_b, ext_a, ext_b = choose_best_step(current_a, current_b, bits_to_gen_a, bits_to_gen_b)
-
-        print("CHOSE BEST STEP")
 
         # Update the lowest bit positions (heuristic update)
         lowest_bit_position_generated_a -= bits_to_gen_a
@@ -367,13 +380,6 @@ def generative_process(seed_bits):
         # print(lowest_bit_position_generated_b)
 
         Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(current_a, current_b)
-
-        # If no swap occurred in simulation, swap the low-bit trackers
-        if current_b == b_next:
-            print("NO SWAP AFTER SIM STEP")
-        #     tmp_lowbit_a = lowest_bit_position_generated_a
-        #     lowest_bit_position_generated_a = lowest_bit_position_generated_b
-        #     lowest_bit_position_generated_b = tmp_lowbit_a
 
         history.append({
             'iteration': iteration_count,
