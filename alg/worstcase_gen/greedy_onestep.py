@@ -19,6 +19,12 @@ all of the extension bits.
 import math
 import random
 
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from xgcd_impl import xgcd_bitwise
+
 ##########################
 # PARAMETERS
 ##########################
@@ -127,7 +133,10 @@ def simulate_step(a, b):
 
     prod = b * Q
     residual = a - prod
+    neg_res = False
+    
     if residual < 0:
+        neg_res = True
         residual = -residual
 
     clears = bit_len(a) - bit_len(residual)
@@ -141,7 +150,7 @@ def simulate_step(a, b):
     else:
         a_next, b_next = b, residual
 
-    return Q, residual, clears, shift, a_next, b_next
+    return Q, residual, clears, shift, a_next, b_next, neg_res
 
 ##########################
 # GENERATIVE PROCESS FUNCTIONS
@@ -172,19 +181,20 @@ def choose_best_seed(seed_pairs):
         # Extend the seed by BITS_PER_STEP bits (shifting and adding a small offset)
         full_a = a << BITS_PER_STEP
         full_b = b << BITS_PER_STEP
-        for i in range(BITS_PER_STEP):
+        for i in range(2 ** BITS_PER_STEP):
             a_test = full_a + i
-            for j in range(BITS_PER_STEP):
+            for j in range(2 ** BITS_PER_STEP):
                 b_test = full_b + j
                 # Extend to near TOTAL_BITS (this scaling is heuristic)
                 a_test_ext = a_test << (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)
                 b_test_ext = b_test << (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)
-                Q, rem, clears, shift, a_next, b_next = simulate_step(a_test_ext, b_test_ext)
+                Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(a_test_ext, b_test_ext)
                 if clears < lowest_clears:
                     lowest_clears = clears
                     best_pairs = [(a_test_ext, b_test_ext)]
                 elif clears == lowest_clears:
                     best_pairs.append((a_test_ext, b_test_ext))
+                    
     return random.choice(best_pairs)
 
 def choose_best_step(a, b, bits_to_gen_a, bits_to_gen_b):
@@ -211,7 +221,7 @@ def choose_best_step(a, b, bits_to_gen_a, bits_to_gen_b):
             if shift_b_by < 0:
                 shift_b_by = 0
             b_test = ((b >> shift_b_by) + gen_bits_b) << shift_b_by
-            Q, rem, clears, shift, a_next, b_next = simulate_step(a_test, b_test)
+            Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(a_test, b_test)
             if clears < lowest_clears:
                 lowest_clears = clears
                 best_candidates = [(a_test, b_test, gen_bits_a, gen_bits_b)]
@@ -220,30 +230,78 @@ def choose_best_step(a, b, bits_to_gen_a, bits_to_gen_b):
     new_a, new_b, ext_a, ext_b = random.choice(best_candidates)
     return new_a, new_b, ext_a, ext_b
 
-def reconstruct_candidate(history, bits_per_step):
+def reconstruct_candidate(history):
     """
     Reconstruct the candidate pair (A, B) by traversing the generative history.
     Starting with the seed candidate, for every extension step, shift the candidate
     left by bits_per_step and OR in the extension bits. If a swap occurred in that step,
     swap the roles of A and B.
     """
+    largest_b = 0
 
-    
+    prev_b_curr = 0
+
+    b_prev = 0
+
+    sim = history[-1]['simulation']
+    q_curr = sim['Q']
+    if (sim['neg_res']):
+        q_curr = -q_curr
+
+    b_curr = history[-1]['candidate'][1]
+
+    b_next = abs(q_curr * b_curr + b_prev)
+
     #loop through all iterations but start with last iterations
-    for i in range(1, len(history)):
+    
+    # print(" THIS IS THE SECOND B   ", history[1]['candidate'][1])
 
-    seed_a, seed_b = history[0]['candidate']
-    reconstructed_a = seed_a
-    reconstructed_b = seed_b
-    for step in history[1:]:
-        ext_a, ext_b = step['extension_bits']
-        reconstructed_a = (reconstructed_a << bits_per_step) | ext_a
-        reconstructed_b = (reconstructed_b << bits_per_step) | ext_b
-        if step['swap']:
-            reconstructed_a, reconstructed_b = reconstructed_b, reconstructed_a
+    print("ITERATION: ", 0, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
+
+    b_prev = b_curr
+    b_curr = b_next
+
+    for i in range(1, len(history)-1):
+        b_prev = history[-i]['candidate'][1]
+
+        # b_curr = history[-i-1]['candidate'][1]
+
+        sim = history[(-i)-1]['simulation']
+
+        q_curr = sim['Q']
+
+        if (sim['neg_res']):
+            b_prev = -b_prev
+        
+        b_next = abs(q_curr * b_curr + b_prev)
+        print("ITERATION: ", i, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
+
+        #used pretty much just to do the calc for A
+        prev_b_curr = b_curr
+
+        b_prev = b_curr
+        b_curr = b_next
+
+        # b_prev = history[-i]['candidate'][1]
+
+        if (b_next > largest_b):
+            largest_b = b_next
+
+    reconstructed_b = b_next
+
+    print("Largest B", largest_b)
+
+    last_q = history[0]['simulation']['Q']
+    if (history[0]['simulation']['neg_res']):
+        last_q = -last_q
+
+    reconstructed_a = abs(b_next * last_q + prev_b_curr)
+
+    print(reconstructed_a, "    " , reconstructed_b)
+
     return reconstructed_a, reconstructed_b
 
-def generative_process(total_bits, seed_bits, bits_per_step, appx_bits, mode, int_rounding):
+def generative_process(seed_bits):
     """
     Generate a candidate pair by:
       1. Enumerating all seed pairs.
@@ -260,11 +318,15 @@ def generative_process(total_bits, seed_bits, bits_per_step, appx_bits, mode, in
     lowest_bit_position_generated_a = TOTAL_BITS - APPROX_BITS - BITS_PER_STEP + 1
     lowest_bit_position_generated_b = TOTAL_BITS - APPROX_BITS - BITS_PER_STEP + 1
 
-    Q, rem, clears, shift, current_a, current_b = simulate_step(starting_a, starting_b)
+    Q, rem, clears, shift, current_a, current_b, neg_res = simulate_step(starting_a, starting_b)
+
+    ext_a = (starting_a >> (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)) & ((2**BITS_PER_STEP) - 1)
+    ext_b = (starting_b >> (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)) & ((2**BITS_PER_STEP) - 1)
     history = [{
         'iteration': 1,
+        'extension_bits': (ext_a, ext_b),
         'candidate': (starting_a, starting_b),
-        'simulation': {'Q': Q, 'rem': rem, 'clears': clears, 'shift': shift},
+        'simulation': {'Q': Q, 'rem': rem, 'clears': clears, 'shift': shift, 'neg_res': neg_res},
         'swap': False
     }]
 
@@ -277,21 +339,38 @@ def generative_process(total_bits, seed_bits, bits_per_step, appx_bits, mode, in
         # Determine number of bits to generate (this formula is heuristic)
         bits_to_gen_a = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_a) - lowest_bit_position_generated_a + 1)
         # print(bits_to_gen_a)
+
+        # bitlen_b = bit_length(current_b)
+        # if (bitlen_b)
+
         bits_to_gen_b = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_b) - lowest_bit_position_generated_b + 1)
+
+        if (lowest_bit_position_generated_b < 2):
+            bits_to_gen_b = 0
+
+        if (lowest_bit_position_generated_b - bits_to_gen_b < 1):
+            bits_to_gen_b = lowest_bit_position_generated_b - 1
+
+        # if (bit_length(current_b) < APPROX_BITS + BITS_PER_STEP)
+
         # print(bits_to_gen_b)
+        # if (bits_to_gen_b < 0):
+        print("BIT LENGTH: ", bit_length(current_b), "  lowest bit pos: ", lowest_bit_position_generated_b)
         # Choose best extension (now returns extension bits as well)
         current_a, current_b, ext_a, ext_b = choose_best_step(current_a, current_b, bits_to_gen_a, bits_to_gen_b)
+
+        print("CHOSE BEST STEP")
 
         # Update the lowest bit positions (heuristic update)
         lowest_bit_position_generated_a -= bits_to_gen_a
         lowest_bit_position_generated_b -= bits_to_gen_b
         # print(lowest_bit_position_generated_b)
 
-        Q, rem, clears, shift, a_next, b_next = simulate_step(current_a, current_b)
+        Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(current_a, current_b)
 
         # If no swap occurred in simulation, swap the low-bit trackers
         if current_b == b_next:
-            print("NO SWAP")
+            print("NO SWAP AFTER SIM STEP")
         #     tmp_lowbit_a = lowest_bit_position_generated_a
         #     lowest_bit_position_generated_a = lowest_bit_position_generated_b
         #     lowest_bit_position_generated_b = tmp_lowbit_a
@@ -300,7 +379,7 @@ def generative_process(total_bits, seed_bits, bits_per_step, appx_bits, mode, in
             'iteration': iteration_count,
             'extension_bits': (ext_a, ext_b),
             'candidate': (current_a, current_b),
-            'simulation': {'Q': Q, 'rem': rem, 'clears': clears, 'shift': shift},
+            'simulation': {'Q': Q, 'rem': rem, 'clears': clears, 'shift': shift, 'neg_res': neg_res},
             'swap': (current_b == b_next)
         })
 
@@ -311,12 +390,12 @@ def generative_process(total_bits, seed_bits, bits_per_step, appx_bits, mode, in
     print(iteration_count)
 
     # Reconstruct candidate pair from generative history:
-    reconstructed_a, reconstructed_b = reconstruct_candidate(history, bits_per_step)
+    reconstructed_a, reconstructed_b = reconstruct_candidate(history)
     print("Reconstructed Candidate Pair:")
     print(f"  A = {reconstructed_a} (binary: {reconstructed_a:0{TOTAL_BITS}b})")
     print(f"  B = {reconstructed_b} (binary: {reconstructed_b:0{TOTAL_BITS}b})")
     
-    return current_a, current_b, history
+    return reconstructed_a, reconstructed_b, history
 
 ##########################
 # HISTORY PRINTING
@@ -332,7 +411,12 @@ def print_history(history, bits_per_step):
         iteration = step['iteration']
         if iteration == 1:
             candidate = step['candidate']
-            print(f"[Seed] Iteration {iteration}: Candidate: A = {candidate[0]:b}, B = {candidate[1]:b}")
+            ext_a, ext_b = step['extension_bits']
+            sim = step['simulation']
+            swap = step['swap']
+            print(f"[ Seed ] Iteration {iteration}: Extension bits: A_ext = {ext_a:0{bits_per_step}b}, B_ext = {ext_b:0{bits_per_step}b} | "
+                  f"Candidate: A = {candidate[0]:b}, B = {candidate[1]:b} | Simulated: Q = {sim['Q']}, rem = {sim['rem']}, clears = {sim['clears']} | "
+                  f"Swap: {swap}, Residual Sign Flip: {sim['neg_res']}")
         else:
             candidate = step['candidate']
             ext_a, ext_b = step['extension_bits']
@@ -340,7 +424,7 @@ def print_history(history, bits_per_step):
             swap = step['swap']
             print(f"[Extend] Iteration {iteration}: Extension bits: A_ext = {ext_a:0{bits_per_step}b}, B_ext = {ext_b:0{bits_per_step}b} | "
                   f"Candidate: A = {candidate[0]:b}, B = {candidate[1]:b} | Simulated: Q = {sim['Q']}, rem = {sim['rem']}, clears = {sim['clears']} | "
-                  f"Swap: {swap}")
+                  f"Swap: {swap}, Residual Sign Flip: {sim['neg_res']}")
 
 ##########################
 # FULL XGCD SIMULATION
@@ -359,7 +443,7 @@ def full_xgcd_simulation(a, b, total_bits, appx_bits, mode, int_rounding):
     total_clears = 0
     while b:
         iter_count += 1
-        Q, rem, clears, shift, a_next, b_next = simulate_step(a, b)
+        Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(a, b)
         total_clears += clears
         if rem > b:
             a, b = rem, b
@@ -379,7 +463,7 @@ def main():
     print("-" * 60)
     
     # Use APPROX_BITS as the seed bit-width here.
-    candidate_A, candidate_B, history = generative_process(TOTAL_BITS, APPROX_BITS, BITS_PER_STEP, APPROX_BITS, ROUNDING_MODE, INTEGER_ROUNDING)
+    candidate_A, candidate_B, history = generative_process(APPROX_BITS)
     
     print("\nFinal Candidate Pair:")
     print(f"  A = {candidate_A} (binary: {candidate_A:0{TOTAL_BITS}b})")
@@ -394,11 +478,17 @@ def main():
     print_history(history, BITS_PER_STEP)
     
     print("-" * 60)
-    gcd_val, iter_count, avg_clears = full_xgcd_simulation(candidate_A, candidate_B, TOTAL_BITS, APPROX_BITS, ROUNDING_MODE, INTEGER_ROUNDING)
+    gcd_val, count, avg_clears = xgcd_bitwise(candidate_A, candidate_B,
+                                                           total_bits=TOTAL_BITS,
+                                                           approx_bits=APPROX_BITS,
+                                                           rounding_mode=ROUNDING_MODE,
+                                                           integer_rounding=INTEGER_ROUNDING,
+                                                           plus_minus=False,
+                                                           enable_plotting=False)
+                                                           
+    print(f"(Medium) GCD of {candidate_A} and {candidate_B} is {gcd_val}, reached in {count} iterations.")
+    print(f"  Average bit clears: {avg_clears:.3f}")
     print("Full XGCD Simulation Result:")
-    print(f"  GCD = {gcd_val}")
-    print(f"  Iterations = {iter_count}")
-    print(f"  Average Bit Clears = {avg_clears:.3f}")
 
 if __name__ == "__main__":
     main()
