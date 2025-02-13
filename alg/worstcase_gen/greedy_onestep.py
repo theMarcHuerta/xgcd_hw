@@ -322,6 +322,7 @@ def generative_process(seed_bits):
 
     ext_a = (starting_a >> (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)) & ((2**BITS_PER_STEP) - 1)
     ext_b = (starting_b >> (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)) & ((2**BITS_PER_STEP) - 1)
+
     history = [{
         'iteration': 1,
         'extension_bits': (ext_a, ext_b),
@@ -332,48 +333,88 @@ def generative_process(seed_bits):
 
     iteration_count = 1
 
-    while current_b != 0:
+    bits_to_gen_a = 0
+    bits_to_gen_b = clears
+
+    lowest_bit_position_generated_a = lowest_bit_position_generated_b
+    lowest_bit_position_generated_b -= bits_to_gen_b
+
+    print("LOWEST B BIT: ", lowest_bit_position_generated_b, "B IS: ", current_b, "   CURRENT A: ", current_a)
+
+    while current_b != 0 or lowest_bit_position_generated_b > 1:
         iteration_count += 1
         # print((current_a))
         # print((current_b))
         # Determine number of bits to generate (this formula is heuristic)
-        bits_to_gen_a = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_a) - lowest_bit_position_generated_a + 1)
-        # print(bits_to_gen_a)
+        # bits_to_gen_a = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_a) - lowest_bit_position_generated_a + 1)
 
         # bitlen_b = bit_length(current_b)
         # if (bitlen_b)
 
-        bits_to_gen_b = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_b) - lowest_bit_position_generated_b + 1)
-
-        if (lowest_bit_position_generated_b < 2):
-            bits_to_gen_b = 0
-
-        if (lowest_bit_position_generated_b - bits_to_gen_b < 1):
-            bits_to_gen_b = lowest_bit_position_generated_b - 1
+        # bits_to_gen_b = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_b) - lowest_bit_position_generated_b + 1)
+        # if we've touched/gen'd all bits down to the lowest, just let it play out
 
         # if (bit_length(current_b) < APPROX_BITS + BITS_PER_STEP)
 
         # print(bits_to_gen_b)
         # if (bits_to_gen_b < 0):
-        print("BIT LENGTH: ", bit_length(current_b), "  lowest bit pos: ", lowest_bit_position_generated_b)
+        # print("BITS TO GEN: A", bits_to_gen_a)
+        # print("BIT LENGTH: ", bit_length(current_a), "  lowest bit pos: ", lowest_bit_position_generated_a)
         # Choose best extension (now returns extension bits as well)
+        # if (bits_to_gen_b < 0):
+        #     print("WENT WRONG")
+
         current_a, current_b, ext_a, ext_b = choose_best_step(current_a, current_b, bits_to_gen_a, bits_to_gen_b)
 
-        print("CHOSE BEST STEP")
+        # print("CHOSE BEST STEP")
 
-        # Update the lowest bit positions (heuristic update)
-        lowest_bit_position_generated_a -= bits_to_gen_a
-        lowest_bit_position_generated_b -= bits_to_gen_b
-        # print(lowest_bit_position_generated_b)
+        # prev_lowest_bit_pos_a = lowest_bit_position_generated_a
+        # # Update the lowest bit positions (heuristic update)
+        # lowest_bit_position_generated_b -= bits_to_gen_b
+        # #since b becomes a next step, this should be that
+        # lowest_bit_position_generated_a = lowest_bit_position_generated_b
+        # # print(lowest_bit_position_generated_b)
 
         Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(current_a, current_b)
+
+        print(f"STEP INFO: Q: {Q}, rem: {rem}, clears: {clears}, shift: {shift}, current a: {current_a}, current b: {current_b}")
+
+        bits_to_gen_a = 0
+        bits_to_gen_b = clears
+
+
+                
+        # if (lowest_bit_position_generated_a - bits_to_gen_a < 1):
+        #     bits_to_gen_a = (lowest_bit_position_generated_a - 1)
+
+        if (lowest_bit_position_generated_a - bits_to_gen_b < 1):
+            bits_to_gen_b = (lowest_bit_position_generated_a - 1)
+
+        # if (lowest_bit_position_generated_a < 2):
+        #     bits_to_gen_a = 0   
+
+        if (lowest_bit_position_generated_a < 2):
+            bits_to_gen_b = 0
+
+
+
+        tmp_a = lowest_bit_position_generated_a
+        lowest_bit_position_generated_a = lowest_bit_position_generated_b
+        lowest_bit_position_generated_b = tmp_a - bits_to_gen_b
 
         # If no swap occurred in simulation, swap the low-bit trackers
         if current_b == b_next:
             print("NO SWAP AFTER SIM STEP")
-        #     tmp_lowbit_a = lowest_bit_position_generated_a
-        #     lowest_bit_position_generated_a = lowest_bit_position_generated_b
-        #     lowest_bit_position_generated_b = tmp_lowbit_a
+            # tmp_lowbit_a = lowest_bit_position_generated_a
+            # if we keep b as b, we shouldnt generate anymore bit sso it becomes it orignal
+            # the residual becomes A so now we generate bit son its residual
+            tmp_a = lowest_bit_position_generated_a
+            lowest_bit_position_generated_a = lowest_bit_position_generated_b
+            lowest_bit_position_generated_b = tmp_a
+            bits_to_gen_a = bits_to_gen_b
+            bits_to_gen_b = 0
+            # lowest_bit_position_generated_b = tmp_lowbit_a
+
 
         history.append({
             'iteration': iteration_count,
@@ -385,6 +426,13 @@ def generative_process(seed_bits):
 
         current_a = a_next
         current_b = b_next
+
+        print("LOWEST A BIT: ", lowest_bit_position_generated_a, "  BITS TO GEN A: ", bits_to_gen_a )
+        print("LOWEST B BIT: ", lowest_bit_position_generated_b, "     B IS: ", current_b, "   CURRENT A: ", current_a, "  BITS TO GEN B: ", bits_to_gen_b, "\n")
+
+        if iteration_count > 20:
+            print("WAS GOING TO BE INFINITE LOOP")
+            break 
 
     print("ITERATIONS IT TOOK:")
     print(iteration_count)
@@ -478,6 +526,7 @@ def main():
     print_history(history, BITS_PER_STEP)
     
     print("-" * 60)
+    print("Full XGCD Simulation Result 1:")
     gcd_val, count, avg_clears = xgcd_bitwise(candidate_A, candidate_B,
                                                            total_bits=TOTAL_BITS,
                                                            approx_bits=APPROX_BITS,
@@ -486,9 +535,21 @@ def main():
                                                            plus_minus=False,
                                                            enable_plotting=False)
                                                            
-    print(f"(Medium) GCD of {candidate_A} and {candidate_B} is {gcd_val}, reached in {count} iterations.")
+    print(f"(ITER 1) GCD of {candidate_A} and {candidate_B} is {gcd_val}, reached in {count} iterations.")
     print(f"  Average bit clears: {avg_clears:.3f}")
-    print("Full XGCD Simulation Result:")
+
+    print("-" * 60)
+    print("Full XGCD Simulation Result 2:")
+    gcd_val, count, avg_clears = xgcd_bitwise(candidate_A + gcd_val - 1, candidate_B + gcd_val - 2,
+                                                           total_bits=TOTAL_BITS,
+                                                           approx_bits=APPROX_BITS,
+                                                           rounding_mode=ROUNDING_MODE,
+                                                           integer_rounding=INTEGER_ROUNDING,
+                                                           plus_minus=False,
+                                                           enable_plotting=False)
+                                                           
+    print(f"(ITER 2) GCD of {candidate_A + gcd_val - 1} and {candidate_B + gcd_val - 2} is {gcd_val}, reached in {count} iterations.")
+    print(f"  Average bit clears: {avg_clears:.3f}")
 
 if __name__ == "__main__":
     main()
