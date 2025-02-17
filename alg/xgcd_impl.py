@@ -133,8 +133,10 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
 
     while b != 0:
         
-        print("A is: ", a)
-        print("B is: ", b)
+        print(f"A: {a:b}")        
+        print(f"B: {b:b}")
+        # print("A is: ", a)
+        # print("B is: ", b)
 
         iteration_count += 1
 
@@ -172,19 +174,25 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
         # a_new = a - b_adjusted
         residual = a - b_adjusted
 
-        print("Q is: ", Q)
+        # print("Q is: ", Q)
 
         if residual < 0:
-            print("Residual was negative")
+            # print("Residual was negative")
             residual = -residual
 
-        print("\n")
+        # print("\n")
         msb_a = bit_length(a)
         msb_res = bit_length(residual)
         clears_this_iter = msb_a - msb_res
         if clears_this_iter < 0:
             clears_this_iter = 0  # in case we "went backwards" in bit length
         bit_clears_list.append(clears_this_iter)
+
+        print(f"R: {residual:b}")
+
+        print(f"Q: {Q}")
+
+        print(f"C: {clears_this_iter} \n")
 
         # STEP 7) Prepare next iteration: 
         #    the old b becomes new a, the result becomes new b
@@ -268,29 +276,29 @@ if __name__ == "__main__":
     # print(f"  Average bit clears: {avg_clears:.3f}")
 
     # 2) Another example with 16 bits
-    a_in = 772
-    b_in = 565
+    a_in = 7501
+    b_in = 5222
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
-                                                           total_bits=10,
+                                                           total_bits=13,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
                                                            plus_minus=False,
-                                                           enable_plotting=False)
+                                                           enable_plotting=True)
     print(f"(Medium) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
     print(f"  Average bit clears: {avg_clears:.3f}")
 
     # # 3) A large 256-bit example (enable_plotting=True to see the charts)
-    # A_HEX = "d12bf5c7f45a49f54fdf4e79a339eb28e1cc739052cbfa4bcc70eb22d7c28187"
-    # B_HEX = "814675988eb7041005ee9f4355a59a00629b7c0123408b65d25f59ec1a328e62"
+    # A_HEX = "ec30e4c53f6724857556f50afc80013b0995173248cef4d38bc099887fa83367d5dbd26953b22fe57ecd1921fb7b6309ca7cac791eb08301891182cd299e32b5"
+    # B_HEX = "91f95c012469cf51b3f2301676d57142af0216b58586ffbfce71423398033050ff6e792fe74dd0378e5ae71b340102babf12e11a58d527f177fe2fa327e011d8"
     # a_in = int(A_HEX, 16)
     # b_in = int(B_HEX, 16)
 
     # gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
-    #                                                        total_bits=256,
+    #                                                        total_bits=512,
     #                                                        approx_bits=4,
     #                                                        rounding_mode='truncate',
-    #                                                        integer_rounding=True,
+    #                                                        integer_rounding=False,
     #                                                        plus_minus=False,
     #                                                        enable_plotting=False)
 

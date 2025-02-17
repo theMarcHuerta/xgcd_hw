@@ -227,8 +227,28 @@ def choose_best_step(a, b, bits_to_gen_a, bits_to_gen_b):
                 best_candidates = [(a_test, b_test, gen_bits_a, gen_bits_b)]
             elif clears == lowest_clears:
                 best_candidates.append((a_test, b_test, gen_bits_a, gen_bits_b))
+                
     new_a, new_b, ext_a, ext_b = random.choice(best_candidates)
     return new_a, new_b, ext_a, ext_b
+
+# def reconstruct_candidate(history):
+#     """
+#     Reconstruct the candidate pair (A, B) by processing the generative history in order.
+#     At each iteration, shift the current candidate pair left by the number of bits generated,
+#     then OR in the extension bits. If a swap occurred at that iteration, swap A and B.
+#     This approach assumes that each history entry records:
+#        - 'extension_bits': a tuple (ext_a, ext_b)
+#        - 'bits_generated': a tuple (bits_for_A, bits_for_B)
+#     """
+#     rec_A, rec_B = history[0]['candidate']
+#     # Process each extension step in order (starting from iteration 2).
+#     for step in history[1:]:
+#         print("BITS A: ", rec_A, "   BITS B: ", rec_B)
+#         bits_A, bits_B = step['candidate']
+#         rec_A = rec_A ^ bits_A
+#         rec_B = rec_B ^ bits_B
+
+#     return rec_A, rec_B
 
 def reconstruct_candidate(history):
     """
@@ -238,9 +258,7 @@ def reconstruct_candidate(history):
     swap the roles of A and B.
     """
     largest_b = 0
-
     prev_b_curr = 0
-
     b_prev = 0
 
     sim = history[-1]['simulation']
@@ -249,13 +267,9 @@ def reconstruct_candidate(history):
         q_curr = -q_curr
 
     b_curr = history[-1]['candidate'][1]
-
     b_next = abs(q_curr * b_curr + b_prev)
 
-    #loop through all iterations but start with last iterations
-    
-    # print(" THIS IS THE SECOND B   ", history[1]['candidate'][1])
-
+    # loop through all iterations but start with last iterations
     print("ITERATION: ", 0, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
 
     b_prev = b_curr
@@ -263,43 +277,29 @@ def reconstruct_candidate(history):
 
     for i in range(1, len(history)-1):
         b_prev = history[-i]['candidate'][1]
-
-        # b_curr = history[-i-1]['candidate'][1]
-
         sim = history[(-i)-1]['simulation']
-
         q_curr = sim['Q']
-
         if (sim['neg_res']):
             b_prev = -b_prev
-        
         b_next = abs(q_curr * b_curr + b_prev)
         print("ITERATION: ", i, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
-
         #used pretty much just to do the calc for A
         prev_b_curr = b_curr
-
         b_prev = b_curr
         b_curr = b_next
-
-        # b_prev = history[-i]['candidate'][1]
-
         if (b_next > largest_b):
             largest_b = b_next
 
     reconstructed_b = b_next
-
-    print("Largest B", largest_b)
-
     last_q = history[0]['simulation']['Q']
     if (history[0]['simulation']['neg_res']):
         last_q = -last_q
 
     reconstructed_a = abs(b_next * last_q + prev_b_curr)
-
     print(reconstructed_a, "    " , reconstructed_b)
-
     return reconstructed_a, reconstructed_b
+
+
 
 def generative_process(seed_bits):
     """
@@ -342,38 +342,10 @@ def generative_process(seed_bits):
     print("LOWEST B BIT: ", lowest_bit_position_generated_b, "B IS: ", current_b, "   CURRENT A: ", current_a)
 
     while current_b != 0 or lowest_bit_position_generated_b > 1:
+
         iteration_count += 1
-        # print((current_a))
-        # print((current_b))
-        # Determine number of bits to generate (this formula is heuristic)
-        # bits_to_gen_a = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_a) - lowest_bit_position_generated_a + 1)
-
-        # bitlen_b = bit_length(current_b)
-        # if (bitlen_b)
-
-        # bits_to_gen_b = (APPROX_BITS + BITS_PER_STEP) - (bit_length(current_b) - lowest_bit_position_generated_b + 1)
-        # if we've touched/gen'd all bits down to the lowest, just let it play out
-
-        # if (bit_length(current_b) < APPROX_BITS + BITS_PER_STEP)
-
-        # print(bits_to_gen_b)
-        # if (bits_to_gen_b < 0):
-        # print("BITS TO GEN: A", bits_to_gen_a)
-        # print("BIT LENGTH: ", bit_length(current_a), "  lowest bit pos: ", lowest_bit_position_generated_a)
-        # Choose best extension (now returns extension bits as well)
-        # if (bits_to_gen_b < 0):
-        #     print("WENT WRONG")
 
         current_a, current_b, ext_a, ext_b = choose_best_step(current_a, current_b, bits_to_gen_a, bits_to_gen_b)
-
-        # print("CHOSE BEST STEP")
-
-        # prev_lowest_bit_pos_a = lowest_bit_position_generated_a
-        # # Update the lowest bit positions (heuristic update)
-        # lowest_bit_position_generated_b -= bits_to_gen_b
-        # #since b becomes a next step, this should be that
-        # lowest_bit_position_generated_a = lowest_bit_position_generated_b
-        # # print(lowest_bit_position_generated_b)
 
         Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(current_a, current_b)
 
@@ -382,21 +354,11 @@ def generative_process(seed_bits):
         bits_to_gen_a = 0
         bits_to_gen_b = clears
 
-
-                
-        # if (lowest_bit_position_generated_a - bits_to_gen_a < 1):
-        #     bits_to_gen_a = (lowest_bit_position_generated_a - 1)
-
         if (lowest_bit_position_generated_a - bits_to_gen_b < 1):
             bits_to_gen_b = (lowest_bit_position_generated_a - 1)
 
-        # if (lowest_bit_position_generated_a < 2):
-        #     bits_to_gen_a = 0   
-
         if (lowest_bit_position_generated_a < 2):
             bits_to_gen_b = 0
-
-
 
         tmp_a = lowest_bit_position_generated_a
         lowest_bit_position_generated_a = lowest_bit_position_generated_b
@@ -405,7 +367,6 @@ def generative_process(seed_bits):
         # If no swap occurred in simulation, swap the low-bit trackers
         if current_b == b_next:
             print("NO SWAP AFTER SIM STEP")
-            # tmp_lowbit_a = lowest_bit_position_generated_a
             # if we keep b as b, we shouldnt generate anymore bit sso it becomes it orignal
             # the residual becomes A so now we generate bit son its residual
             tmp_a = lowest_bit_position_generated_a
@@ -413,8 +374,6 @@ def generative_process(seed_bits):
             lowest_bit_position_generated_b = tmp_a
             bits_to_gen_a = bits_to_gen_b
             bits_to_gen_b = 0
-            # lowest_bit_position_generated_b = tmp_lowbit_a
-
 
         history.append({
             'iteration': iteration_count,
@@ -429,10 +388,6 @@ def generative_process(seed_bits):
 
         print("LOWEST A BIT: ", lowest_bit_position_generated_a, "  BITS TO GEN A: ", bits_to_gen_a )
         print("LOWEST B BIT: ", lowest_bit_position_generated_b, "     B IS: ", current_b, "   CURRENT A: ", current_a, "  BITS TO GEN B: ", bits_to_gen_b, "\n")
-
-        if iteration_count > 20:
-            print("WAS GOING TO BE INFINITE LOOP")
-            break 
 
     print("ITERATIONS IT TOOK:")
     print(iteration_count)
