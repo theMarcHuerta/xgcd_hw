@@ -83,7 +83,11 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
                         const std::string &rounding_mode,
                         bool integer_rounding,
                         std::unordered_map<std::pair<uint32_t, uint32_t>,
-                                           std::vector<matchInfo>, pair_hash>& data_map)
+                                           std::vector<matchInfo>, pair_hash>& data_map,
+                        std::vector<std::vector<int>>& bitclears,
+                        std::vector<std::vector<int>>& q_vals,
+                        std::vector<std::vector<int>>& swaps,
+                        std::vector<std::vector<int>>& negatives)
 {
     // --- STEP 1: Normalize the inputs ---
     // Mask off any bits above total_bits.
@@ -142,10 +146,16 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
         // Use 64-bit arithmetic for multiplication.
         uint64_t product = static_cast<uint64_t>(b) * Q;
         uint32_t residual;
-        if (a >= product)
+        if (a >= product){
             residual = a - static_cast<uint32_t>(product);
-        else
+            negatives[iteration_count-1][1] += 1;
+            negatives[total_bits - 1 - iteration_count][3] += 1;
+        }
+        else {
             residual = static_cast<uint32_t>(product - a);
+            negatives[iteration_count-1][0] += 1;
+            negatives[total_bits - 1 - iteration_count][2] += 1;
+        }
 
         // Count how many “leading bits” got cleared in this iteration.
         int msb_a = bit_length(a);
@@ -155,15 +165,28 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
             clears_this_iter = 0;
         bit_clears_list.push_back(clears_this_iter);
 
+        bitclears[iteration_count-1].push_back(clears_this_iter);
+        q_vals[iteration_count-1].push_back(int(Q));
+
+        if (clears_this_iter > 4 || Q > 7){
+            std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
+            "   BIT CLEARS: " << clears_this_iter << std::endl;
+        }
+
         // STEP 7: Prepare for the next iteration.
         // Swap: if the residual is larger than b, then a becomes residual;
         // otherwise, set a = b and b = residual.
-        if (residual > b)
+        if (residual > b) {
             a = residual;
+            swaps[iteration_count-1][0] += 1;
+            swaps[total_bits - 1 - iteration_count][2] += 1;
+        }
         else {
             uint32_t temp = b;
             b = residual;
             a = temp;
+            swaps[iteration_count - 1][1] += 1;
+            swaps[total_bits - 1 - iteration_count][3] += 1;
         }
     }
 

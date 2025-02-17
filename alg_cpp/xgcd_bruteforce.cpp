@@ -160,7 +160,7 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
             // Update the global progress counter.
             uint64_t current = ++global_counter;
             // If this thread is designated as the progress reporter, print progress every so often.
-            if (progress_thread && current % (total_pairs / 200 + 1) == 0) {
+            if (progress_thread && current % (total_pairs / 2000000 + 1) == 0) {
                 double pct = 100.0 * current / total_pairs;
                 lock_guard<mutex> lock(print_mutex);
                 cout << "\rProgress: " << current << " / " << total_pairs << " (" 

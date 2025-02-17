@@ -276,10 +276,10 @@ if __name__ == "__main__":
     # print(f"  Average bit clears: {avg_clears:.3f}")
 
     # 2) Another example with 16 bits
-    a_in = 7501
-    b_in = 5222
+    a_in = 241389
+    b_in = 168067
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
-                                                           total_bits=13,
+                                                           total_bits=18,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
