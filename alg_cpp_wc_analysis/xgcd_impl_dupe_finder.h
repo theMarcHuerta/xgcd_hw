@@ -168,10 +168,10 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
         bitclears[iteration_count-1].push_back(clears_this_iter);
         q_vals[iteration_count-1].push_back(int(Q));
 
-        if (clears_this_iter > 4 || Q > 7){
-            std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-            "   BIT CLEARS: " << clears_this_iter << std::endl;
-        }
+        // if (clears_this_iter > 4 || Q > 7){
+        //     std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
+        //     "   BIT CLEARS: " << clears_this_iter << std::endl;
+        // }
 
         // STEP 7: Prepare for the next iteration.
         // Swap: if the residual is larger than b, then a becomes residual;
