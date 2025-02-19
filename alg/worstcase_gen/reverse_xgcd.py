@@ -36,11 +36,9 @@ from xgcd_impl import xgcd_bitwise
 ##########################
 
 MAX_Q            = 6          
-MAX_ITER         = 7          
+MAX_ITER         = 8          
 
-global_count = 0 
-
-def explore_sequences(b_prev, b_curr, iteration, max_iter, q_max):
+def explore_sequences(b_prev, b_curr, iteration, max_iter, q_max, q_trace):
     """
     Recursively explore all sequences up to max_iter depth, 
     building b_next from b_prev, b_curr, and q in +/-[1..q_max].
@@ -58,6 +56,8 @@ def explore_sequences(b_prev, b_curr, iteration, max_iter, q_max):
             if b_next < b_curr or b_next < 0:
                 continue
 
+            q_trace.append(q*sign)
+
             iteration_len = 0
             if (b_next.bit_length() == b_curr.bit_length()):
                 gcd_val, iteration_len, avg_clears = xgcd_bitwise(b_next, b_curr,
@@ -72,18 +72,25 @@ def explore_sequences(b_prev, b_curr, iteration, max_iter, q_max):
             if b_curr != 0 and b_next.bit_length() == b_curr.bit_length() and b_next.bit_length() == (iteration_len+1):
                 # Print if they share the same bit length
                 print(f"Iteration {iteration+1}: A={b_next} (bitlen={b_next.bit_length()}), "
-                      f"B={b_curr} (bitlen={b_curr.bit_length()}), q={q}")
+                      f"B={b_curr} (bitlen={b_curr.bit_length()}), q={q}, q_trace={q_trace}")
+                q_trace.pop()
+                continue
 
             # Recurse: shift "current" forward
-            explore_sequences(b_curr, b_next, iteration+1, max_iter, q_max)
+            explore_sequences(b_curr, b_next, iteration+1, max_iter, q_max, q_trace)
+
+            # Done exploring that path, so pop the q we appended
+            q_trace.pop()
 
 
 def main():
 
-    b_prev  = 35911
-    b_curr  = 82273
+    b_prev  = 577523
+    b_curr  = 1323113
 
-    explore_sequences(b_prev, b_curr, 0, MAX_ITER, MAX_Q)
+    q_trace = []
+
+    explore_sequences(b_prev, b_curr, 0, MAX_ITER, MAX_Q, q_trace)
 
 
 if __name__ == "__main__":

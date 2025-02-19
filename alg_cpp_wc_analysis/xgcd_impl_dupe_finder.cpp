@@ -27,10 +27,10 @@ void analyzeAndPrint(
         if (bitclears[i].empty()) continue; // Skip empty vectors to avoid division by zero
 
         double avg_bitclear = 0;
-        int max_bitclear = std::numeric_limits<int>::min();
+        int max_bitclear = std::numeric_limits<int>::max();
         for (int val : bitclears[i]) {
             avg_bitclear += val;
-            if (val > max_bitclear) max_bitclear = val;
+            if (val < max_bitclear) max_bitclear = val;
         }
         avg_bitclear /= bitclears[i].size();
 

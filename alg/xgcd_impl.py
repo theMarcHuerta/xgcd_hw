@@ -133,8 +133,8 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
 
     while b != 0:
         
-        # print(f"A: {a:b}")        
-        # print(f"B: {b:b}")
+        # print(f"A: {a}")        
+        # print(f"B: {b}\n")
         # print("A is: ", a)
         # print("B is: ", b)
 
@@ -263,10 +263,10 @@ if __name__ == "__main__":
     # # b_in = int(input("Enter second number: "))
 
     # 1) Small example
-    a_in = 82273
-    b_in = 128635
+    a_in = 2068703
+    b_in = 1323113
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
-                                                           total_bits=17,
+                                                           total_bits=21,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
