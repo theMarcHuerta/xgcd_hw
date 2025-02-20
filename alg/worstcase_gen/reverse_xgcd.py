@@ -85,8 +85,8 @@ def explore_sequences(b_prev, b_curr, iteration, max_iter, q_max, q_trace):
 
 def main():
 
-    b_prev  = 577523
-    b_curr  = 1323113
+    b_prev  = 286258
+    b_curr  = 655821
 
     q_trace = []
 

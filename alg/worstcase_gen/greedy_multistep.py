@@ -29,12 +29,12 @@ from xgcd_impl import xgcd_bitwise
 # PARAMETERS
 ##########################
 
-TOTAL_BITS       = 16         # Final bit‑width for the candidate numbers
+TOTAL_BITS       = 256         # Final bit‑width for the candidate numbers
 APPROX_BITS      = 4          # Bit‑width of the seed domain (numbers in [2^(APPROX_BITS–1), 2^(APPROX_BITS)-1])
-BITS_PER_STEP    = 1          # Number of bits added per generative extension
+BITS_PER_STEP    = 0          # Number of bits added per generative extension
 ROUNDING_MODE    = "truncate" # "truncate" or "round" (for the fixed‑point division)
 INTEGER_ROUNDING = True       # Whether to adjust quotient by integer rounding
-LOOKAHEAD_DEPTH = 4
+LOOKAHEAD_DEPTH = 6
 
 ##########################
 # HELPER FUNCTIONS

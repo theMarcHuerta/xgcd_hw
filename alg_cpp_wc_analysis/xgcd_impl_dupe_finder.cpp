@@ -27,10 +27,10 @@ void analyzeAndPrint(
         if (bitclears[i].empty()) continue; // Skip empty vectors to avoid division by zero
 
         double avg_bitclear = 0;
-        int max_bitclear = std::numeric_limits<int>::max();
+        int max_bitclear = std::numeric_limits<int>::min();
         for (int val : bitclears[i]) {
             avg_bitclear += val;
-            if (val < max_bitclear) max_bitclear = val;
+            if (val > max_bitclear) max_bitclear = val;
         }
         avg_bitclear /= bitclears[i].size();
 
@@ -181,15 +181,25 @@ int main() {
     {128635, 82273}, {129107, 82575}, {130267, 83305},
     // 18 bit
     /////////
-    {241389, 168067}
+    {241389, 168067},
+    // 19 bit
+    /////////
+    {407387, 294614},
+    // 20 bit
+    /////////
+    {932588, 655627}, {942079, 655821}, {1025384, 655821}, 
+    {1034293, 655627},
+    // 21 bit
+    /////////
+    {1900636, 1323113}, {2068703, 1323113}
     };
 
     // max iterations we'll see
-    std::vector<std::vector<int>> bitclears(17);
-    std::vector<std::vector<int>> q_vals(17);
+    std::vector<std::vector<int>> bitclears(21);
+    std::vector<std::vector<int>> q_vals(21);
 
-    std::vector<std::vector<int>> swaps(17, std::vector<int>(4, 0));
-    std::vector<std::vector<int>> negatives(17, std::vector<int>(4, 0));
+    std::vector<std::vector<int>> swaps(21, std::vector<int>(4, 0));
+    std::vector<std::vector<int>> negatives(21, std::vector<int>(4, 0));
 
     for (const auto& pair : worstCases) {
         uint32_t a_in = pair.first;
