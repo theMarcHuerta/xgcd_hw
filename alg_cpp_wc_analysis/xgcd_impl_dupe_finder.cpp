@@ -208,8 +208,8 @@ int main() {
         xgcd_bitwise(a_in, b_in, bit_length(a_in), 4, "truncate", true, data_map, bitclears, q_vals, swaps, negatives);
     }
 
-    printPairsWithMultipleValues(data_map);
-    analyzeAndPrint(bitclears, q_vals, swaps, negatives);
+    // printPairsWithMultipleValues(data_map);
+    // analyzeAndPrint(bitclears, q_vals, swaps, negatives);
 
 
     

@@ -180,6 +180,9 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
             a = residual;
             swaps[iteration_count-1][0] += 1;
             swaps[total_bits - 1 - iteration_count][2] += 1;
+            if (iteration_count == 2){
+                std::cout << "a_in " << a_in << " b_in " << b_in << std::endl;
+            }
         }
         else {
             uint32_t temp = b;

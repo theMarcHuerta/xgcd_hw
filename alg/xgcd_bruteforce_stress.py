@@ -69,7 +69,7 @@ def brute_force_xgcd(bits=8,
     naive_total = sum(a for a in range(a_min, a_max + 1)) - 13
 
     for a in range(a_min, a_max + 1):
-        for b in range(1, a + 1):  # Ensure b is in [1, a] to uphold a >= b
+        for b in range(a_min, a + 1):  # Ensure b is in [1, a] to uphold a >= b
 
             # No need to check for `skip_zeros` since b starts at 1.
             # No need to check for `skip_symmetry` since we limit b <= a.
@@ -176,7 +176,7 @@ def brute_force_xgcd(bits=8,
 
 def main():
     parser = argparse.ArgumentParser(description="Brute force XGCD over (a,b) for a given bit-width, with extra filters.")
-    parser.add_argument("--bits", type=int, default=15, help="Bit width for enumerating all pairs.")
+    parser.add_argument("--bits", type=int, default=4, help="Bit width for enumerating all pairs.")
     parser.add_argument("--approx_bits", type=int, default=4, help="Approx bits for XGCD.")
     parser.add_argument("--skip_symmetry", action="store_true", 
                         help="If set, skip symmetrical pairs (b,a) if we've done (a,b).")
@@ -191,7 +191,7 @@ def main():
                      approx_bits=args.approx_bits,
                      skip_symmetry=True,
                      skip_zeros=True,
-                     force_a_msb=False,
+                     force_a_msb=True,
                      int_rounding=True)
 
 

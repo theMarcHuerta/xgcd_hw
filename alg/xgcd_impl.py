@@ -133,8 +133,8 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
 
     while b != 0:
         
-        # print(f"A: {a}")        
-        # print(f"B: {b}\n")
+        # print(f"A: {a:b}")        
+        # print(f"B: {b:b}")
         # print("A is: ", a)
         # print("B is: ", b, "\n")
 
@@ -188,11 +188,12 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             clears_this_iter = 0  # in case we "went backwards" in bit length
         bit_clears_list.append(clears_this_iter)
 
-        # print(f"R: {residual:b}")
-
-        # print(f"Q: {Q}")
-
-        # print(f"C: {clears_this_iter} \n")
+        if (iteration_count == 1 and clears_this_iter == 1):
+            print(f"A: {a:b}")        
+            print(f"B: {b:b}")
+            print(f"R: {residual:b}")
+            print(f"Q: {Q}")
+            print(f"C: {clears_this_iter} \n")
 
         # STEP 7) Prepare next iteration: 
         #    the old b becomes new a, the result becomes new b
@@ -217,6 +218,7 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
     else:
         avg_bit_clears = 0.0
 
+    # print("NEW\n")
     # print(f"  Average q val: {avg_q/iteration_count:.3f}")
     # ----------------------------------------------------------------------------------------
     # Optional Plotting
@@ -263,8 +265,8 @@ if __name__ == "__main__":
     # # b_in = int(input("Enter second number: "))
 
     # 1) Small example
-    a_in = 1025384
-    b_in = 655821
+    a_in = 61870
+    b_in = 5603
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
                                                            total_bits=20,
                                                            approx_bits=4,

@@ -108,7 +108,7 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
     int iteration_count = 0;
     vector<int> bit_clears_list;
     // uint64_t avg_q = 0; // (Optional: used for tracking the average Q)
-
+    bool prev_clr = false;
     // --- Main loop ---
     while (b != 0) {
 
@@ -168,6 +168,20 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
         bitclears[iteration_count-1].push_back(clears_this_iter);
         q_vals[iteration_count-1].push_back(int(Q));
 
+
+        if (clears_this_iter == 1 && iteration_count != 1){
+            prev_clr = true;
+
+            std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
+            "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
+            std::cout << "curr a: " << a << "\n   curr b: " << b << std::endl;
+        }
+        else if ( prev_clr == true ) {
+            std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
+            "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
+            std::cout << "curr a: " << a << "\n   curr b: " << b << std::endl << std::endl;
+            prev_clr = false;
+        }
         // if (clears_this_iter > 4 || Q > 7){
         //     std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
         //     "   BIT CLEARS: " << clears_this_iter << std::endl;
