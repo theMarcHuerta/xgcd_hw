@@ -96,7 +96,7 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
     // Loop over a values in the assigned range.
     for (int a = start_a; a <= end_a; a++) {
         // For each a, let b run from 1 to a (ensuring a>=b and skipping symmetry).
-        for (int b = 1; b <= a; b++) {
+        for (int b = (a_min >> 1); b <= a; b++) {
             // If skip_zeros is set, we skip if a or b are zero.
             // (Since a starts at 1 and b at 1, no check is needed here.)
             result.valid_pairs++;
@@ -160,12 +160,12 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
             // Update the global progress counter.
             uint64_t current = ++global_counter;
             // If this thread is designated as the progress reporter, print progress every so often.
-            if (progress_thread && current % (total_pairs / 2000000 + 1) == 0) {
-                double pct = 100.0 * current / total_pairs;
-                lock_guard<mutex> lock(print_mutex);
-                cout << "\rProgress: " << current << " / " << total_pairs << " (" 
-                     << fixed << setprecision(1) << pct << "%)   " << flush;
-            }
+            // if (progress_thread && current % (total_pairs / 2000000 + 1) == 0) {
+            //     double pct = 100.0 * current / total_pairs;
+            //     lock_guard<mutex> lock(print_mutex);
+            //     cout << "\rProgress: " << current << " / " << total_pairs << " (" 
+            //          << fixed << setprecision(1) << pct << "%)   " << flush;
+            // }
         } // end for b
     } // end for a
 

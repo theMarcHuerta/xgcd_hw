@@ -29,12 +29,12 @@ from xgcd_impl import xgcd_bitwise
 # PARAMETERS
 ##########################
 
-TOTAL_BITS       = 256         # Final bit‑width for the candidate numbers
+TOTAL_BITS       = 16         # Final bit‑width for the candidate numbers
 APPROX_BITS      = 4          # Bit‑width of the seed domain (numbers in [2^(APPROX_BITS–1), 2^(APPROX_BITS)-1])
-BITS_PER_STEP    = 0          # Number of bits added per generative extension
+BITS_PER_STEP    = 1          # Number of bits added per generative extension
 ROUNDING_MODE    = "truncate" # "truncate" or "round" (for the fixed‑point division)
 INTEGER_ROUNDING = True       # Whether to adjust quotient by integer rounding
-LOOKAHEAD_DEPTH = 6
+LOOKAHEAD_DEPTH = 2
 
 ##########################
 # HELPER FUNCTIONS
@@ -275,6 +275,8 @@ def choose_best_seed(seed_pairs):
                 elif total_score == lowest_score:
                     best_pairs.append((a_test_ext, b_test_ext))
 
+    print("NUMBER OF CHOICES FROM BEST SEED: ", len(best_pairs))
+    print("BEST SEED PAIRS: ", best_pairs, " \n")
     return random.choice(best_pairs)
 
 
@@ -337,6 +339,9 @@ def choose_best_step(a, b, bits_to_gen_a, bits_to_gen_b, low_a, low_b):
             elif total_score == lowest_score:
                 best_candidates.append((a_test, b_test, ext_a, ext_b))
 
+    print("NUMBER OF CHOICES FROM BEST STEP: ", len(best_candidates))
+    print("BEST STEP PAIRS: ", best_candidates, " \n")
+
     new_a, new_b, chosen_ext_a, chosen_ext_b = random.choice(best_candidates)
     return new_a, new_b, chosen_ext_a, chosen_ext_b
 
@@ -367,7 +372,7 @@ def reconstruct_candidate(history):
     
     # print(" THIS IS THE SECOND B   ", history[1]['candidate'][1])
 
-    print("ITERATION: ", 0, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
+    # print("ITERATION: ", 0, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
 
     b_prev = b_curr
     b_curr = b_next
@@ -385,7 +390,7 @@ def reconstruct_candidate(history):
             b_prev = -b_prev
         
         b_next = abs(q_curr * b_curr + b_prev)
-        print("ITERATION: ", i, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
+        # print("ITERATION: ", i, "   Next B: ", b_next, "   Curr B: ", b_curr, "   Prev B: ", b_prev, "   Q: ", q_curr)
 
         #used pretty much just to do the calc for A
         prev_b_curr = b_curr
@@ -400,7 +405,7 @@ def reconstruct_candidate(history):
 
     reconstructed_b = b_next
 
-    print("Largest B", largest_b)
+    # print("Largest B", largest_b)
 
     last_q = history[0]['simulation']['Q']
     if (history[0]['simulation']['neg_res']):
@@ -451,7 +456,7 @@ def generative_process(seed_bits):
     lowest_bit_position_generated_a = lowest_bit_position_generated_b
     lowest_bit_position_generated_b -= bits_to_gen_b
 
-    print("LOWEST B BIT: ", lowest_bit_position_generated_b, "B IS: ", current_b, "   CURRENT A: ", current_a)
+    # print("LOWEST B BIT: ", lowest_bit_position_generated_b, "B IS: ", current_b, "   CURRENT A: ", current_a)
 
     while current_b != 0 or lowest_bit_position_generated_b > 1:
         iteration_count += 1
@@ -461,7 +466,7 @@ def generative_process(seed_bits):
 
         Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(current_a, current_b)
 
-        print(f"STEP INFO: Q: {Q}, rem: {rem}, clears: {clears}, shift: {shift}, current a: {current_a}, current b: {current_b}")
+        # print(f"STEP INFO: Q: {Q}, rem: {rem}, clears: {clears}, shift: {shift}, current a: {current_a}, current b: {current_b}")
 
         bits_to_gen_a = 0
         bits_to_gen_b = clears
@@ -498,8 +503,8 @@ def generative_process(seed_bits):
         current_a = a_next
         current_b = b_next
 
-        print("LOWEST A BIT: ", lowest_bit_position_generated_a, "  BITS TO GEN A: ", bits_to_gen_a )
-        print("LOWEST B BIT: ", lowest_bit_position_generated_b, "     B IS: ", current_b, "   CURRENT A: ", current_a, "  BITS TO GEN B: ", bits_to_gen_b, "\n")
+        # print("LOWEST A BIT: ", lowest_bit_position_generated_a, "  BITS TO GEN A: ", bits_to_gen_a )
+        # print("LOWEST B BIT: ", lowest_bit_position_generated_b, "     B IS: ", current_b, "   CURRENT A: ", current_a, "  BITS TO GEN B: ", bits_to_gen_b, "\n")
 
     print("ITERATIONS IT TOOK:")
     print(iteration_count)
