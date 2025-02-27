@@ -130,32 +130,32 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
                 result.trunc_min_clears_pair = {a, b};
             }
 
-            // Run xgcd_bitwise in "round" mode.
-            XgcdResult res_round = xgcd_bitwise(a, b, bits, approx_bits, "round", int_rounding);
-            // result.round_iters.push_back(res_round.iterations);
-            // result.round_clears.push_back(res_round.avgBitClears);
-            result.sum_iters_round+=res_round.iterations;
-            result.sum_round_clears+=res_round.avgBitClears;
+            // // Run xgcd_bitwise in "round" mode.
+            // XgcdResult res_round = xgcd_bitwise(a, b, bits, approx_bits, "round", int_rounding);
+            // // result.round_iters.push_back(res_round.iterations);
+            // // result.round_clears.push_back(res_round.avgBitClears);
+            // result.sum_iters_round+=res_round.iterations;
+            // result.sum_round_clears+=res_round.avgBitClears;
 
-            if (res_round.gcd != static_cast<uint32_t>(expected_gcd)) {
-                lock_guard<mutex> lock(print_mutex);
-                cerr << "ERROR (round): Mismatch for (a=" << a << ", b=" << b << ") → xgcd_bitwise() returned " 
-                     << res_round.gcd << ", but std::gcd() says " << expected_gcd << "\n";
-            }
+            // if (res_round.gcd != static_cast<uint32_t>(expected_gcd)) {
+            //     lock_guard<mutex> lock(print_mutex);
+            //     cerr << "ERROR (round): Mismatch for (a=" << a << ", b=" << b << ") → xgcd_bitwise() returned " 
+            //          << res_round.gcd << ", but std::gcd() says " << expected_gcd << "\n";
+            // }
 
-            // Track worst-case (max iteration) for round.
-            if (res_round.iterations > result.round_max_iter) {
-                result.round_max_iter = res_round.iterations;
-                result.round_max_iter_pairs.clear();
-                result.round_max_iter_pairs.push_back({a, b});
-            } else if (res_round.iterations == result.round_max_iter) {
-                result.round_max_iter_pairs.push_back({a, b});
-            }
-            // Track minimum average bit clears for round.
-            if (res_round.avgBitClears < result.round_min_clears) {
-                result.round_min_clears = res_round.avgBitClears;
-                result.round_min_clears_pair = {a, b};
-            }
+            // // Track worst-case (max iteration) for round.
+            // if (res_round.iterations > result.round_max_iter) {
+            //     result.round_max_iter = res_round.iterations;
+            //     result.round_max_iter_pairs.clear();
+            //     result.round_max_iter_pairs.push_back({a, b});
+            // } else if (res_round.iterations == result.round_max_iter) {
+            //     result.round_max_iter_pairs.push_back({a, b});
+            // }
+            // // Track minimum average bit clears for round.
+            // if (res_round.avgBitClears < result.round_min_clears) {
+            //     result.round_min_clears = res_round.avgBitClears;
+            //     result.round_min_clears_pair = {a, b};
+            // }
 
             // Update the global progress counter.
             uint64_t current = ++global_counter;

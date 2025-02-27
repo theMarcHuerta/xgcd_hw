@@ -17,7 +17,7 @@ def largest_fibonacci_numbers(n_bits):
     largest_fib = fib_numbers[-1]
     second_largest_fib = fib_numbers[-2]
 
-    return hex(second_largest_fib), hex(largest_fib)
+    return (second_largest_fib), (largest_fib)
 
 if __name__ == "__main__":
     # Check if n_bits is provided as an argument

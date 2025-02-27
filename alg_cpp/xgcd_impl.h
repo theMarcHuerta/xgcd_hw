@@ -90,6 +90,9 @@ XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
     // uint64_t avg_q = 0; // (Optional: used for tracking the average Q)
 
     bool was_one_clear = false;
+    bool two_one_clear = false;
+
+    int count_twice = 0;
 
     uint32_t prev_a = 0;
     uint32_t prev_b = 0;
@@ -115,19 +118,33 @@ XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
         //   if (Q_pre_round & 1) and integer_rounding then Q++
         uint32_t Q_pre_round = (quotient << shift_amount) >> (approx_bits - 1);
         uint32_t Q = Q_pre_round >> 1;
-        if ((Q_pre_round & 1) && integer_rounding)
-            Q++;
+        // if ((Q_pre_round & 1) && integer_rounding)
+        Q++;
 
         // avg_q += Q; // (For debugging/statistics, if desired.)
 
         // STEP 6: Compute the adjusted b and the residual.
         // Use 64-bit arithmetic for multiplication.
         uint64_t product = static_cast<uint64_t>(b) * Q;
+        uint64_t product_two = static_cast<uint64_t>(b) * (Q_pre_round >> 1);
+
         uint32_t residual;
+        uint32_t residual_two;
+
         if (a >= product)
             residual = a - static_cast<uint32_t>(product);
         else
             residual = static_cast<uint32_t>(product - a);
+
+        if (a >= product_two)
+            residual_two = a - static_cast<uint32_t>(product_two);
+        else
+            residual_two = static_cast<uint32_t>(product_two - a);
+
+        if (residual_two < residual){
+            residual = residual_two;
+            Q = Q_pre_round >> 1;
+        }
 
         // Count how many “leading bits” got cleared in this iteration.
         int msb_a = bit_length(a);
@@ -138,22 +155,41 @@ XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
         bit_clears_list.push_back(clears_this_iter);
 
         if (clears_this_iter == 1){
-            was_one_clear = true;
-            prev_a = a;
-            prev_b = b;
+            if (iteration_count!=1 && a > 127){
+            //     count_twice++;
+            //     if (count_twice==3 && a > 15){
+                    std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
+                    "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
+                    std::cout << "curr a: " << a << "   curr b: " << b << "    prev a: " << prev_a << "   prev b: " << prev_b << std::endl << std::endl;
+            //     }
+            }
+            // was_one_clear = true;
+            // prev_a = a;
+            // prev_b = b;
             // std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
             // "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
             // std::cout << "curr a: " << a << "   curr b: " << b << std::endl;
         }
-        else if (was_one_clear) {
-            was_one_clear = false;
+        // else if (was_one_clear) {
+        //     was_one_clear = false;
 
-            if (clears_this_iter < 3 && residual != 0 && iteration_count != 2 && (rounding_mode == "truncate") && a > 7){
-                std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-                "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
-                std::cout << "curr a: " << a << "   curr b: " << b << "    prev a: " << prev_a << "   prev b: " << prev_b << std::endl << std::endl;
-            }
-        }
+        //     // if (two_one_clear && clears_this_iter < 3 && residual != 0 && iteration_count != 2 && (rounding_mode == "truncate") && a > 127){
+        //     //     std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
+        //     //     "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
+        //     //     std::cout << "curr a: " << a << "   curr b: " << b << "    prev a: " << prev_a << "   prev b: " << prev_b << std::endl << std::endl;
+
+        //     // }
+
+        //     if (clears_this_iter < 3){
+        //         was_one_clear = true;
+        //         two_one_clear = true;
+        //     }
+        //     else {
+        //         two_one_clear = false;
+        //     }
+
+
+        // }
 
         // STEP 7: Prepare for the next iteration.
         // Swap: if the residual is larger than b, then a becomes residual;
@@ -161,6 +197,8 @@ XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
         if (residual > b)
             a = residual;
         else {
+            prev_a = a;
+            prev_b = b;
             uint32_t temp = b;
             b = residual;
             a = temp;
