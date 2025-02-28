@@ -154,22 +154,22 @@ XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
             clears_this_iter = 0;
         bit_clears_list.push_back(clears_this_iter);
 
-        if (clears_this_iter == 1){
-            if (iteration_count!=1 && a > 127){
+        // if (clears_this_iter == 1){
+        //     if (iteration_count!=1 && a > 127){
             //     count_twice++;
             //     if (count_twice==3 && a > 15){
-                    std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-                    "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
-                    std::cout << "curr a: " << a << "   curr b: " << b << "    prev a: " << prev_a << "   prev b: " << prev_b << std::endl << std::endl;
+                    // std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
+                    // "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
+                    // std::cout << "curr a: " << a << "   curr b: " << b << "    prev a: " << prev_a << "   prev b: " << prev_b << std::endl << std::endl;
             //     }
-            }
+            // }
             // was_one_clear = true;
             // prev_a = a;
             // prev_b = b;
             // std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
             // "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
             // std::cout << "curr a: " << a << "   curr b: " << b << std::endl;
-        }
+        // }
         // else if (was_one_clear) {
         //     was_one_clear = false;
 

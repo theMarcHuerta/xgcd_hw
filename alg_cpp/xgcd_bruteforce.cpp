@@ -357,7 +357,7 @@ int main(int argc, char* argv[]) {
     // cout << "  Median Bit Clears   : " << trunc_clears_median << "\n";
     cout << "  Max Iterations      : " << global_trunc_max_iter << " for pairs: ";
     for (auto &p : global_trunc_max_iter_pairs)
-        cout << "(" << p.first << "," << p.second << ") ";
+        cout << "{" << p.first << ", " << p.second << "}, \n";
     cout << "\n";
     cout << "  Min Avg Bit Clears  : " << global_trunc_min_clears << " for pair: (" 
          << global_trunc_min_clears_pair.first << "," << global_trunc_min_clears_pair.second << ")\n";

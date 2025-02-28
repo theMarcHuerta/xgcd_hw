@@ -8,7 +8,7 @@ SOURCES = xgcd_bruteforce.cpp
 
 # Default rule to build and run the project
 all: $(TARGET)
-	./$(TARGET) --bits 14 --approx_bits 4 --force_a_msb --threads 8
+	./$(TARGET) --bits 19 --approx_bits 4 --force_a_msb --threads 24
 
 # Rule to compile the target
 $(TARGET): $(SOURCES)

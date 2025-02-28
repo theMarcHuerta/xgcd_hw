@@ -1,0 +1,1891 @@
+g++ -std=c++17 -Wall -Wextra -pthread -o xgcd_impl_dupe_finder xgcd_impl_dupe_finder.cpp
+./xgcd_impl_dupe_finder
+A_IN: 468   B_IN: 329   Q: 2   BIT CLEARS: 1    ITERATION: 6
+curr a: 14
+   curr b: 9
+A_IN: 468   B_IN: 329   Q: 2   BIT CLEARS: 3    ITERATION: 7
+curr a: 9
+   curr b: 4
+
+A_IN: 772   B_IN: 565   Q: 2   BIT CLEARS: 1    ITERATION: 5
+curr a: 56
+   curr b: 39
+A_IN: 772   B_IN: 565   Q: 2   BIT CLEARS: 3    ITERATION: 6
+curr a: 39
+   curr b: 22
+
+A_IN: 927   B_IN: 569   Q: 1   BIT CLEARS: 1    ITERATION: 3
+curr a: 211
+   curr b: 147
+A_IN: 927   B_IN: 569   Q: 2   BIT CLEARS: 3    ITERATION: 4
+curr a: 147
+   curr b: 64
+
+A_IN: 934   B_IN: 649   Q: 2   BIT CLEARS: 1    ITERATION: 8
+curr a: 3
+   curr b: 2
+A_IN: 934   B_IN: 649   Q: 2   BIT CLEARS: 2    ITERATION: 9
+curr a: 2
+   curr b: 1
+
+A_IN: 937   B_IN: 651   Q: 2   BIT CLEARS: 1    ITERATION: 6
+curr a: 30
+   curr b: 19
+A_IN: 937   B_IN: 651   Q: 2   BIT CLEARS: 3    ITERATION: 7
+curr a: 19
+   curr b: 8
+
+A_IN: 1013   B_IN: 649   Q: 2   BIT CLEARS: 1    ITERATION: 8
+curr a: 3
+   curr b: 2
+A_IN: 1013   B_IN: 649   Q: 2   BIT CLEARS: 2    ITERATION: 9
+curr a: 2
+   curr b: 1
+
+A_IN: 1016   B_IN: 651   Q: 2   BIT CLEARS: 1    ITERATION: 6
+curr a: 30
+   curr b: 19
+A_IN: 1016   B_IN: 651   Q: 2   BIT CLEARS: 3    ITERATION: 7
+curr a: 19
+   curr b: 8
+
+A_IN: 1889   B_IN: 1328   Q: 1   BIT CLEARS: 1    ITERATION: 8
+curr a: 13
+   curr b: 9
+A_IN: 1889   B_IN: 1328   Q: 2   BIT CLEARS: 3    ITERATION: 9
+curr a: 9
+   curr b: 4
+
+A_IN: 1902   B_IN: 1337   Q: 2   BIT CLEARS: 1    ITERATION: 6
+curr a: 56
+   curr b: 39
+A_IN: 1902   B_IN: 1337   Q: 2   BIT CLEARS: 3    ITERATION: 7
+curr a: 39
+   curr b: 22
+
+A_IN: 3707   B_IN: 2581   Q: 2   BIT CLEARS: 1    ITERATION: 9
+curr a: 14
+   curr b: 9
+A_IN: 3707   B_IN: 2581   Q: 2   BIT CLEARS: 3    ITERATION: 10
+curr a: 9
+   curr b: 4
+
+A_IN: 4036   B_IN: 2581   Q: 2   BIT CLEARS: 1    ITERATION: 9
+curr a: 14
+   curr b: 9
+A_IN: 4036   B_IN: 2581   Q: 2   BIT CLEARS: 3    ITERATION: 10
+curr a: 9
+   curr b: 4
+
+A_IN: 7368   B_IN: 5129   Q: 2   BIT CLEARS: 1    ITERATION: 9
+curr a: 30
+   curr b: 19
+A_IN: 7368   B_IN: 5129   Q: 2   BIT CLEARS: 3    ITERATION: 10
+curr a: 19
+   curr b: 8
+
+A_IN: 7691   B_IN: 5626   Q: 1   BIT CLEARS: 1    ITERATION: 6
+curr a: 211
+   curr b: 147
+A_IN: 7691   B_IN: 5626   Q: 2   BIT CLEARS: 3    ITERATION: 7
+curr a: 147
+   curr b: 64
+
+A_IN: 8019   B_IN: 5129   Q: 2   BIT CLEARS: 1    ITERATION: 9
+curr a: 30
+   curr b: 19
+A_IN: 8019   B_IN: 5129   Q: 2   BIT CLEARS: 3    ITERATION: 10
+curr a: 19
+   curr b: 8
+
+A_IN: 12370   B_IN: 9053   Q: 2   BIT CLEARS: 1    ITERATION: 5
+curr a: 898
+   curr b: 623
+A_IN: 12370   B_IN: 9053   Q: 2   BIT CLEARS: 3    ITERATION: 6
+curr a: 623
+   curr b: 348
+
+A_IN: 14963   B_IN: 10418   Q: 1   BIT CLEARS: 1    ITERATION: 11
+curr a: 13
+   curr b: 9
+A_IN: 14963   B_IN: 10418   Q: 2   BIT CLEARS: 3    ITERATION: 12
+curr a: 9
+   curr b: 4
+
+A_IN: 15065   B_IN: 10489   Q: 2   BIT CLEARS: 1    ITERATION: 9
+curr a: 56
+   curr b: 39
+A_IN: 15065   B_IN: 10489   Q: 2   BIT CLEARS: 3    ITERATION: 10
+curr a: 39
+   curr b: 22
+
+A_IN: 16291   B_IN: 10418   Q: 1   BIT CLEARS: 1    ITERATION: 11
+curr a: 13
+   curr b: 9
+A_IN: 16291   B_IN: 10418   Q: 2   BIT CLEARS: 3    ITERATION: 12
+curr a: 9
+   curr b: 4
+
+A_IN: 30476   B_IN: 21423   Q: 2   BIT CLEARS: 1    ITERATION: 6
+curr a: 898
+   curr b: 623
+A_IN: 30476   B_IN: 21423   Q: 2   BIT CLEARS: 3    ITERATION: 7
+curr a: 623
+   curr b: 348
+
+A_IN: 117815   B_IN: 82016   Q: 1   BIT CLEARS: 1    ITERATION: 14
+curr a: 13
+   curr b: 9
+A_IN: 117815   B_IN: 82016   Q: 2   BIT CLEARS: 3    ITERATION: 15
+curr a: 9
+   curr b: 4
+
+A_IN: 118618   B_IN: 82575   Q: 2   BIT CLEARS: 1    ITERATION: 12
+curr a: 56
+   curr b: 39
+A_IN: 118618   B_IN: 82575   Q: 2   BIT CLEARS: 3    ITERATION: 13
+curr a: 39
+   curr b: 22
+
+A_IN: 128233   B_IN: 82016   Q: 1   BIT CLEARS: 1    ITERATION: 14
+curr a: 13
+   curr b: 9
+A_IN: 128233   B_IN: 82016   Q: 2   BIT CLEARS: 3    ITERATION: 15
+curr a: 9
+   curr b: 4
+
+A_IN: 129107   B_IN: 82575   Q: 2   BIT CLEARS: 1    ITERATION: 12
+curr a: 56
+   curr b: 39
+A_IN: 129107   B_IN: 82575   Q: 2   BIT CLEARS: 3    ITERATION: 13
+curr a: 39
+   curr b: 22
+
+A_IN: 241389   B_IN: 168067   Q: 2   BIT CLEARS: 1    ITERATION: 9
+curr a: 898
+   curr b: 623
+A_IN: 241389   B_IN: 168067   Q: 2   BIT CLEARS: 3    ITERATION: 10
+curr a: 623
+   curr b: 348
+
+A_IN: 1900636   B_IN: 1323113   Q: 2   BIT CLEARS: 1    ITERATION: 12
+curr a: 898
+   curr b: 623
+A_IN: 1900636   B_IN: 1323113   Q: 2   BIT CLEARS: 3    ITERATION: 13
+curr a: 623
+   curr b: 348
+
+A_IN: 2068703   B_IN: 1323113   Q: 2   BIT CLEARS: 1    ITERATION: 12
+curr a: 898
+   curr b: 623
+A_IN: 2068703   B_IN: 1323113   Q: 2   BIT CLEARS: 3    ITERATION: 13
+curr a: 623
+   curr b: 348
+
+=== Bit-Length: 2 ===
+Pair (2, 1) had 129 items:
+   - matchInfo { a: 185, b: 129, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 202, b: 129, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 207, b: 151, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 211, b: 147, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 229, b: 95, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 230, b: 147, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 233, b: 162, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 235, b: 164, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 236, b: 163, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 237, b: 173, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 239, b: 168, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 239, b: 169, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 241, b: 185, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 246, b: 151, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 251, b: 181, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 251, b: 207, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 253, b: 162, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 253, b: 163, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 253, b: 179, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 254, b: 179, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 363, b: 229, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 387, b: 283, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 389, b: 284, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 391, b: 282, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 393, b: 287, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 419, b: 324, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 421, b: 348, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 438, b: 317, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 443, b: 314, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 460, b: 331, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 462, b: 283, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 463, b: 284, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 464, b: 323, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 466, b: 325, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 468, b: 287, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 499, b: 314, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 505, b: 323, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 505, b: 358, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 509, b: 325, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 509, b: 358, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 877, b: 553, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 927, b: 569, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 934, b: 649, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 961, b: 703, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 963, b: 698, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1011, b: 782, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1013, b: 649, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1019, b: 737, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1849, b: 1287, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1853, b: 1290, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1930, b: 1397, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 1983, b: 1430, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 2012, b: 1287, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 2017, b: 1290, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 3695, b: 2568, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3697, b: 2575, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3699, b: 2582, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3840, b: 2809, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 4009, b: 2568, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 4028, b: 2575, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 4047, b: 2582, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 7691, b: 5626, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 13 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 13 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 13 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 13 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 14 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 16 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 17 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 18 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 18 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 18 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 18 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 19 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 19 }
+------------------------
+Pair (3, 1) had 21 items:
+   - matchInfo { a: 193, b: 142, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 229, b: 161, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 234, b: 163, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 254, b: 161, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 255, b: 163, bit_size: 8, iteration: 6 }
+   - matchInfo { a: 398, b: 287, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 461, b: 321, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 477, b: 335, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 502, b: 321, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 970, b: 703, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1843, b: 1283, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 2006, b: 1283, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 3647, b: 2564, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 4045, b: 2564, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 13 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 13 }
+------------------------
+=== Bit-Length: 3 ===
+Pair (7, 2) had 8 items:
+   - matchInfo { a: 239, b: 168, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 466, b: 325, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 509, b: 325, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 961, b: 703, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 963, b: 698, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 11 }
+------------------------
+Pair (5, 2) had 117 items:
+   - matchInfo { a: 185, b: 129, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 202, b: 129, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 207, b: 151, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 211, b: 147, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 229, b: 95, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 230, b: 147, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 235, b: 164, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 236, b: 163, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 237, b: 173, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 239, b: 169, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 241, b: 185, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 246, b: 151, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 251, b: 181, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 251, b: 207, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 253, b: 163, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 253, b: 179, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 254, b: 179, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 363, b: 229, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 387, b: 283, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 389, b: 284, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 391, b: 282, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 393, b: 287, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 419, b: 324, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 421, b: 348, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 438, b: 317, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 443, b: 314, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 460, b: 331, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 462, b: 283, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 463, b: 284, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 464, b: 323, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 468, b: 287, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 499, b: 314, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 505, b: 323, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 505, b: 358, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 509, b: 358, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 877, b: 553, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 927, b: 569, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 1011, b: 782, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 1019, b: 737, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1849, b: 1287, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1853, b: 1290, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1930, b: 1397, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 1983, b: 1430, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 2012, b: 1287, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 2017, b: 1290, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 3695, b: 2568, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3697, b: 2575, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3699, b: 2582, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3840, b: 2809, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 4009, b: 2568, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 4028, b: 2575, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 4047, b: 2582, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 7691, b: 5626, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 12 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 12 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 12 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 12 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 13 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 15 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 16 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 17 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 17 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 17 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 17 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 18 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 18 }
+------------------------
+Pair (4, 1) had 12 items:
+   - matchInfo { a: 468, b: 329, bit_size: 9, iteration: 7 }
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 8 }
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 9 }
+   - matchInfo { a: 3707, b: 2581, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 4036, b: 2581, bit_size: 12, iteration: 10 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 11 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 12 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 15 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 15 }
+------------------------
+Pair (7, 3) had 7 items:
+   - matchInfo { a: 193, b: 142, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 229, b: 161, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 254, b: 161, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 477, b: 335, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 12 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 12 }
+------------------------
+=== Bit-Length: 4 ===
+Pair (13, 9) had 5 items:
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 13 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 13 }
+------------------------
+Pair (13, 4) had 4 items:
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 10 }
+------------------------
+Pair (9, 4) had 8 items:
+   - matchInfo { a: 468, b: 329, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 3707, b: 2581, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 4036, b: 2581, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 11 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 14 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 14 }
+------------------------
+Pair (14, 9) had 3 items:
+   - matchInfo { a: 468, b: 329, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 3707, b: 2581, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 4036, b: 2581, bit_size: 12, iteration: 8 }
+------------------------
+Pair (10, 3) had 3 items:
+   - matchInfo { a: 461, b: 321, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 502, b: 321, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 970, b: 703, bit_size: 10, iteration: 7 }
+------------------------
+Pair (11, 7) had 5 items:
+   - matchInfo { a: 193, b: 142, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 477, b: 335, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 11 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 11 }
+------------------------
+Pair (13, 5) had 7 items:
+   - matchInfo { a: 251, b: 207, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 393, b: 287, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 468, b: 287, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 13 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 16 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 16 }
+------------------------
+Pair (8, 3) had 11 items:
+   - matchInfo { a: 234, b: 163, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 255, b: 163, bit_size: 8, iteration: 5 }
+   - matchInfo { a: 398, b: 287, bit_size: 9, iteration: 6 }
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 7 }
+   - matchInfo { a: 1843, b: 1283, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 2006, b: 1283, bit_size: 11, iteration: 8 }
+   - matchInfo { a: 3647, b: 2564, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 4045, b: 2564, bit_size: 12, iteration: 9 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 10 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 10 }
+------------------------
+Pair (12, 5) had 100 items:
+   - matchInfo { a: 185, b: 129, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 202, b: 129, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 207, b: 151, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 211, b: 147, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 229, b: 95, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 230, b: 147, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 236, b: 163, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 237, b: 173, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 239, b: 169, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 241, b: 185, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 246, b: 151, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 251, b: 181, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 253, b: 163, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 253, b: 179, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 254, b: 179, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 363, b: 229, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 387, b: 283, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 389, b: 284, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 391, b: 282, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 419, b: 324, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 421, b: 348, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 438, b: 317, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 443, b: 314, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 460, b: 331, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 462, b: 283, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 463, b: 284, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 499, b: 314, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 505, b: 358, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 509, b: 358, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 877, b: 553, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 927, b: 569, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 1011, b: 782, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 1019, b: 737, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 1849, b: 1287, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 1930, b: 1397, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 1983, b: 1430, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 2012, b: 1287, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 3695, b: 2568, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3697, b: 2575, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3699, b: 2582, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3840, b: 2809, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 4009, b: 2568, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 4028, b: 2575, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 4047, b: 2582, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 7691, b: 5626, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 11 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 11 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 11 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 11 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 12 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 13 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 13 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 13 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 13 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 14 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 15 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 16 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 16 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 17 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 17 }
+------------------------
+=== Bit-Length: 5 ===
+Pair (26, 7) had 5 items:
+   - matchInfo { a: 239, b: 168, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 963, b: 698, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 10 }
+------------------------
+Pair (31, 13) had 7 items:
+   - matchInfo { a: 251, b: 207, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 393, b: 287, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 468, b: 287, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 12 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 15 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 15 }
+------------------------
+Pair (31, 12) had 9 items:
+   - matchInfo { a: 253, b: 179, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 389, b: 284, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 463, b: 284, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 3840, b: 2809, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 11 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 11 }
+------------------------
+Pair (30, 19) had 4 items:
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 8 }
+------------------------
+Pair (29, 12) had 14 items:
+   - matchInfo { a: 251, b: 181, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 254, b: 179, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 387, b: 283, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 438, b: 317, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 462, b: 283, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 10 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 10 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 11 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 11 }
+------------------------
+Pair (17, 12) had 51 items:
+   - matchInfo { a: 185, b: 129, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 202, b: 129, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 207, b: 151, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 229, b: 95, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 236, b: 163, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 241, b: 185, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 246, b: 151, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 253, b: 163, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 363, b: 229, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 419, b: 324, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 421, b: 348, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 443, b: 314, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 460, b: 331, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 499, b: 314, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 509, b: 358, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 877, b: 553, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1011, b: 782, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1849, b: 1287, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 1930, b: 1397, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 1983, b: 1430, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 2012, b: 1287, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 3695, b: 2568, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 3697, b: 2575, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 3699, b: 2582, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 4009, b: 2568, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 4028, b: 2575, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 4047, b: 2582, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 10 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 11 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 11 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 12 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 12 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 13 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 16 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 16 }
+------------------------
+Pair (22, 13) had 4 items:
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 9 }
+------------------------
+Pair (19, 8) had 7 items:
+   - matchInfo { a: 398, b: 287, bit_size: 9, iteration: 5 }
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 3647, b: 2564, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 4045, b: 2564, bit_size: 12, iteration: 8 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 9 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 9 }
+------------------------
+Pair (19, 12) had 22 items:
+   - matchInfo { a: 211, b: 147, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 230, b: 147, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 237, b: 173, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 391, b: 282, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 505, b: 358, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 927, b: 569, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1019, b: 737, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 7691, b: 5626, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 11 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 11 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 12 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 12 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 15 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 15 }
+------------------------
+Pair (21, 8) had 4 items:
+   - matchInfo { a: 234, b: 163, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 255, b: 163, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 1843, b: 1283, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 2006, b: 1283, bit_size: 11, iteration: 7 }
+------------------------
+Pair (22, 5) had 8 items:
+   - matchInfo { a: 235, b: 164, bit_size: 8, iteration: 4 }
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 6 }
+   - matchInfo { a: 1853, b: 1290, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 2017, b: 1290, bit_size: 11, iteration: 7 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 10 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 13 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 13 }
+------------------------
+=== Bit-Length: 6 ===
+Pair (35, 13) had 5 items:
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 12 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 12 }
+------------------------
+Pair (57, 35) had 5 items:
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 11 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 11 }
+------------------------
+Pair (39, 22) had 5 items:
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 12 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 12 }
+------------------------
+Pair (51, 14) had 3 items:
+   - matchInfo { a: 468, b: 329, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 3707, b: 2581, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 4036, b: 2581, bit_size: 12, iteration: 7 }
+------------------------
+Pair (35, 22) had 4 items:
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 8 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 8 }
+------------------------
+Pair (41, 12) had 4 items:
+   - matchInfo { a: 239, b: 169, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 10 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 14 }
+------------------------
+Pair (46, 19) had 3 items:
+   - matchInfo { a: 398, b: 287, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 3647, b: 2564, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 4045, b: 2564, bit_size: 12, iteration: 7 }
+------------------------
+Pair (49, 22) had 3 items:
+   - matchInfo { a: 235, b: 164, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 1853, b: 1290, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 2017, b: 1290, bit_size: 11, iteration: 6 }
+------------------------
+Pair (51, 11) had 5 items:
+   - matchInfo { a: 193, b: 142, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 477, b: 335, bit_size: 9, iteration: 4 }
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 7 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 10 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 10 }
+------------------------
+Pair (50, 21) had 4 items:
+   - matchInfo { a: 234, b: 163, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 255, b: 163, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 1843, b: 1283, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 2006, b: 1283, bit_size: 11, iteration: 6 }
+------------------------
+Pair (56, 39) had 5 items:
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 11 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 11 }
+------------------------
+Pair (56, 17) had 42 items:
+   - matchInfo { a: 185, b: 129, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 202, b: 129, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 207, b: 151, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 229, b: 95, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 241, b: 185, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 246, b: 151, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 363, b: 229, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 419, b: 324, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 421, b: 348, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 443, b: 314, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 460, b: 331, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 499, b: 314, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 509, b: 358, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 877, b: 553, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1011, b: 782, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 1930, b: 1397, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 1983, b: 1430, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 3695, b: 2568, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 3697, b: 2575, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 3699, b: 2582, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 4009, b: 2568, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 4028, b: 2575, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 4047, b: 2582, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 9 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 11 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 11 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 12 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 15 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 15 }
+------------------------
+Pair (45, 26) had 5 items:
+   - matchInfo { a: 239, b: 168, bit_size: 8, iteration: 3 }
+   - matchInfo { a: 963, b: 698, bit_size: 10, iteration: 5 }
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 6 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 9 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 9 }
+------------------------
+=== Bit-Length: 7 ===
+Pair (71, 45) had 5 items:
+   - matchInfo { a: 239, b: 168, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 963, b: 698, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 8 }
+------------------------
+Pair (90, 17) had 5 items:
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 10 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 10 }
+------------------------
+Pair (104, 29) had 6 items:
+   - matchInfo { a: 387, b: 283, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 10 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 10 }
+------------------------
+Pair (121, 75) had 5 items:
+   - matchInfo { a: 438, b: 317, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 8 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 8 }
+------------------------
+Pair (88, 51) had 3 items:
+   - matchInfo { a: 468, b: 329, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 3707, b: 2581, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 4036, b: 2581, bit_size: 12, iteration: 6 }
+------------------------
+Pair (79, 30) had 4 items:
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 7 }
+------------------------
+Pair (111, 46) had 3 items:
+   - matchInfo { a: 398, b: 287, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 3647, b: 2564, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 4045, b: 2564, bit_size: 12, iteration: 6 }
+------------------------
+Pair (73, 56) had 9 items:
+   - matchInfo { a: 421, b: 348, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 3699, b: 2582, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 4047, b: 2582, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 8 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 11 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 14 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 14 }
+------------------------
+Pair (73, 17) had 4 items:
+   - matchInfo { a: 236, b: 163, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 253, b: 163, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 1849, b: 1287, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 2012, b: 1287, bit_size: 11, iteration: 5 }
+------------------------
+Pair (105, 31) had 6 items:
+   - matchInfo { a: 389, b: 284, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 10 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 10 }
+------------------------
+Pair (64, 19) had 22 items:
+   - matchInfo { a: 211, b: 147, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 230, b: 147, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 237, b: 173, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 391, b: 282, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 505, b: 358, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 927, b: 569, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1019, b: 737, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 7691, b: 5626, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 8 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 10 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 10 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 11 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 11 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 14 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 14 }
+------------------------
+Pair (71, 49) had 3 items:
+   - matchInfo { a: 235, b: 164, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 1853, b: 1290, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 2017, b: 1290, bit_size: 11, iteration: 5 }
+------------------------
+Pair (71, 50) had 4 items:
+   - matchInfo { a: 234, b: 163, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 255, b: 163, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 1843, b: 1283, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 2006, b: 1283, bit_size: 11, iteration: 5 }
+------------------------
+Pair (106, 31) had 5 items:
+   - matchInfo { a: 393, b: 287, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 11 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 14 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 14 }
+------------------------
+Pair (75, 29) had 7 items:
+   - matchInfo { a: 254, b: 179, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 438, b: 317, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 462, b: 283, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 9 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 9 }
+------------------------
+Pair (83, 35) had 4 items:
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 4 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 7 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 7 }
+------------------------
+Pair (70, 41) had 4 items:
+   - matchInfo { a: 239, b: 169, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 5 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 9 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 13 }
+------------------------
+Pair (109, 64) had 7 items:
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 1019, b: 737, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 10 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 10 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 13 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 13 }
+------------------------
+Pair (95, 56) had 19 items:
+   - matchInfo { a: 229, b: 95, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 363, b: 229, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 419, b: 324, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 877, b: 553, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 1011, b: 782, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 1983, b: 1430, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 10 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 10 }
+------------------------
+Pair (74, 31) had 3 items:
+   - matchInfo { a: 253, b: 179, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 463, b: 284, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 3840, b: 2809, bit_size: 12, iteration: 6 }
+------------------------
+Pair (91, 51) had 5 items:
+   - matchInfo { a: 193, b: 142, bit_size: 8, iteration: 2 }
+   - matchInfo { a: 477, b: 335, bit_size: 9, iteration: 3 }
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 6 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 9 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 9 }
+------------------------
+=== Bit-Length: 8 ===
+Pair (151, 56) had 3 items:
+   - matchInfo { a: 207, b: 151, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 246, b: 151, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 509, b: 358, bit_size: 9, iteration: 2 }
+------------------------
+Pair (179, 105) had 6 items:
+   - matchInfo { a: 389, b: 284, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 9 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 9 }
+------------------------
+Pair (173, 64) had 7 items:
+   - matchInfo { a: 237, b: 173, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 391, b: 282, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 9 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 9 }
+------------------------
+Pair (129, 56) had 10 items:
+   - matchInfo { a: 185, b: 129, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 202, b: 129, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 443, b: 314, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 460, b: 331, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 499, b: 314, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 1930, b: 1397, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 3695, b: 2568, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 3697, b: 2575, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 4009, b: 2568, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 4028, b: 2575, bit_size: 12, iteration: 5 }
+------------------------
+Pair (139, 88) had 3 items:
+   - matchInfo { a: 468, b: 329, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 3707, b: 2581, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 4036, b: 2581, bit_size: 12, iteration: 5 }
+------------------------
+Pair (206, 57) had 5 items:
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 10 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 10 }
+------------------------
+Pair (197, 90) had 5 items:
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 9 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 9 }
+------------------------
+Pair (207, 79) had 4 items:
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 6 }
+------------------------
+Pair (201, 83) had 4 items:
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 6 }
+------------------------
+Pair (179, 104) had 6 items:
+   - matchInfo { a: 387, b: 283, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 9 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 9 }
+------------------------
+Pair (211, 64) had 3 items:
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 6 }
+------------------------
+Pair (169, 70) had 4 items:
+   - matchInfo { a: 239, b: 169, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 8 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 12 }
+------------------------
+Pair (176, 111) had 3 items:
+   - matchInfo { a: 398, b: 287, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 3647, b: 2564, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 4045, b: 2564, bit_size: 12, iteration: 5 }
+------------------------
+Pair (147, 64) had 5 items:
+   - matchInfo { a: 211, b: 147, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 230, b: 147, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 505, b: 358, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 927, b: 569, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 7691, b: 5626, bit_size: 13, iteration: 6 }
+------------------------
+Pair (229, 95) had 11 items:
+   - matchInfo { a: 229, b: 95, bit_size: 8, iteration: 0 }
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 363, b: 229, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 877, b: 553, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 1011, b: 782, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 1983, b: 1430, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 4 }
+------------------------
+Pair (163, 73) had 4 items:
+   - matchInfo { a: 236, b: 163, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 253, b: 163, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 1849, b: 1287, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 2012, b: 1287, bit_size: 11, iteration: 4 }
+------------------------
+Pair (211, 147) had 3 items:
+   - matchInfo { a: 211, b: 147, bit_size: 8, iteration: 0 }
+   - matchInfo { a: 927, b: 569, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 7691, b: 5626, bit_size: 13, iteration: 5 }
+------------------------
+Pair (168, 71) had 5 items:
+   - matchInfo { a: 239, b: 168, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 963, b: 698, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 7 }
+------------------------
+Pair (164, 71) had 3 items:
+   - matchInfo { a: 235, b: 164, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 1853, b: 1290, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 2017, b: 1290, bit_size: 11, iteration: 4 }
+------------------------
+Pair (207, 56) had 5 items:
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 3 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 7 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 10 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 10 }
+------------------------
+Pair (142, 91) had 5 items:
+   - matchInfo { a: 193, b: 142, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 477, b: 335, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 5 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 8 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 8 }
+------------------------
+Pair (163, 71) had 4 items:
+   - matchInfo { a: 234, b: 163, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 255, b: 163, bit_size: 8, iteration: 1 }
+   - matchInfo { a: 1843, b: 1283, bit_size: 11, iteration: 4 }
+   - matchInfo { a: 2006, b: 1283, bit_size: 11, iteration: 4 }
+------------------------
+Pair (181, 106) had 5 items:
+   - matchInfo { a: 393, b: 287, bit_size: 9, iteration: 2 }
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 6 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 10 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 13 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 13 }
+------------------------
+=== Bit-Length: 9 ===
+Pair (407, 168) had 3 items:
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 6 }
+------------------------
+Pair (284, 201) had 4 items:
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 5 }
+------------------------
+Pair (355, 206) had 5 items:
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 9 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 9 }
+------------------------
+Pair (455, 282) had 6 items:
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 0 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 8 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 8 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 11 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 11 }
+------------------------
+Pair (358, 211) had 3 items:
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 5 }
+------------------------
+Pair (358, 207) had 5 items:
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 9 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 9 }
+------------------------
+Pair (335, 142) had 4 items:
+   - matchInfo { a: 477, b: 335, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 7 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 7 }
+------------------------
+Pair (282, 109) had 7 items:
+   - matchInfo { a: 455, b: 282, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 1019, b: 737, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 9 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 9 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 12 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 12 }
+------------------------
+Pair (314, 129) had 4 items:
+   - matchInfo { a: 443, b: 314, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 499, b: 314, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 3695, b: 2568, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 4009, b: 2568, bit_size: 12, iteration: 4 }
+------------------------
+Pair (317, 121) had 5 items:
+   - matchInfo { a: 438, b: 317, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 7 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 7 }
+------------------------
+Pair (348, 73) had 9 items:
+   - matchInfo { a: 421, b: 348, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 3699, b: 2582, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 4047, b: 2582, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 7 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 10 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 13 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 13 }
+------------------------
+Pair (286, 207) had 4 items:
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 5 }
+------------------------
+Pair (287, 176) had 3 items:
+   - matchInfo { a: 398, b: 287, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 3647, b: 2564, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 4045, b: 2564, bit_size: 12, iteration: 4 }
+------------------------
+Pair (437, 169) had 3 items:
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 7 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 11 }
+------------------------
+Pair (283, 179) had 6 items:
+   - matchInfo { a: 387, b: 283, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 8 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 8 }
+------------------------
+Pair (282, 173) had 6 items:
+   - matchInfo { a: 391, b: 282, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 8 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 8 }
+------------------------
+Pair (324, 229) had 3 items:
+   - matchInfo { a: 324, b: 229, bit_size: 9, iteration: 0 }
+   - matchInfo { a: 1849, b: 1525, bit_size: 11, iteration: 2 }
+   - matchInfo { a: 3927, b: 2726, bit_size: 12, iteration: 3 }
+------------------------
+Pair (324, 95) had 8 items:
+   - matchInfo { a: 419, b: 324, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 6 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 9 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 9 }
+------------------------
+Pair (287, 181) had 5 items:
+   - matchInfo { a: 393, b: 287, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 9 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 12 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 12 }
+------------------------
+Pair (329, 139) had 3 items:
+   - matchInfo { a: 468, b: 329, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 3707, b: 2581, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 4036, b: 2581, bit_size: 12, iteration: 4 }
+------------------------
+Pair (331, 129) had 4 items:
+   - matchInfo { a: 460, b: 331, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 1930, b: 1397, bit_size: 11, iteration: 3 }
+   - matchInfo { a: 3697, b: 2575, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 4028, b: 2575, bit_size: 12, iteration: 4 }
+------------------------
+Pair (287, 197) had 5 items:
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 8 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 8 }
+------------------------
+Pair (284, 179) had 6 items:
+   - matchInfo { a: 389, b: 284, bit_size: 9, iteration: 1 }
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 2 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 4 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 5 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 8 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 8 }
+------------------------
+=== Bit-Length: 10 ===
+Pair (561, 355) had 5 items:
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 2 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 8 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 8 }
+------------------------
+Pair (680, 287) had 4 items:
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 8 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 11 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 11 }
+------------------------
+Pair (812, 335) had 3 items:
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 3 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 6 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 6 }
+------------------------
+Pair (565, 358) had 5 items:
+   - matchInfo { a: 772, b: 565, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 2 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 8 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 8 }
+------------------------
+Pair (575, 407) had 3 items:
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 2 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 5 }
+------------------------
+Pair (673, 284) had 5 items:
+   - matchInfo { a: 957, b: 673, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 3859, b: 2797, bit_size: 12, iteration: 3 }
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 7 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 7 }
+------------------------
+Pair (705, 437) had 3 items:
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 2 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 6 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 10 }
+------------------------
+Pair (670, 283) had 5 items:
+   - matchInfo { a: 953, b: 670, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 3841, b: 2784, bit_size: 12, iteration: 3 }
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 7 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 7 }
+------------------------
+Pair (830, 317) had 4 items:
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 3 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 3 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 6 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 6 }
+------------------------
+Pair (664, 287) had 5 items:
+   - matchInfo { a: 951, b: 664, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 7 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 7 }
+------------------------
+Pair (898, 623) had 6 items:
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 0 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 5 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 8 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 11 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 11 }
+------------------------
+Pair (553, 324) had 7 items:
+   - matchInfo { a: 782, b: 553, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 2 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 8 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 8 }
+------------------------
+Pair (569, 358) had 3 items:
+   - matchInfo { a: 780, b: 569, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 1918, b: 1349, bit_size: 11, iteration: 2 }
+   - matchInfo { a: 7736, b: 5607, bit_size: 13, iteration: 4 }
+------------------------
+Pair (673, 282) had 5 items:
+   - matchInfo { a: 955, b: 673, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 3865, b: 2801, bit_size: 12, iteration: 3 }
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 7 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 7 }
+------------------------
+Pair (651, 284) had 4 items:
+   - matchInfo { a: 935, b: 651, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 1018, b: 651, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 7362, b: 5125, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 8013, b: 5125, bit_size: 13, iteration: 4 }
+------------------------
+Pair (592, 229) had 3 items:
+   - matchInfo { a: 821, b: 592, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 955, b: 592, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 2005, b: 1413, bit_size: 11, iteration: 2 }
+------------------------
+Pair (623, 348) had 6 items:
+   - matchInfo { a: 898, b: 623, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 5 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 6 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 9 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 12 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 12 }
+------------------------
+Pair (651, 286) had 4 items:
+   - matchInfo { a: 937, b: 651, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 1016, b: 651, bit_size: 10, iteration: 1 }
+   - matchInfo { a: 7368, b: 5129, bit_size: 13, iteration: 4 }
+   - matchInfo { a: 8019, b: 5129, bit_size: 13, iteration: 4 }
+------------------------
+=== Bit-Length: 11 ===
+Pair (1623, 670) had 3 items:
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 3 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 6 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 6 }
+------------------------
+Pair (1753, 680) had 4 items:
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 3 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 7 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 10 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 10 }
+------------------------
+Pair (1337, 565) had 4 items:
+   - matchInfo { a: 1902, b: 1337, bit_size: 11, iteration: 1 }
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 7 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 7 }
+------------------------
+Pair (1318, 575) had 3 items:
+   - matchInfo { a: 1893, b: 1318, bit_size: 11, iteration: 1 }
+   - matchInfo { a: 14905, b: 10376, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 16223, b: 10376, bit_size: 14, iteration: 4 }
+------------------------
+Pair (1328, 561) had 5 items:
+   - matchInfo { a: 1889, b: 1328, bit_size: 11, iteration: 1 }
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 7 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 7 }
+------------------------
+Pair (1630, 673) had 3 items:
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 3 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 6 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 6 }
+------------------------
+Pair (1147, 830) had 4 items:
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 2 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 2 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 5 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 5 }
+------------------------
+Pair (1615, 664) had 4 items:
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 3 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 3 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 6 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 6 }
+------------------------
+Pair (1647, 455) had 5 items:
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 7 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 7 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 10 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 10 }
+------------------------
+Pair (1147, 812) had 3 items:
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 2 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 5 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 5 }
+------------------------
+Pair (1335, 553) had 6 items:
+   - matchInfo { a: 1888, b: 1335, bit_size: 11, iteration: 1 }
+   - matchInfo { a: 7686, b: 5569, bit_size: 13, iteration: 3 }
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 4 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 7 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 7 }
+------------------------
+Pair (1628, 673) had 3 items:
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 3 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 6 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 6 }
+------------------------
+Pair (1142, 705) had 3 items:
+   - matchInfo { a: 1579, b: 1142, bit_size: 11, iteration: 1 }
+   - matchInfo { a: 25363, b: 18342, bit_size: 15, iteration: 5 }
+   - matchInfo { a: 407387, b: 294614, bit_size: 19, iteration: 9 }
+------------------------
+=== Bit-Length: 12 ===
+Pair (2839, 1647) had 5 items:
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 3 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 6 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 6 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 9 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 9 }
+------------------------
+Pair (3217, 1328) had 4 items:
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 3 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 3 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 6 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 6 }
+------------------------
+Pair (3317, 898) had 5 items:
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 3 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 4 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 7 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 10 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 10 }
+------------------------
+Pair (2303, 1630) had 3 items:
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 2 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 5 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 5 }
+------------------------
+Pair (2293, 1623) had 3 items:
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 2 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 5 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 5 }
+------------------------
+Pair (2301, 1628) had 3 items:
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 2 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 5 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 5 }
+------------------------
+Pair (2629, 1147) had 3 items:
+   - matchInfo { a: 3776, b: 2629, bit_size: 12, iteration: 1 }
+   - matchInfo { a: 29731, b: 20697, bit_size: 15, iteration: 4 }
+   - matchInfo { a: 32360, b: 20697, bit_size: 15, iteration: 4 }
+------------------------
+Pair (2279, 1615) had 4 items:
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 2 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 2 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 5 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 5 }
+------------------------
+Pair (2826, 1753) had 4 items:
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 2 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 6 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 9 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 9 }
+------------------------
+Pair (3239, 1337) had 3 items:
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 3 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 6 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 6 }
+------------------------
+Pair (3223, 1335) had 4 items:
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 3 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 3 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 6 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 6 }
+------------------------
+Pair (2611, 1147) had 4 items:
+   - matchInfo { a: 3758, b: 2611, bit_size: 12, iteration: 1 }
+   - matchInfo { a: 4075, b: 2611, bit_size: 12, iteration: 1 }
+   - matchInfo { a: 29551, b: 20571, bit_size: 15, iteration: 4 }
+   - matchInfo { a: 32162, b: 20571, bit_size: 15, iteration: 4 }
+------------------------
+=== Bit-Length: 13 ===
+Pair (4486, 2839) had 5 items:
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 2 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 5 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 5 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 8 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 8 }
+------------------------
+Pair (4558, 3223) had 4 items:
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 2 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 2 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 5 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 5 }
+------------------------
+Pair (4545, 3217) had 4 items:
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 2 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 2 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 5 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 5 }
+------------------------
+Pair (5275, 2301) had 3 items:
+   - matchInfo { a: 7576, b: 5275, bit_size: 13, iteration: 1 }
+   - matchInfo { a: 59653, b: 41527, bit_size: 16, iteration: 4 }
+   - matchInfo { a: 64928, b: 41527, bit_size: 16, iteration: 4 }
+------------------------
+Pair (5736, 3317) had 5 items:
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 2 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 3 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 6 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 9 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 9 }
+------------------------
+Pair (4579, 2826) had 4 items:
+   - matchInfo { a: 6332, b: 4579, bit_size: 13, iteration: 1 }
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 5 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 8 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 8 }
+------------------------
+Pair (5279, 2303) had 3 items:
+   - matchInfo { a: 7582, b: 5279, bit_size: 13, iteration: 1 }
+   - matchInfo { a: 59699, b: 41559, bit_size: 16, iteration: 4 }
+   - matchInfo { a: 64978, b: 41559, bit_size: 16, iteration: 4 }
+------------------------
+Pair (4576, 3239) had 3 items:
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 2 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 5 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 5 }
+------------------------
+Pair (5222, 2279) had 4 items:
+   - matchInfo { a: 7501, b: 5222, bit_size: 13, iteration: 1 }
+   - matchInfo { a: 8165, b: 5222, bit_size: 13, iteration: 1 }
+   - matchInfo { a: 59057, b: 41112, bit_size: 16, iteration: 4 }
+   - matchInfo { a: 64279, b: 41112, bit_size: 16, iteration: 4 }
+------------------------
+Pair (5256, 2293) had 3 items:
+   - matchInfo { a: 7549, b: 5256, bit_size: 13, iteration: 1 }
+   - matchInfo { a: 59439, b: 41378, bit_size: 16, iteration: 4 }
+   - matchInfo { a: 64695, b: 41378, bit_size: 16, iteration: 4 }
+------------------------
+=== Bit-Length: 14 ===
+Pair (10619, 4486) had 5 items:
+   - matchInfo { a: 15105, b: 10619, bit_size: 14, iteration: 1 }
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 4 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 4 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 7 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 7 }
+------------------------
+Pair (10489, 4576) had 3 items:
+   - matchInfo { a: 15065, b: 10489, bit_size: 14, iteration: 1 }
+   - matchInfo { a: 118618, b: 82575, bit_size: 17, iteration: 4 }
+   - matchInfo { a: 129107, b: 82575, bit_size: 17, iteration: 4 }
+------------------------
+Pair (10418, 4545) had 4 items:
+   - matchInfo { a: 14963, b: 10418, bit_size: 14, iteration: 1 }
+   - matchInfo { a: 16291, b: 10418, bit_size: 14, iteration: 1 }
+   - matchInfo { a: 117815, b: 82016, bit_size: 17, iteration: 4 }
+   - matchInfo { a: 128233, b: 82016, bit_size: 17, iteration: 4 }
+------------------------
+Pair (10451, 4558) had 4 items:
+   - matchInfo { a: 15009, b: 10451, bit_size: 14, iteration: 1 }
+   - matchInfo { a: 16344, b: 10451, bit_size: 14, iteration: 1 }
+   - matchInfo { a: 118184, b: 82273, bit_size: 17, iteration: 4 }
+   - matchInfo { a: 128635, b: 82273, bit_size: 17, iteration: 4 }
+------------------------
+Pair (10911, 4579) had 3 items:
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 4 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 7 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 7 }
+------------------------
+Pair (9053, 5736) had 5 items:
+   - matchInfo { a: 12370, b: 9053, bit_size: 14, iteration: 1 }
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 2 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 5 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 8 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 8 }
+------------------------
+=== Bit-Length: 15 ===
+Pair (25724, 10619) had 4 items:
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 3 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 3 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 6 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 6 }
+------------------------
+Pair (21423, 9053) had 4 items:
+   - matchInfo { a: 30476, b: 21423, bit_size: 15, iteration: 1 }
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 4 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 7 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 7 }
+------------------------
+Pair (28154, 10911) had 3 items:
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 3 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 6 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 6 }
+------------------------
+=== Bit-Length: 16 ===
+Pair (51899, 21423) had 3 items:
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 3 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 6 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 6 }
+------------------------
+Pair (36343, 25724) had 4 items:
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 2 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 2 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 5 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 5 }
+------------------------
+Pair (45397, 28154) had 3 items:
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 2 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 5 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 5 }
+------------------------
+=== Bit-Length: 17 ===
+Pair (73322, 51899) had 3 items:
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 2 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 5 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 5 }
+------------------------
+Pair (83305, 36343) had 4 items:
+   - matchInfo { a: 119648, b: 83305, bit_size: 17, iteration: 1 }
+   - matchInfo { a: 130267, b: 83305, bit_size: 17, iteration: 1 }
+   - matchInfo { a: 942079, b: 655821, bit_size: 20, iteration: 4 }
+   - matchInfo { a: 1025384, b: 655821, bit_size: 20, iteration: 4 }
+------------------------
+Pair (73551, 45397) had 3 items:
+   - matchInfo { a: 101705, b: 73551, bit_size: 17, iteration: 1 }
+   - matchInfo { a: 932588, b: 655627, bit_size: 20, iteration: 4 }
+   - matchInfo { a: 1034293, b: 655627, bit_size: 20, iteration: 4 }
+------------------------
+=== Bit-Length: 18 ===
+Pair (168067, 73322) had 3 items:
+   - matchInfo { a: 241389, b: 168067, bit_size: 18, iteration: 1 }
+   - matchInfo { a: 1900636, b: 1323113, bit_size: 21, iteration: 4 }
+   - matchInfo { a: 2068703, b: 1323113, bit_size: 21, iteration: 4 }
+------------------------
+=== Bit Clears and Q Values ===
+Index 0 | Avg Bit Clears: 1.14, Max Bit Clears: 2 | Avg Q: 1.49, Max Q: 3
+Index 1 | Avg Bit Clears: 2.19, Max Bit Clears: 3 | Avg Q: 2.64, Max Q: 4
+Index 2 | Avg Bit Clears: 2.16, Max Bit Clears: 3 | Avg Q: 1.70, Max Q: 5
+Index 3 | Avg Bit Clears: 2.27, Max Bit Clears: 3 | Avg Q: 2.36, Max Q: 4
+Index 4 | Avg Bit Clears: 2.18, Max Bit Clears: 3 | Avg Q: 2.59, Max Q: 6
+Index 5 | Avg Bit Clears: 2.14, Max Bit Clears: 3 | Avg Q: 1.96, Max Q: 6
+Index 6 | Avg Bit Clears: 2.30, Max Bit Clears: 3 | Avg Q: 2.45, Max Q: 5
+Index 7 | Avg Bit Clears: 2.14, Max Bit Clears: 3 | Avg Q: 2.68, Max Q: 6
+Index 8 | Avg Bit Clears: 2.04, Max Bit Clears: 3 | Avg Q: 2.08, Max Q: 4
+Index 9 | Avg Bit Clears: 2.39, Max Bit Clears: 3 | Avg Q: 2.29, Max Q: 4
+Index 10 | Avg Bit Clears: 2.28, Max Bit Clears: 3 | Avg Q: 2.82, Max Q: 6
+Index 11 | Avg Bit Clears: 2.06, Max Bit Clears: 3 | Avg Q: 2.49, Max Q: 4
+Index 12 | Avg Bit Clears: 2.15, Max Bit Clears: 3 | Avg Q: 2.17, Max Q: 4
+Index 13 | Avg Bit Clears: 2.16, Max Bit Clears: 3 | Avg Q: 2.52, Max Q: 4
+Index 14 | Avg Bit Clears: 2.28, Max Bit Clears: 3 | Avg Q: 2.48, Max Q: 4
+Index 15 | Avg Bit Clears: 2.12, Max Bit Clears: 3 | Avg Q: 2.53, Max Q: 4
+Index 16 | Avg Bit Clears: 2.00, Max Bit Clears: 2 | Avg Q: 2.12, Max Q: 3
+Index 17 | Avg Bit Clears: 2.00, Max Bit Clears: 2 | Avg Q: 2.57, Max Q: 3
+Index 18 | Avg Bit Clears: 2.00, Max Bit Clears: 2 | Avg Q: 2.33, Max Q: 3
+Index 19 | Avg Bit Clears: 2.00, Max Bit Clears: 2 | Avg Q: 2.00, Max Q: 2
+
+=== Swaps and Negatives Analysis ===
+Index 0 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 48.77%, Bottom Up 0.00%)
+Index 1 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 76.54%, Bottom Up 86.42%)
+Index 2 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 33.95%, Bottom Up 24.69%)
+Index 3 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 41.36%, Bottom Up 30.86%)
+Index 4 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 58.64%, Bottom Up 70.37%)
+Index 5 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 45.06%, Bottom Up 55.56%)
+Index 6 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 41.98%, Bottom Up 41.98%)
+Index 7 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 47.45%, Bottom Up 62.77%)
+Index 8 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 39.09%, Bottom Up 50.91%)
+Index 9 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 54.02%, Bottom Up 45.98%)
+Index 10 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 38.03%, Bottom Up 53.52%)
+Index 11 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 52.83%, Bottom Up 56.60%)
+Index 12 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 30.00%, Bottom Up 37.50%)
+Index 13 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 45.16%, Bottom Up 48.39%)
+Index 14 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 36.00%, Bottom Up 60.00%)
+Index 15 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 29.41%, Bottom Up 64.71%)
+Index 16 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 37.50%, Bottom Up 25.00%)
+Index 17 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 57.14%, Bottom Up 71.43%)
+Index 18 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 33.33%, Bottom Up 66.67%)
+Index 19 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 0.00%, Bottom Up 50.00%)
+Index 20 | Swaps: (Top Down 0.00%, Bottom Up 0.00%) | Negatives: (Top Down 0.00%, Bottom Up 0.00%)
