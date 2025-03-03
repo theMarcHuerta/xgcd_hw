@@ -189,11 +189,11 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
         bit_clears_list.append(clears_this_iter)
 
         # if (iteration_count == 1 and clears_this_iter == 1):
-        print(f"A: {a}")        
-        print(f"B: {b}")
-        print(f"R: {residual}")
-        print(f"Q: {Q}")
-        print(f"C: {clears_this_iter} \n")
+        # print(f"A: {a}")        
+        # print(f"B: {b}")
+        # print(f"R: {residual}")
+        # print(f"Q: {Q}")
+        # print(f"C: {clears_this_iter} \n")
 
         # STEP 7) Prepare next iteration: 
         #    the old b becomes new a, the result becomes new b
@@ -265,10 +265,10 @@ if __name__ == "__main__":
     # # b_in = int(input("Enter second number: "))
 
     # 1) Small example
-    a_in = 932588
-    b_in = 655627
+    a_in = 309671
+    b_in = 219097
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
-                                                           total_bits=16,
+                                                           total_bits=19,
                                                            approx_bits=4,
                                                            rounding_mode='truncate',
                                                            integer_rounding=True,
