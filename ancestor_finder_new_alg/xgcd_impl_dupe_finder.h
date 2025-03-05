@@ -13,7 +13,7 @@ using namespace std;
 
 // Custom struct
 struct matchInfo {
-    uint32_t a, b, bit_size, iteration;
+    uint32_t a, b, bit_size, iteration, iterations_to_completion;
 };
 
 // Custom hash function for std::pair<int, int>
@@ -31,6 +31,7 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
                         int approx_bits,
                         const std::string &rounding_mode,
                         bool integer_rounding,
+                        int iterations_to_completion,
                         std::unordered_map<std::pair<uint32_t, uint32_t>,
                         std::vector<matchInfo>, pair_hash>& data_map,
                         std::vector<std::vector<int>>& bitclears,
@@ -64,7 +65,8 @@ XgcdResult xgcd_bitwise(uint32_t a_in,
         std::pair<uint32_t, uint32_t> curr_pair = {a, b};
         matchInfo iter_info = {a_in, b_in, 
                     static_cast<uint32_t>(total_bits), 
-                    static_cast<uint32_t>(iteration_count)};
+                    static_cast<uint32_t>(iteration_count),
+                    static_cast<uint32_t>(iterations_to_completion)};
         data_map[curr_pair].push_back(iter_info); 
 
         iteration_count++;
