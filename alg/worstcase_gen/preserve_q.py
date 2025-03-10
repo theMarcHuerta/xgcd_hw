@@ -34,7 +34,7 @@ APPROX_BITS      = 4          # Bit‑width of the seed domain (numbers in [2^(A
 BITS_PER_STEP    = 1          # Number of bits added per generative extension
 ROUNDING_MODE    = "truncate" # "truncate" or "round" (for the fixed‑point division)
 INTEGER_ROUNDING = True       # Whether to adjust quotient by integer rounding
-LOOKAHEAD_DEPTH = 4
+LOOKAHEAD_DEPTH = 3
 
 ##########################
 # HELPER FUNCTIONS
@@ -294,70 +294,79 @@ def choose_best_seed(seed_pairs):
     return random.choice(best_pairs)
 
 
-def choose_best_step(a, b, bits_to_gen_a, bits_to_gen_b, low_a, low_b):
+def choose_best_step(a, b, low_a, low_b):
     """
-    Given the current candidate pair (a, b) and the numbers of bits to generate for each,
-    try all possible extensions by appending the appropriate number of bits.
-    For each candidate extension, simulate one xgcd step and add the lookahead score (using
-    the current lowest-bit positions) to determine the total score.
-    Return the updated candidate pair along with the chosen extension bits.
+    Given the current candidate pair (a, b), this function now “extends” the
+    remainder rather than B. It first simulates the step to obtain a base remainder.
+    It then considers all 2^(BITS_PER_STEP) candidate extensions for the unknown
+    (lower) bits of the remainder. For each candidate extension, it adjusts candidate A
+    (by adding the difference between the new remainder and the base remainder) and
+    re‑simulates. Only those candidate extensions that leave the high bits (the fixed part)
+    of the remainder unchanged and that do not alter the computed quotient Q are valid.
+    Finally, a lookahead score is computed for each valid extension and the one with
+    minimal total “clears” (plus lookahead) is chosen.
+    
+    Returns the updated candidate A and B along with the chosen extension bits (for A).
     """
+    # First simulate the current step to get the base remainder.
+    base_Q, base_rem, base_clears, base_shift, base_a_next, base_b_next, base_neg_res = simulate_step(a, b)
+    # Define a mask for the fixed portion (the high bits) of the remainder.
+    fixed_mask = ~((1 << BITS_PER_STEP) - 1)
+    base_fixed = base_rem & fixed_mask
+
     lowest_score = float('inf')
-    best_candidates = []
-    for ext_a in range(2 ** bits_to_gen_a):
-        shift_a_by = bit_length(a) - APPROX_BITS - BITS_PER_STEP
-        if shift_a_by < 0:
-            shift_a_by = 0
-        a_test = (((a >> shift_a_by) + ext_a) << shift_a_by)
-        for ext_b in range(2 ** bits_to_gen_b):
-            shift_b_by = bit_length(b) - APPROX_BITS - BITS_PER_STEP
-            if shift_b_by < 0:
-                shift_b_by = 0
-            b_test = (((b >> shift_b_by) + ext_b) << shift_b_by)
-            Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(a_test, b_test)
-            #####################
+    best_candidates = []  # will hold tuples: (new_a, new_b, candidate_extension)
 
-            im_low_bit_pos_a = low_a
-            im_low_bit_pos_b = low_b
-
-            im_bits_to_gen_a = 0
-            im_bits_to_gen_b = clears
-
-            if (im_low_bit_pos_a - im_bits_to_gen_b < 1):
-                im_bits_to_gen_b = (im_low_bit_pos_a - 1)
-
-            if (im_low_bit_pos_a < 2):
-                im_bits_to_gen_b = 0
-
-            tmp_a = im_low_bit_pos_a
+    # Try all possible assignments for the unknown lower BITS_PER_STEP bits.
+    for ext in range(2 ** BITS_PER_STEP):
+        candidate_rem = base_fixed | ext
+        delta = candidate_rem - base_rem
+        new_a = a + delta  # adjust A so that its subtraction with b gives candidate_rem
+        # Re-run the simulation with the adjusted A and the same b.
+        Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(new_a, b)
+        # Valid extension must leave the fixed (high) part of rem unchanged and the quotient Q equal.
+        if Q != base_Q or (rem & fixed_mask) != base_fixed:
+            continue  # invalid extension; this candidate would have “borrowed” from the fixed part
+        # Compute lookahead cost.
+        # (Here we reuse the old logic: bits to generate for A is 0 and for remainder is 'clears'.)
+        im_low_bit_pos_a = low_a
+        im_low_bit_pos_b = low_b
+        im_bits_to_gen_a = 0
+        im_bits_to_gen_b = clears
+        if (im_low_bit_pos_a - im_bits_to_gen_b < 1):
+            im_bits_to_gen_b = (im_low_bit_pos_a - 1)
+        if im_low_bit_pos_a < 2:
+            im_bits_to_gen_b = 0
+        # Swap the low-bit trackers (as in the original logic).
+        tmp = im_low_bit_pos_a
+        im_low_bit_pos_a = im_low_bit_pos_b
+        im_low_bit_pos_b = tmp - im_bits_to_gen_b
+        # If no swap occurred in simulation (i.e. b did not change), then swap trackers.
+        if b == b_next:
+            tmp = im_low_bit_pos_a
             im_low_bit_pos_a = im_low_bit_pos_b
-            im_low_bit_pos_b = tmp_a - im_bits_to_gen_b
+            im_low_bit_pos_b = tmp
+            im_bits_to_gen_a = im_bits_to_gen_b
+            im_bits_to_gen_b = 0
+        future_score = lookahead_score_with_bits(a_next, b_next, im_bits_to_gen_a, im_bits_to_gen_b,
+                                                   im_low_bit_pos_a, im_low_bit_pos_b, LOOKAHEAD_DEPTH)
+        total_score = clears + future_score
+        if total_score < lowest_score:
+            lowest_score = total_score
+            best_candidates = [(new_a, b, ext)]
+        elif total_score == lowest_score:
+            best_candidates.append((new_a, b, ext))
 
-            # If no swap occurred in simulation, swap the low-bit trackers
-            if b_test == b_next:
-                # print("NO SWAP AFTER SIM STEP")
-                # if we keep b as b, we shouldnt generate anymore bit sso it becomes it orignal
-                # the residual becomes A so now we generate bit son its residual
-                tmp_a = im_low_bit_pos_a
-                im_low_bit_pos_a = im_low_bit_pos_b
-                im_low_bit_pos_b = tmp_a
-                im_bits_to_gen_a = im_bits_to_gen_b
-                im_bits_to_gen_b = 0
+    if not best_candidates:
+        # If no valid extension was found, then fall back to the unadjusted simulation.
+        print("WARNING: No valid remainder extension found. Falling back.")
+        return a, b, 0
 
-            #####################
-            future_score = lookahead_score_with_bits(a_next, b_next, im_bits_to_gen_a, im_bits_to_gen_b, im_low_bit_pos_a, im_low_bit_pos_b, LOOKAHEAD_DEPTH)
-            total_score = clears + future_score
-            if total_score < lowest_score:
-                lowest_score = total_score
-                best_candidates = [(a_test, b_test, ext_a, ext_b)]
-            elif total_score == lowest_score:
-                best_candidates.append((a_test, b_test, ext_a, ext_b))
-
+    # Choose one candidate randomly among those with minimal score.
+    new_a, new_b, chosen_ext = random.choice(best_candidates)
     print("NUMBER OF CHOICES FROM BEST STEP: ", len(best_candidates))
-    print("BEST STEP PAIRS: ", best_candidates, " \n")
-
-    new_a, new_b, chosen_ext_a, chosen_ext_b = random.choice(best_candidates)
-    return new_a, new_b, chosen_ext_a, chosen_ext_b
+    print("BEST STEP CANDIDATES (A, B, remainder_ext): ", best_candidates, "\n")
+    return new_a, new_b, chosen_ext
 
 
 def reconstruct_candidate(history):
@@ -431,12 +440,20 @@ def reconstruct_candidate(history):
 
     return reconstructed_a, reconstructed_b
 
+##########################
+# MODIFIED GENERATIVE PROCESS
+##########################
+
 def generative_process(seed_bits):
     """
     Generate a candidate pair by:
       1. Enumerating all seed pairs.
-      2. Choosing the best seed (minimal bit clears).
-      3. Extending the candidate pair step‑by‑step until reaching total_bits.
+      2. Choosing the best seed (minimal bit clears) [using the original logic].
+      3. Extending the candidate pair step‑by‑step until reaching TOTAL_BITS.
+         In each step, we first simulate the xgcd‑style step, then we generate the extension
+         bits for the remainder (instead of for b). We update candidate A by adding the
+         delta needed to “fill in” the unknown bits of the remainder—provided that doing so
+         does not change the fixed part of the remainder or the quotient.
       4. Recording the history of extensions.
       5. Reconstructing the candidate pair from the history.
     Returns the final candidate pair along with the generative history.
@@ -444,14 +461,12 @@ def generative_process(seed_bits):
     seeds = enumerate_seed_pairs(seed_bits)
     (starting_a, starting_b) = choose_best_seed(seeds)
 
-    # print("GOT PAST SEED")
-
     # Initialize the lowest bit positions (heuristic; used for computing extension length)
     lowest_bit_position_generated_a = TOTAL_BITS - APPROX_BITS - BITS_PER_STEP + 1
     lowest_bit_position_generated_b = TOTAL_BITS - APPROX_BITS - BITS_PER_STEP + 1
 
+    # Do an initial simulation using the starting seed.
     Q, rem, clears, shift, current_a, current_b, neg_res = simulate_step(starting_a, starting_b)
-
     ext_a = (starting_a >> (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)) & ((2**BITS_PER_STEP) - 1)
     ext_b = (starting_b >> (TOTAL_BITS - APPROX_BITS - BITS_PER_STEP)) & ((2**BITS_PER_STEP) - 1)
     history = [{
@@ -464,51 +479,51 @@ def generative_process(seed_bits):
 
     iteration_count = 1
 
+    # For the very first extension, we assume bits for A are already fully determined.
+    # (The new logic applies when “filling in” the remainder.)
     bits_to_gen_a = 0
     bits_to_gen_b = clears
 
     lowest_bit_position_generated_a = lowest_bit_position_generated_b
     lowest_bit_position_generated_b -= bits_to_gen_b
 
-    # print("LOWEST B BIT: ", lowest_bit_position_generated_b, "B IS: ", current_b, "   CURRENT A: ", current_a)
-
     while current_b != 0 or lowest_bit_position_generated_b > 1:
         iteration_count += 1
 
-        # Choose best extension (now returns extension bits as well)
-        current_a, current_b, ext_a, ext_b = choose_best_step(current_a, current_b, bits_to_gen_a, bits_to_gen_b, lowest_bit_position_generated_a, lowest_bit_position_generated_b)
+        # Instead of iterating over separate extension bits for a and b, we now
+        # call choose_best_step which generates candidate remainder extension bits.
+        current_a, current_b, chosen_ext = choose_best_step(current_a, current_b,
+                                                              lowest_bit_position_generated_a,
+                                                              lowest_bit_position_generated_b)
 
+        # After updating candidate A (and keeping B the same), simulate the step.
         Q, rem, clears, shift, a_next, b_next, neg_res = simulate_step(current_a, current_b)
 
-        # print(f"STEP INFO: Q: {Q}, rem: {rem}, clears: {clears}, shift: {shift}, current a: {current_a}, current b: {current_b}")
-
-        bits_to_gen_a = 0
+        # Update the “bits to generate” for the remainder extension.
+        bits_to_gen_a = 0  # now we generate only remainder extension bits (via A adjustment)
         bits_to_gen_b = clears
-
         if (lowest_bit_position_generated_a - bits_to_gen_b < 1):
             bits_to_gen_b = (lowest_bit_position_generated_a - 1)
-
         if (lowest_bit_position_generated_a < 2):
             bits_to_gen_b = 0
 
-        tmp_a = lowest_bit_position_generated_a
+        # Update the low-bit trackers as before.
+        tmp = lowest_bit_position_generated_a
         lowest_bit_position_generated_a = lowest_bit_position_generated_b
-        lowest_bit_position_generated_b = tmp_a - bits_to_gen_b
+        lowest_bit_position_generated_b = tmp - bits_to_gen_b
 
-        # If no swap occurred in simulation, swap the low-bit trackers
+        # If no swap occurred (i.e. b remains unchanged), swap the trackers.
         if current_b == b_next:
             print("NO SWAP AFTER SIM STEP")
-            # if we keep b as b, we shouldnt generate anymore bit sso it becomes it orignal
-            # the residual becomes A so now we generate bit son its residual
-            tmp_a = lowest_bit_position_generated_a
+            tmp = lowest_bit_position_generated_a
             lowest_bit_position_generated_a = lowest_bit_position_generated_b
-            lowest_bit_position_generated_b = tmp_a
+            lowest_bit_position_generated_b = tmp
             bits_to_gen_a = bits_to_gen_b
             bits_to_gen_b = 0
 
         history.append({
             'iteration': iteration_count,
-            'extension_bits': (ext_a, ext_b),
+            'extension_bits': (chosen_ext, 0),  # we now only have an extension for the remainder via A
             'candidate': (current_a, current_b),
             'simulation': {'Q': Q, 'rem': rem, 'clears': clears, 'shift': shift, 'neg_res': neg_res},
             'swap': (current_b == b_next)
@@ -516,9 +531,6 @@ def generative_process(seed_bits):
 
         current_a = a_next
         current_b = b_next
-
-        # print("LOWEST A BIT: ", lowest_bit_position_generated_a, "  BITS TO GEN A: ", bits_to_gen_a )
-        # print("LOWEST B BIT: ", lowest_bit_position_generated_b, "     B IS: ", current_b, "   CURRENT A: ", current_a, "  BITS TO GEN B: ", bits_to_gen_b, "\n")
 
     print("ITERATIONS IT TOOK:")
     print(iteration_count)

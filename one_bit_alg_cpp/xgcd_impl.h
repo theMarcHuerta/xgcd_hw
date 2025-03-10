@@ -45,14 +45,11 @@ uint32_t get_fixed_top_bits(uint32_t x_val, int approx_bits) {
 // Compute the ratio a_top / b_top in fixed-point arithmetic
 // with approx_bits fractional bits.
 // If rounding_mode=="round" then we add half of b_top before dividing.
-uint32_t lut_result(uint32_t a_top, uint32_t b_top, int approx_bits, const string &rounding_mode) {
+uint32_t lut_result(uint32_t a_top, uint32_t b_top, int approx_bits) {
     if (b_top == 0)
         return 0; // safeguard (should not occur if b != 0)
     uint64_t numerator = static_cast<uint64_t>(a_top) << approx_bits;  // up-shift a_top
-    if (rounding_mode == "round")
-        return static_cast<uint32_t>((numerator + (b_top >> 1)) / b_top);
-    else
-        return static_cast<uint32_t>(numerator / b_top);
+    return static_cast<uint32_t>(numerator / b_top);
 }
 
 // Structure to hold the result of the xgcd_bitwise algorithm.
@@ -65,9 +62,7 @@ struct XgcdResult {
 // The main XGCD bitwise function. (All numbers are 32-bit.)
 XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
                         int total_bits = 32,
-                        int approx_bits = 4,
-                        const string &rounding_mode = "truncate",
-                        bool integer_rounding = true)
+                        int approx_bits = 4)
 {
     // --- STEP 1: Normalize the inputs ---
     // Mask off any bits above total_bits.
@@ -109,19 +104,13 @@ XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
         uint32_t b_top = get_fixed_top_bits(b_aligned, approx_bits);
 
         // STEP 4: Compute the approximate quotient.
-        uint32_t quotient = lut_result(a_top, b_top, approx_bits, rounding_mode);
+        uint32_t quotient = lut_result(a_top, b_top, approx_bits);
 
         // STEP 5: Shift the quotient by shift_amount.
-        // The Python code does:
-        //   Q_pre_round = (quotient << shift_amount) >> (approx_bits - 1)
-        //   Q = Q_pre_round >> 1
-        //   if (Q_pre_round & 1) and integer_rounding then Q++
         uint32_t Q_pre_round = (quotient << shift_amount) >> (approx_bits - 1);
         uint32_t Q = Q_pre_round >> 1;
-        // if ((Q_pre_round & 1) && integer_rounding)
         Q++;
 
-        // avg_q += Q; // (For debugging/statistics, if desired.)
 
         // STEP 6: Compute the adjusted b and the residual.
         // Use 64-bit arithmetic for multiplication.
@@ -153,66 +142,6 @@ XgcdResult xgcd_bitwise(uint32_t a_in, uint32_t b_in,
         if (clears_this_iter < 0)
             clears_this_iter = 0;
         bit_clears_list.push_back(clears_this_iter);
-
-
-        // if (two_one_clear){
-        //     std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-        //     "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
-        //     std::cout << "curr a: " << a << "   curr b: " << b << std::endl;
-        //     two_one_clear = false; 
-        // }
-
-        if (clears_this_iter == 1){
-        //     if (iteration_count!=1 && a > 127){
-            //     count_twice++;
-            //     if (count_twice==3 && a > 15){
-                    // std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-                    // "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
-                    // std::cout << "curr a: " << a << "   curr b: " << b << "    prev a: " << prev_a << "   prev b: " << prev_b << std::endl << std::endl;
-            //     }
-            // }
-            // was_one_clear = true;
-            // prev_a = a;
-            // prev_b = b;
-            if (two_one_clear){
-                std::cout << "TRIPLE A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-                "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
-                std::cout << "curr a: " << a << "   curr b: " << b << std::endl;
-                two_one_clear = false; 
-            }
-
-            if (was_one_clear){
-                // std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-                // "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
-                // std::cout << "curr a: " << a << "   curr b: " << b << std::endl;
-                was_one_clear = false; 
-                two_one_clear = true;
-            }
-
-
-            was_one_clear = true;
-        }
-
-        // else if (was_one_clear) {
-        //     was_one_clear = false;
-
-        //     // if (two_one_clear && clears_this_iter < 3 && residual != 0 && iteration_count != 2 && (rounding_mode == "truncate") && a > 127){
-        //     //     std::cout << "A_IN: " << a_in << "   B_IN: " << b_in << "   Q: " << Q <<
-        //     //     "   BIT CLEARS: " << clears_this_iter << "    ITERATION: " << iteration_count << std::endl;
-        //     //     std::cout << "curr a: " << a << "   curr b: " << b << "    prev a: " << prev_a << "   prev b: " << prev_b << std::endl << std::endl;
-
-        //     // }
-
-        //     if (clears_this_iter < 3){
-        //         was_one_clear = true;
-        //         two_one_clear = true;
-        //     }
-        //     else {
-        //         two_one_clear = false;
-        //     }
-
-
-        // }
 
         // STEP 7: Prepare for the next iteration.
         // Swap: if the residual is larger than b, then a becomes residual;

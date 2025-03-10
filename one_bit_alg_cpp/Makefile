@@ -3,12 +3,12 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pthread
 
 # Target and source files
-TARGET = xgcd_impl_dupe_finder
-SOURCES = xgcd_impl_dupe_finder.cpp
+TARGET = bruteforce
+SOURCES = xgcd_bruteforce.cpp
 
 # Default rule to build and run the project
 all: $(TARGET)
-	./$(TARGET) --bits 8 --approx_bits 4 --force_a_msb --threads 24 --additional_bits 8 --collect_x_slowest_iters 2
+	./$(TARGET) --bits 16 --approx_bits 2 --force_a_msb --threads 24
 
 # Rule to compile the target
 $(TARGET): $(SOURCES)

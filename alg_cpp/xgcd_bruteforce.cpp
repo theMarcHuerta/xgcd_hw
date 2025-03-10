@@ -349,33 +349,33 @@ int main(int argc, char* argv[]) {
     double round_clears_mean = (total_round_clears / total_round_iters) * round_iter_mean;
     // double round_clears_median = compute_median(all_round_clears);
 
-    // Print final results.
-    cout << "\n===== RESULTS (TRUNCATE MODE) =====\n";
-    cout << "  Mean Iterations     : " << fixed << setprecision(3) << trunc_iter_mean << "\n";
-    // cout << "  Median Iterations   : " << trunc_iter_median << "\n";
-    cout << "  Mean Bit Clears     : " << trunc_clears_mean << "\n";
-    // cout << "  Median Bit Clears   : " << trunc_clears_median << "\n";
-    cout << "  Max Iterations      : " << global_trunc_max_iter << " for pairs: ";
-    for (auto &p : global_trunc_max_iter_pairs)
-        cout << "{" << p.first << ", " << p.second << "}, \n";
-    cout << "\n";
-    cout << "  Min Avg Bit Clears  : " << global_trunc_min_clears << " for pair: (" 
-         << global_trunc_min_clears_pair.first << "," << global_trunc_min_clears_pair.second << ")\n";
+    // // Print final results.
+    // cout << "\n===== RESULTS (TRUNCATE MODE) =====\n";
+    // cout << "  Mean Iterations     : " << fixed << setprecision(3) << trunc_iter_mean << "\n";
+    // // cout << "  Median Iterations   : " << trunc_iter_median << "\n";
+    // cout << "  Mean Bit Clears     : " << trunc_clears_mean << "\n";
+    // // cout << "  Median Bit Clears   : " << trunc_clears_median << "\n";
+    // cout << "  Max Iterations      : " << global_trunc_max_iter << " for pairs: ";
+    // for (auto &p : global_trunc_max_iter_pairs)
+    //     cout << "{" << p.first << ", " << p.second << "}, \n";
+    // cout << "\n";
+    // cout << "  Min Avg Bit Clears  : " << global_trunc_min_clears << " for pair: (" 
+    //      << global_trunc_min_clears_pair.first << "," << global_trunc_min_clears_pair.second << ")\n";
 
-    cout << "\n===== RESULTS (ROUND MODE) =====\n";
-    cout << "  Mean Iterations     : " << round_iter_mean << "\n";
-    // cout << "  Median Iterations   : " << round_iter_median << "\n";
-    cout << "  Mean Bit Clears     : " << round_clears_mean << "\n";
-    // cout << "  Median Bit Clears   : " << round_clears_median << "\n";
-    cout << "  Max Iterations      : " << global_round_max_iter << " for pairs: ";
-    for (auto &p : global_round_max_iter_pairs)
-        cout << "(" << p.first << "," << p.second << ") ";
-    cout << "\n";
-    cout << "  Min Avg Bit Clears  : " << global_round_min_clears << " for pair: (" 
-         << global_round_min_clears_pair.first << "," << global_round_min_clears_pair.second << ")\n";
+    // cout << "\n===== RESULTS (ROUND MODE) =====\n";
+    // cout << "  Mean Iterations     : " << round_iter_mean << "\n";
+    // // cout << "  Median Iterations   : " << round_iter_median << "\n";
+    // cout << "  Mean Bit Clears     : " << round_clears_mean << "\n";
+    // // cout << "  Median Bit Clears   : " << round_clears_median << "\n";
+    // cout << "  Max Iterations      : " << global_round_max_iter << " for pairs: ";
+    // for (auto &p : global_round_max_iter_pairs)
+    //     cout << "(" << p.first << "," << p.second << ") ";
+    // cout << "\n";
+    // cout << "  Min Avg Bit Clears  : " << global_round_min_clears << " for pair: (" 
+    //      << global_round_min_clears_pair.first << "," << global_round_min_clears_pair.second << ")\n";
 
-    cout << "\nTested a total of " << total_valid_pairs << " valid pairs.\n";
-    cout << "\n--- End of brute force test ---\n";
+    // cout << "\nTested a total of " << total_valid_pairs << " valid pairs.\n";
+    // cout << "\n--- End of brute force test ---\n";
 
     return 0;
 }

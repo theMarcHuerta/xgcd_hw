@@ -275,8 +275,8 @@ if __name__ == "__main__":
     # # b_in = int(input("Enter second number: "))
 
     # 1) Small example
-    a_in = 63565
-    b_in = 45811
+    a_in = 28406
+    b_in = 19224
     gcd_val, count, avg_clears = xgcd_bitwise(a_in, b_in,
                                                            total_bits=16,
                                                            approx_bits=4,

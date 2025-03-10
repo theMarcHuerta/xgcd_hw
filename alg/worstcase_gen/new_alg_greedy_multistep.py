@@ -29,8 +29,8 @@ from xgcd_q_change import xgcd_bitwise
 # PARAMETERS
 ##########################
 
-TOTAL_BITS       = 256         # Final bit‑width for the candidate numbers
-APPROX_BITS      = 4          # Bit‑width of the seed domain (numbers in [2^(APPROX_BITS–1), 2^(APPROX_BITS)-1])
+TOTAL_BITS       = 16         # Final bit‑width for the candidate numbers
+APPROX_BITS      = 2          # Bit‑width of the seed domain (numbers in [2^(APPROX_BITS–1), 2^(APPROX_BITS)-1])
 BITS_PER_STEP    = 1          # Number of bits added per generative extension
 ROUNDING_MODE    = "truncate" # "truncate" or "round" (for the fixed‑point division)
 INTEGER_ROUNDING = True       # Whether to adjust quotient by integer rounding
@@ -626,18 +626,18 @@ def main():
     
 
 
-    print("-" * 60)
-    print("Full XGCD Simulation Result 2:")
-    gcd_val, count, avg_clears = xgcd_bitwise(candidate_A + gcd_val - 1, candidate_B + gcd_val - 2,
-                                                           total_bits=TOTAL_BITS,
-                                                           approx_bits=APPROX_BITS,
-                                                           rounding_mode=ROUNDING_MODE,
-                                                           integer_rounding=INTEGER_ROUNDING,
-                                                           plus_minus=False,
-                                                           enable_plotting=False)
+    # print("-" * 60)
+    # print("Full XGCD Simulation Result 2:")
+    # gcd_val, count, avg_clears = xgcd_bitwise(candidate_A + gcd_val - 1, candidate_B + gcd_val - 2,
+    #                                                        total_bits=TOTAL_BITS,
+    #                                                        approx_bits=APPROX_BITS,
+    #                                                        rounding_mode=ROUNDING_MODE,
+    #                                                        integer_rounding=INTEGER_ROUNDING,
+    #                                                        plus_minus=False,
+    #                                                        enable_plotting=False)
                                                            
-    print(f"(ITER 2) GCD of {candidate_A + gcd_val - 1} and {candidate_B + gcd_val - 2} is {gcd_val}, reached in {count} iterations.")
-    print(f"  Average bit clears: {avg_clears:.3f}")
+    # print(f"(ITER 2) GCD of {candidate_A + gcd_val - 1} and {candidate_B + gcd_val - 2} is {gcd_val}, reached in {count} iterations.")
+    # print(f"  Average bit clears: {avg_clears:.3f}")
 
 
 if __name__ == "__main__":

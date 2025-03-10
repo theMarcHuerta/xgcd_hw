@@ -24,7 +24,7 @@ new_round_true = []
 new_round_false = []
 
 # Loop over bit sizes (from 8 to 512 in steps of 8)
-for n in range(64, 4097, 64):
+for n in range(6, 25, 1):
     # Generate the two largest Fibonacci numbers for the current bit size.
     fib1, fib2 = largest_fibonacci_numbers(n)
     
