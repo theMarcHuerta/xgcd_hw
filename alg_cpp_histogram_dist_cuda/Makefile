@@ -28,7 +28,7 @@ $(TARGET_GPU): $(SOURCES_GPU) xgcd_impl.h
 	$(NVCC) $(NVCCFLAGS) -o $(TARGET_GPU) $(SOURCES_GPU)
 # Optional shortcut to build & run GPU
 gpu: $(TARGET_GPU)
-	./$(TARGET_GPU) --bits 24 --approx_bits 4 --force_a_msb
+	./$(TARGET_GPU) --bits 20 --approx_bits 3 --force_a_msb
 
 # Clean up
 clean:

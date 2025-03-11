@@ -15,7 +15,6 @@
 #include <iomanip>
 #include <cstdlib>
 #include <cstring>
-#include <map>    // for histogram
 #include "xgcd_impl.h"
 
 // For C++17 std::gcd
@@ -29,6 +28,8 @@ using namespace std;
 
 struct ThreadResult {
     // For truncate mode:
+    // vector<int> trunc_iters;
+    // vector<double> trunc_clears;
     uint64_t sum_iters_trunc = 0;
     double sum_trunc_clears = 0;
     int trunc_max_iter;
@@ -36,12 +37,20 @@ struct ThreadResult {
     double trunc_min_clears;
     pair<int, int> trunc_min_clears_pair;
 
-    // Histogram: iteration count → frequency
-    std::map<int, uint64_t> trunc_iters_hist;
+    // For round mode:
+    // vector<int> round_iters;
+    // vector<double> round_clears;
+    uint64_t sum_iters_round = 0;
+    double sum_round_clears = 0;
+    int round_max_iter;
+    vector<pair<int, int>> round_max_iter_pairs;
+    double round_min_clears;
+    pair<int, int> round_min_clears_pair;
 
     int valid_pairs;
 
     ThreadResult() : trunc_max_iter(-1), trunc_min_clears(numeric_limits<double>::max()),
+                     round_max_iter(-1), round_min_clears(numeric_limits<double>::max()),
                      valid_pairs(0) {}
 };
 
@@ -81,31 +90,30 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
 
     {
         lock_guard<mutex> lock(print_mutex);
-        cout << "Thread " << thread_id << " launching. Processing a from " 
-             << start_a << " to " << end_a << ".\n";
+        cout << "Thread " << thread_id << " launching. Processing a from " << start_a << " to " << end_a << ".\n";
     }
 
     // Loop over a values in the assigned range.
     for (int a = start_a; a <= end_a; a++) {
         // For each a, let b run from 1 to a (ensuring a>=b and skipping symmetry).
         for (int b = 1; b <= a; b++) {
+            // If skip_zeros is set, we skip if a or b are zero.
+            // (Since a starts at 1 and b at 1, no check is needed here.)
             result.valid_pairs++;
 
             // Run xgcd_bitwise in "truncate" mode.
-            XgcdResult res_trunc = xgcd_bitwise(a, b, bits, approx_bits, "truncate", int_rounding);
-            result.sum_iters_trunc += res_trunc.iterations;
-            result.sum_trunc_clears += res_trunc.avgBitClears;
-
-            // Update the histogram.
-            result.trunc_iters_hist[res_trunc.iterations]++;
+            XgcdResult res_trunc = xgcd_bitwise(a, b, bits, approx_bits);
+            // result.trunc_iters.push_back(res_trunc.iterations);
+            // result.trunc_clears.push_back(res_trunc.avgBitClears);
+            result.sum_iters_trunc+=res_trunc.iterations;
+            result.sum_trunc_clears+=res_trunc.avgBitClears;
 
             // Verify against std::gcd.
             int expected_gcd = std::gcd(a, b);
             if (res_trunc.gcd != static_cast<uint32_t>(expected_gcd)) {
                 lock_guard<mutex> lock(print_mutex);
-                cerr << "ERROR (truncate): Mismatch for (a=" << a << ", b=" << b 
-                     << ") → xgcd_bitwise() returned " << res_trunc.gcd 
-                     << ", but std::gcd() says " << expected_gcd << "\n";
+                cerr << "ERROR (truncate): Mismatch for (a=" << a << ", b=" << b << ") → xgcd_bitwise() returned " 
+                     << res_trunc.gcd << ", but std::gcd() says " << expected_gcd << "\n";
             }
 
             // Track worst-case (max iteration) for truncate.
@@ -123,15 +131,47 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
             }
 
             // Update the global progress counter.
-            ++global_counter;
+            uint64_t current = ++global_counter;
+            // If this thread is designated as the progress reporter, print progress every so often.
+            // if (progress_thread && current % (total_pairs / 2000000 + 1) == 0) {
+            //     double pct = 100.0 * current / total_pairs;
+            //     lock_guard<mutex> lock(print_mutex);
+            //     cout << "\rProgress: " << current << " / " << total_pairs << " (" 
+            //          << fixed << setprecision(1) << pct << "%)   " << flush;
+            // }
         } // end for b
     } // end for a
 
     {
         lock_guard<mutex> lock(print_mutex);
-        cout << "\nThread " << thread_id << " finished. Processed " 
-             << result.valid_pairs << " pairs.\n";
+        cout << "\nThread " << thread_id << " finished. Processed " << result.valid_pairs << " pairs.\n";
     }
+}
+
+// ================================================================
+// Helper functions to compute mean and median.
+// ================================================================
+double compute_mean(const vector<int> &vec) {
+    if (vec.empty()) return 0.0;
+    double sum = accumulate(vec.begin(), vec.end(), 0.0);
+    return sum / vec.size();
+}
+double compute_mean(const vector<double> &vec) {
+    if (vec.empty()) return 0.0;
+    double sum = accumulate(vec.begin(), vec.end(), 0.0);
+    return sum / vec.size();
+}
+double compute_median(vector<int> vec) {
+    if (vec.empty()) return 0.0;
+    sort(vec.begin(), vec.end());
+    size_t mid = vec.size() / 2;
+    return (vec.size() % 2 == 0) ? (vec[mid - 1] + vec[mid]) / 2.0 : vec[mid];
+}
+double compute_median(vector<double> vec) {
+    if (vec.empty()) return 0.0;
+    sort(vec.begin(), vec.end());
+    size_t mid = vec.size() / 2;
+    return (vec.size() % 2 == 0) ? (vec[mid - 1] + vec[mid]) / 2.0 : vec[mid];
 }
 
 // ================================================================
@@ -147,8 +187,6 @@ int main(int argc, char* argv[]) {
     bool int_rounding = true;
     int num_threads = thread::hardware_concurrency();
     if (num_threads == 0) num_threads = 4;  // fallback
-
-
 
     // Simple command-line argument parsing.
     for (int i = 1; i < argc; i++) {
@@ -168,7 +206,6 @@ int main(int argc, char* argv[]) {
             int_rounding = true;
         }
     }
-
 
     {
         lock_guard<mutex> lock(print_mutex);
@@ -216,20 +253,33 @@ int main(int argc, char* argv[]) {
     cout << "\nAll threads completed.\n";
 
     // Aggregate results from all threads.
+    // vector<int> all_trunc_iters;
+    // vector<double> all_trunc_clears;
     uint64_t total_trunc_iters = 0;
     double total_trunc_clears = 0;
     int global_trunc_max_iter = -1;
     vector<pair<int, int>> global_trunc_max_iter_pairs;
     double global_trunc_min_clears = numeric_limits<double>::max();
     pair<int, int> global_trunc_min_clears_pair;
+
+    // vector<int> all_round_iters;
+    // vector<double> all_round_clears;
+    uint64_t total_round_iters = 0;
+    double total_round_clears = 0;
+    int global_round_max_iter = -1;
+    vector<pair<int, int>> global_round_max_iter_pairs;
+    double global_round_min_clears = numeric_limits<double>::max();
+    pair<int, int> global_round_min_clears_pair;
+
     int total_valid_pairs = 0;
-    // Global histogram for iteration counts.
-    map<int, uint64_t> global_hist;
 
     for (const auto &res : thread_results) {
         total_valid_pairs += res.valid_pairs;
+        // Truncate mode.
         total_trunc_iters += res.sum_iters_trunc;
         total_trunc_clears += res.sum_trunc_clears;
+        // all_trunc_iters.insert(all_trunc_iters.end(), res.trunc_iters.begin(), res.trunc_iters.end());
+        // all_trunc_clears.insert(all_trunc_clears.end(), res.trunc_clears.begin(), res.trunc_clears.end());
         if (res.trunc_max_iter > global_trunc_max_iter) {
             global_trunc_max_iter = res.trunc_max_iter;
             global_trunc_max_iter_pairs = res.trunc_max_iter_pairs;
@@ -242,19 +292,42 @@ int main(int argc, char* argv[]) {
             global_trunc_min_clears = res.trunc_min_clears;
             global_trunc_min_clears_pair = res.trunc_min_clears_pair;
         }
-        // Combine each thread's histogram into a global histogram.
-        for (const auto &entry : res.trunc_iters_hist) {
-            global_hist[entry.first] += entry.second;
+        // Round mode.
+        total_round_iters += res.sum_iters_round;
+        total_round_clears += res.sum_round_clears;
+        // all_round_iters.insert(all_round_iters.end(), res.round_iters.begin(), res.round_iters.end());
+        // all_round_clears.insert(all_round_clears.end(), res.round_clears.begin(), res.round_clears.end());
+        if (res.round_max_iter > global_round_max_iter) {
+            global_round_max_iter = res.round_max_iter;
+            global_round_max_iter_pairs = res.round_max_iter_pairs;
+        } else if (res.round_max_iter == global_round_max_iter) {
+            global_round_max_iter_pairs.insert(global_round_max_iter_pairs.end(),
+                                               res.round_max_iter_pairs.begin(),
+                                               res.round_max_iter_pairs.end());
+        }
+        if (res.round_min_clears < global_round_min_clears) {
+            global_round_min_clears = res.round_min_clears;
+            global_round_min_clears_pair = res.round_min_clears_pair;
         }
     }
 
+    // Compute means and medians.
     double trunc_iter_mean = double(total_trunc_iters) / double(global_counter);
+    // double trunc_iter_median = compute_median(all_trunc_iters);
     double trunc_clears_mean = (total_trunc_clears / total_trunc_iters) * trunc_iter_mean;
+    // double trunc_clears_median = compute_median(all_trunc_clears);
+
+    double round_iter_mean = double(total_round_iters) / double(global_counter);
+    // double round_iter_median = compute_median(all_round_iters);
+    double round_clears_mean = (total_round_clears / total_round_iters) * round_iter_mean;
+    // double round_clears_median = compute_median(all_round_clears);
 
     // Print final results.
     cout << "\n===== RESULTS (TRUNCATE MODE) =====\n";
     cout << "  Mean Iterations     : " << fixed << setprecision(3) << trunc_iter_mean << "\n";
+    // cout << "  Median Iterations   : " << trunc_iter_median << "\n";
     cout << "  Mean Bit Clears     : " << trunc_clears_mean << "\n";
+    // cout << "  Median Bit Clears   : " << trunc_clears_median << "\n";
     cout << "  Max Iterations      : " << global_trunc_max_iter << " for pairs: ";
     for (auto &p : global_trunc_max_iter_pairs)
         cout << "{" << p.first << ", " << p.second << "}, \n";
@@ -262,15 +335,20 @@ int main(int argc, char* argv[]) {
     cout << "  Min Avg Bit Clears  : " << global_trunc_min_clears << " for pair: (" 
          << global_trunc_min_clears_pair.first << "," << global_trunc_min_clears_pair.second << ")\n";
 
-    cout << "\nTested a total of " << total_valid_pairs << " valid pairs.\n";
+    // cout << "\n===== RESULTS (ROUND MODE) =====\n";
+    // cout << "  Mean Iterations     : " << round_iter_mean << "\n";
+    // // cout << "  Median Iterations   : " << round_iter_median << "\n";
+    // cout << "  Mean Bit Clears     : " << round_clears_mean << "\n";
+    // // cout << "  Median Bit Clears   : " << round_clears_median << "\n";
+    // cout << "  Max Iterations      : " << global_round_max_iter << " for pairs: ";
+    // for (auto &p : global_round_max_iter_pairs)
+    //     cout << "(" << p.first << "," << p.second << ") ";
+    // cout << "\n";
+    // cout << "  Min Avg Bit Clears  : " << global_round_min_clears << " for pair: (" 
+    //      << global_round_min_clears_pair.first << "," << global_round_min_clears_pair.second << ")\n";
 
-    // Print histogram for iterations.
-    cout << "\n===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====\n";
-    for (const auto &entry : global_hist) {
-        cout << "Iterations " << entry.first << ": " << entry.second << "\n";
-    }
-
-    cout << "\n--- End of brute force test ---\n";
+    // cout << "\nTested a total of " << total_valid_pairs << " valid pairs.\n";
+    // cout << "\n--- End of brute force test ---\n";
 
     return 0;
 }

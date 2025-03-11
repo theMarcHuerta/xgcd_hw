@@ -16,6 +16,96 @@
 
 using namespace std;
 
+
+/// Advanced statistics printing function.
+/// collision_threshold: number of iterations (e.g. 4) within which a collision is counted.
+void printAdvancedStats(
+    const std::unordered_map<std::pair<uint32_t, uint32_t>, std::vector<matchInfo>, pair_hash>& data_map,
+    int collision_threshold = 4)
+{
+    // Group the matchInfo vectors by:
+    //   Outer key: bit size (matchInfo.bit_size) [only consider bit_size >= 6]
+    //   Inner key: worst-case iteration count (matchInfo.iterations_to_completion)
+    //   Value: a vector of the entire matchInfo vector (one per (a,b) pair)
+    std::map<int, std::map<int, std::vector<std::vector<matchInfo>>, std::greater<int>> > groups;
+    
+    for (const auto& [key, matchInfos] : data_map) {
+        if (matchInfos.empty())
+            continue;
+        // For this pair, we assume all matchInfo entries share the same total bit_size
+        int bs = matchInfos.front().bit_size;
+        if (bs < 6)
+            continue; // Skip pairs with bit sizes lower than 6.
+        int worstCase = matchInfos.front().iterations_to_completion;
+        groups[bs][worstCase].push_back(matchInfos);
+    }
+    
+    int total_pairs = 0;
+    std::cout << "\n=== Advanced Statistics ===\n";
+    // Iterate over groups by bit size (ordered by ascending bit size for clarity)
+    for (const auto& [bitSize, worstGroups] : groups) {
+        std::cout << bitSize << " bit worst-case statistics:\n";
+        int scenarioIndex = 0;
+        // worstGroups is a map with keys sorted in descending order (std::greater<int>),
+        // so the first group is the absolute worst-case.
+        for (const auto& [worstCase, vecOfMatchInfoVecs] : worstGroups) {
+            int group_total = vecOfMatchInfoVecs.size();
+            total_pairs += group_total;
+            int collision_count = 0;
+            std::unordered_map<int,int> matchBitSizeFrequency; // key: bit_size from matchInfo, value: count
+            
+            // For each (a,b) pair (its matchInfo vector) in this worst-case group:
+            for (const auto& mvec : vecOfMatchInfoVecs) {
+                bool hadCollision = false;
+                // Look for any matchInfo entry with iteration less than collision_threshold.
+                for (const auto& mi : mvec) {
+                    if (mi.iteration < collision_threshold) {
+                        hadCollision = true;
+                        // Tally the bit_size of this collision record.
+                        matchBitSizeFrequency[mi.bit_size]++;
+                    }
+                }
+                if (hadCollision)
+                    collision_count++;
+            }
+            
+            double collision_percent = group_total > 0 ? (collision_count * 100.0 / group_total) : 0.0;
+            
+            // Determine the most common matching bit size among collisions.
+            int most_common_bit = 0;
+            int highest_freq = 0;
+            for (const auto& [mb, freq] : matchBitSizeFrequency) {
+                if (freq > highest_freq) {
+                    highest_freq = freq;
+                    most_common_bit = mb;
+                }
+            }
+            
+            // Prepare a label: if scenarioIndex is 0, it's the "worst case scenario",
+            // otherwise, append " - scenarioIndex"
+            std::stringstream label;
+            label << bitSize << " bit worst case scenario";
+            if (scenarioIndex > 0)
+                label << " - " << scenarioIndex;
+            
+            std::cout << label.str() << " (worst-case iterations: " << worstCase << "): total pairs = " << group_total;
+            std::cout << "   % that had collisions (within first " << collision_threshold << " iterations): " 
+                      << std::fixed << std::setprecision(1) << collision_percent << "%, ";
+            if (highest_freq > 0)
+                std::cout << "most common match: " << most_common_bit << " bit worst case";
+            else
+                std::cout << "no collisions";
+            std::cout << "\n";
+            
+            scenarioIndex++;
+        }
+        std::cout << "\n";
+    }
+    
+    std::cout << "Total number of pairs (across all bit sizes): " << total_pairs << "\n";
+}
+
+
 void analyzeAndPrint(
     const std::vector<std::vector<int>>& bitclears,
     const std::vector<std::vector<int>>& q_vals,
@@ -84,8 +174,10 @@ void printPairsWithMultipleValues(const std::unordered_map<std::pair<uint32_t, u
     // Group by bit-length of key.first.
     std::map<int, std::vector<std::pair<std::pair<uint32_t, uint32_t>, std::vector<matchInfo>>>> grouped_data;
     for (const auto& [key, values] : data_map) {
+        int bit_size = bit_length(key.first);
+        if (bit_size < 6)
+            continue; // Skip pairs with bit size lower than 6.
         if (values.size() > 2) { // Only consider keys with more than 2 items.
-            int bit_size = bit_length(key.first);
             grouped_data[bit_size].push_back({key, values});
         }
     }
@@ -107,6 +199,7 @@ void printPairsWithMultipleValues(const std::unordered_map<std::pair<uint32_t, u
         }
     }
 }
+
 
 
 int main(int argc, char* argv[]) {
@@ -177,6 +270,9 @@ int main(int argc, char* argv[]) {
 
     printPairsWithMultipleValues(data_map);
     analyzeAndPrint(bitclears, q_vals, swaps, negatives);
+    // For example, using a collision threshold of 4 iterations:
+    printAdvancedStats(data_map, 4);
+
 
     return 0;
 }
