@@ -131,19 +131,19 @@ void bruteForceThread(int thread_id, int num_threads, int bits, int approx_bits,
             }
 
             uint64_t current = ++global_counter;
-            if (progress_thread && current % (total_pairs / 2000000 + 1) == 0) {
-                double pct = 100.0 * current / total_pairs;
-                lock_guard<mutex> lock(print_mutex);
-                cout << "\rProgress: " << current << " / " << total_pairs << " (" 
-                     << fixed << setprecision(1) << pct << "%)   " << flush;
-            }
+            // if (progress_thread && current % (total_pairs / 2000000 + 1) == 0) {
+            //     double pct = 100.0 * current / total_pairs;
+            //     lock_guard<mutex> lock(print_mutex);
+            //     cout << "\rProgress: " << current << " / " << total_pairs << " (" 
+            //          << fixed << setprecision(1) << pct << "%)   " << flush;
+            // }
         }
     }
 
-    {
-        lock_guard<mutex> lock(print_mutex);
-        cout << "\nThread " << thread_id << " finished. Processed " << result.valid_pairs << " pairs.\n";
-    }
+    // {
+    //     lock_guard<mutex> lock(print_mutex);
+    //     cout << "\nThread " << thread_id << " finished. Processed " << result.valid_pairs << " pairs.\n";
+    // }
 }
 
 

@@ -8,7 +8,7 @@ SOURCES = xgcd_impl_dupe_finder.cpp
 
 # Default rule to build and run the project
 all: $(TARGET)
-	./$(TARGET) --bits 8 --approx_bits 4 --force_a_msb --threads 24 --additional_bits 6 --collect_x_slowest_iters 3
+	./$(TARGET) --bits 8 --approx_bits 2 --force_a_msb --threads 14 --additional_bits 6 --collect_x_slowest_iters 2
 
 # Rule to compile the target
 $(TARGET): $(SOURCES)
