@@ -1,0 +1,140 @@
+20 bits:
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 8.86348
+  Mean Bit Clears    : 4.27378
+  Max Iterations     : 16
+  Valid Pairs        : -262144
+Tested a total of 412316598272 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 2227090
+Iterations 2: 13445689
+Iterations 3: 93327139
+Iterations 4: 628687116
+Iterations 5: 3811791494
+Iterations 6: 4095618680
+Iterations 7: 2389296487
+Iterations 8: 2637482456
+Iterations 9: 3556777536
+Iterations 10: 2645330921
+Iterations 11: 1253092118
+Iterations 12: 2729839486
+Iterations 13: 1777202332
+Iterations 14: 132140729
+Iterations 15: 3274357
+Iterations 16: 8002
+
+
+21 bits:
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 9.30108
+  Mean Bit Clears    : 4.2878
+  Max Iterations     : 17
+  Valid Pairs        : -524288
+Tested a total of 1649266917376 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+ Iterations 1: 4454393
+ Iterations 2: 26942907
+ Iterations 3: 188522635
+ Iterations 4: 1278954508
+ Iterations 5: 3802058059
+ Iterations 6: 1398058439
+ Iterations 7: 1820689348
+ Iterations 8: 782253763
+ Iterations 9: 214979672
+Iterations 10: 336585768
+Iterations 11: 4266565976
+Iterations 12: 2400803245
+Iterations 13: 2460811590
+Iterations 14: 2363342160
+Iterations 15: 127319615
+Iterations 16: 1968719
+Iterations 17: 1395
+
+
+22 bits:
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 9.73868
+  Mean Bit Clears    : 4.30057
+  Max Iterations     : 18
+  Valid Pairs        : -1048576
+Tested a total of 6597068718080 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+ Iterations 1: 8909087
+ Iterations 2: 53949201
+ Iterations 3: 379956607
+ Iterations 4: 2595914551
+ Iterations 5: 4027870864
+ Iterations 6: 960928884
+ Iterations 7: 1143770650
+ Iterations 8: 4228992149
+ Iterations 9: 3795066602
+Iterations 10: 1878153789
+Iterations 11: 1013711861
+Iterations 12: 2367992046
+Iterations 13: 3972446225
+Iterations 14: 700041943
+Iterations 15: 2826686868
+Iterations 16: 108354773
+Iterations 17: 976380
+Iterations 18: 16
+
+
+23 bits:
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 10.1763
+  Mean Bit Clears    : 4.31224
+  Max Iterations     : 18
+  Valid Pairs        : -2097152
+Tested a total of 26388276969472 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 17818467
+Iterations 2: 107974681
+Iterations 3: 764202154
+Iterations 4: 965039469
+Iterations 5: 560455393
+Iterations 6: 3850933997
+Iterations 7: 401194872
+Iterations 8: 1122025332
+Iterations 9: 979165
+Iterations 10: 894233967
+Iterations 11: 3034530070
+Iterations 12: 3925839254
+Iterations 13: 3001228404
+Iterations 14: 3274578916
+Iterations 15: 722706543
+Iterations 16: 3042591925
+Iterations 17: 80990525
+Iterations 18: 383490
+
+24 bits:
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 10.6139
+  Mean Bit Clears    : 4.32294
+  Max Iterations     : 19
+  Valid Pairs        : -4194304
+Tested a total of 105553112072192 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 35637247
+Iterations 2: 216040678
+Iterations 3: 1534455459
+Iterations 4: 2049765421
+Iterations 5: 2831125725
+Iterations 6: 819341927
+Iterations 7: 3457176882
+Iterations 8: 3606819317
+Iterations 9: 961301396
+Iterations 10: 1888142047
+Iterations 11: 1534452035
+Iterations 12: 2921163509
+Iterations 13: 4061290994
+Iterations 14: 765045194
+Iterations 15: 4183111208
+Iterations 16: 492984129
+Iterations 17: 2944910370
+Iterations 18: 52670856
+Iterations 19: 109670

@@ -1,0 +1,460 @@
+./bruteforce_gpu --bits 4 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 1.88043
+  Mean Bit Clears    : 3.10145
+  Max Iterations     : 3
+  Valid Pairs        : 92
+Tested a total of 92 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 29
+Iterations 2: 45
+Iterations 3: 18
+
+--- End of GPU brute force test ---
+
+
+./bruteforce_gpu --bits 5 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 2.36436
+  Mean Bit Clears    : 3.34286
+  Max Iterations     : 4
+  Valid Pairs        : 376
+Tested a total of 376 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 60
+Iterations 2: 149
+Iterations 3: 137
+Iterations 4: 30
+
+--- End of GPU brute force test ---
+
+
+./bruteforce_gpu --bits 6 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 2.81382
+  Mean Bit Clears    : 3.50489
+  Max Iterations     : 5
+  Valid Pairs        : 1520
+Tested a total of 1520 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 120
+Iterations 2: 407
+Iterations 3: 653
+Iterations 4: 316
+Iterations 5: 24
+
+--- End of GPU brute force test ---
+
+
+./bruteforce_gpu --bits 7 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 3.29385
+  Mean Bit Clears    : 3.59708
+  Max Iterations     : 6
+  Valid Pairs        : 6112
+Tested a total of 6112 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 229
+Iterations 2: 958
+Iterations 3: 2294
+Iterations 4: 2066
+Iterations 5: 549
+Iterations 6: 16
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 7 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 3.29385
+  Mean Bit Clears    : 3.59708
+  Max Iterations     : 6
+  Valid Pairs        : 6112
+Tested a total of 6112 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 229
+Iterations 2: 958
+Iterations 3: 2294
+Iterations 4: 2066
+Iterations 5: 549
+Iterations 6: 16
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 8 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 3.76167
+  Mean Bit Clears    : 3.67549
+  Max Iterations     : 7
+  Valid Pairs        : 24512
+Tested a total of 24512 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 457
+Iterations 2: 2061
+Iterations 3: 6773
+Iterations 4: 9509
+Iterations 5: 5007
+Iterations 6: 698
+Iterations 7: 7
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 9 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 4.23971
+  Mean Bit Clears    : 3.72904
+  Max Iterations     : 8
+  Valid Pairs        : 98176
+Tested a total of 98176 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 904
+Iterations 2: 4143
+Iterations 3: 17358
+Iterations 4: 35009
+Iterations 5: 30355
+Iterations 6: 9687
+Iterations 7: 719
+Iterations 8: 1
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 10 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 4.71453
+  Mean Bit Clears    : 3.77374
+  Max Iterations     : 8
+  Valid Pairs        : 392960
+Tested a total of 392960 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 1812
+Iterations 2: 8251
+Iterations 3: 40311
+Iterations 4: 109171
+Iterations 5: 139929
+Iterations 6: 77918
+Iterations 7: 15007
+Iterations 8: 561
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 11 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 5.18946
+  Mean Bit Clears    : 3.81086
+  Max Iterations     : 9
+  Valid Pairs        : 1572352
+Tested a total of 1572352 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 3626
+Iterations 2: 16493
+Iterations 3: 87420
+Iterations 4: 299742
+Iterations 5: 531073
+Iterations 6: 451266
+Iterations 7: 163300
+Iterations 8: 19133
+Iterations 9: 299
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 12 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 5.66411
+  Mean Bit Clears    : 3.84246
+  Max Iterations     : 10
+  Valid Pairs        : 6290432
+Tested a total of 6290432 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 7254
+Iterations 2: 33157
+Iterations 3: 182001
+Iterations 4: 747509
+Iterations 5: 1734988
+Iterations 6: 2079590
+Iterations 7: 1200014
+Iterations 8: 285917
+Iterations 9: 19863
+Iterations 10: 139
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 13 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 6.1393
+  Mean Bit Clears    : 3.86937
+  Max Iterations     : 11
+  Valid Pairs        : 25163776
+Tested a total of 25163776 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 14503
+Iterations 2: 66669
+Iterations 3: 370518
+Iterations 4: 1729840
+Iterations 5: 5035045
+Iterations 6: 8073953
+Iterations 7: 6750872
+Iterations 8: 2684159
+Iterations 9: 421197
+Iterations 10: 16991
+Iterations 11: 29
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 14 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 6.61417
+  Mean Bit Clears    : 3.89291
+  Max Iterations     : 12
+  Valid Pairs        : 100659200
+Tested a total of 100659200 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 29004
+Iterations 2: 134139
+Iterations 3: 749611
+Iterations 4: 3795225
+Iterations 5: 13299815
+Iterations 6: 27356739
+Iterations 7: 31151220
+Iterations 8: 18490214
+Iterations 9: 5113741
+Iterations 10: 527665
+Iterations 11: 11822
+Iterations 12: 5
+
+--- End of GPU brute force test ---
+
+
+./bruteforce_gpu --bits 15 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 7.08898
+  Mean Bit Clears    : 3.9136
+  Max Iterations     : 12
+  Valid Pairs        : 402644992
+Tested a total of 402644992 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 58002
+Iterations 2: 269496
+Iterations 3: 1514425
+Iterations 4: 8034122
+Iterations 5: 32600279
+Iterations 6: 83016974
+Iterations 7: 123157023
+Iterations 8: 101629861
+Iterations 9: 43402287
+Iterations 10: 8392306
+Iterations 11: 563663
+Iterations 12: 6554
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 16 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 7.56374
+  Mean Bit Clears    : 3.93189
+  Max Iterations     : 13
+  Valid Pairs        : 1610596352
+Tested a total of 1610596352 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 116020
+Iterations 2: 540917
+Iterations 3: 3059125
+Iterations 4: 16639971
+Iterations 5: 75373338
+Iterations 6: 230180638
+Iterations 7: 429737780
+Iterations 8: 469230753
+Iterations 9: 284935154
+Iterations 10: 88314921
+Iterations 11: 11950792
+Iterations 12: 514077
+Iterations 13: 2866
+
+--- End of GPU brute force test ---
+
+
+
+
+./bruteforce_gpu --bits 17 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 8.03852
+  Mean Bit Clears    : 3.94815
+  Max Iterations     : 14
+  Valid Pairs        : 2147450880
+Tested a total of 6442418176 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 232035
+Iterations 2: 1084224
+Iterations 3: 6171683
+Iterations 4: 34041968
+Iterations 5: 166710126
+Iterations 6: 592664133
+Iterations 7: 1352578610
+Iterations 8: 1883287166
+Iterations 9: 1538065595
+Iterations 10: 695102354
+Iterations 11: 157235100
+Iterations 12: 14845304
+Iterations 13: 399014
+Iterations 14: 864
+
+--- End of GPU brute force test ---
+
+
+
+
+./bruteforce_gpu --bits 18 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 8.51327
+  Mean Bit Clears    : 3.96268
+  Max Iterations     : 15
+  Valid Pairs        : -65536
+Tested a total of 25769738240 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 464079
+Iterations 2: 2171580
+Iterations 3: 12433578
+Iterations 4: 69213951
+Iterations 5: 357095371
+Iterations 6: 1436653335
+Iterations 7: 3905794893
+Iterations 8: 2439277810
+Iterations 9: 2808660766
+Iterations 10: 99919078
+Iterations 11: 1490096093
+Iterations 12: 246655220
+Iterations 13: 16140238
+Iterations 14: 260172
+Iterations 15: 188
+
+--- End of GPU brute force test ---
+
+
+
+./bruteforce_gpu --bits 19 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 8.98803
+  Mean Bit Clears    : 3.97574
+  Max Iterations     : 16
+  Valid Pairs        : -131072
+Tested a total of 103079084032 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 928157
+Iterations 2: 4347002
+Iterations 3: 25005397
+Iterations 4: 140235714
+Iterations 5: 748140343
+Iterations 6: 3317648267
+Iterations 7: 1901943289
+Iterations 8: 381481145
+Iterations 9: 3097064666
+Iterations 10: 1902023511
+Iterations 11: 2473013895
+Iterations 12: 2829638785
+Iterations 13: 342761890
+Iterations 14: 15363575
+Iterations 15: 142446
+Iterations 16: 30
+
+--- End of GPU brute force test ---
+
+
+./bruteforce_gpu --bits 20 --approx_bits 3 --force_a_msb
+[DEBUG] After kernel, about to gather results...
+
+===== GPU RESULTS (TRUNCATE MODE) =====
+  Mean Iterations    : 9.46277
+  Mean Bit Clears    : 3.98752
+  Max Iterations     : 17
+  Valid Pairs        : -262144
+Tested a total of 412316598272 pairs.
+
+===== HISTOGRAM (TRUNCATE MODE) =====
+Iterations 1: 1856325
+Iterations 2: 8698951
+Iterations 3: 50215727
+Iterations 4: 283482061
+Iterations 5: 1544859794
+Iterations 6: 3079931761
+Iterations 7: 756570220
+Iterations 8: 911803962
+Iterations 9: 2289679551
+Iterations 10: 617081622
+Iterations 11: 3435059639
+Iterations 12: 3268687418
+Iterations 13: 495326557
+Iterations 14: 423496441
+Iterations 15: 12793601
+Iterations 16: 63406
+Iterations 17: 4
+
+--- End of GPU brute force test ---
+
+
