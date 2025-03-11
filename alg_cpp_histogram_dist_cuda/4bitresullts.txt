@@ -1,3 +1,216 @@
+4 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 29
+Iterations 2: 45
+Iterations 3: 18
+
+
+5 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 68
+Iterations 2: 149
+Iterations 3: 130
+Iterations 4: 29
+
+
+6 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 144
+Iterations 2: 455
+Iterations 3: 614
+Iterations 4: 285
+Iterations 5: 22
+
+
+7 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 284
+Iterations 2: 1181
+Iterations 3: 2360
+Iterations 4: 1823
+Iterations 5: 452
+Iterations 6: 12
+
+
+8bit:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 551
+Iterations 2: 2774
+Iterations 3: 7659
+Iterations 4: 8906
+Iterations 5: 4067
+Iterations 6: 551
+Iterations 7: 4
+
+
+9bit:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 1063
+Iterations 2: 5958
+Iterations 3: 21723
+Iterations 4: 35913
+Iterations 5: 25881
+Iterations 6: 7133
+Iterations 7: 505
+
+
+10 bit:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 2131
+Iterations 2: 12327
+Iterations 3: 56259
+Iterations 4: 124319
+Iterations 5: 128564
+Iterations 6: 58857
+Iterations 7: 10163
+Iterations 8: 340
+
+
+11 bit:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 4285
+Iterations 2: 24972
+Iterations 3: 134639
+Iterations 4: 382311
+Iterations 5: 537573
+Iterations 6: 365949
+Iterations 7: 110761
+Iterations 8: 11702
+Iterations 9: 160
+
+
+12 bit:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 8619
+Iterations 2: 49832
+Iterations 3: 301847
+Iterations 4: 1069554
+Iterations 5: 1966150
+Iterations 6: 1852780
+Iterations 7: 857024
+Iterations 8: 173562
+Iterations 9: 11004
+Iterations 10: 60
+
+
+13 bit:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 17299
+Iterations 2: 99407
+Iterations 3: 644995
+Iterations 4: 2762231
+Iterations 5: 6442031
+Iterations 6: 8023277
+Iterations 7: 5245093
+Iterations 8: 1691217
+Iterations 9: 229988
+Iterations 10: 8237
+Iterations 11: 1
+
+
+14 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 34680
+Iterations 2: 200259
+Iterations 3: 1339005
+Iterations 4: 6681082
+Iterations 5: 19245003
+Iterations 6: 30658918
+Iterations 7: 26863062
+Iterations 8: 12520447
+Iterations 9: 2853921
+Iterations 10: 257909
+Iterations 11: 4914
+
+
+15 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 69448
+Iterations 2: 405394
+Iterations 3: 2735164
+Iterations 4: 15316895
+Iterations 5: 53166271
+Iterations 6: 105627622
+Iterations 7: 119484256
+Iterations 8: 75760592
+Iterations 9: 25673449
+Iterations 10: 4158648
+Iterations 11: 245068
+Iterations 12: 2185
+
+
+16 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 139042
+Iterations 2: 820550
+Iterations 3: 5549601
+Iterations 4: 33666646
+Iterations 5: 137408323
+Iterations 6: 333256061
+Iterations 7: 473355854
+Iterations 8: 391509210
+Iterations 9: 183633902
+Iterations 10: 45798530
+Iterations 11: 5262312
+Iterations 12: 195658
+Iterations 13: 663
+
+
+17 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 278228
+Iterations 2: 1656572
+Iterations 3: 11236657
+Iterations 4: 71722208
+Iterations 5: 335641419
+Iterations 6: 974581550
+Iterations 7: 1700676483
+Iterations 8: 1779346545
+Iterations 9: 1101399994
+Iterations 10: 388232698
+Iterations 11: 71717977
+Iterations 12: 5798057
+Iterations 13: 129722
+Iterations 14: 66
+
+
+18 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 556638
+Iterations 2: 3335817
+Iterations 3: 22759352
+Iterations 4: 149575626
+Iterations 5: 782086424
+Iterations 6: 2668475290
+Iterations 7: 5617571819
+Iterations 8: 7261534954
+Iterations 9: 5732299116
+Iterations 10: 2702987326
+Iterations 11: 723747313
+Iterations 12: 99186141
+Iterations 13: 5552824
+Iterations 14: 69600
+
+
+19 bits:
+===== HISTOGRAM (TRUNCATE MODE ITERATIONS) =====
+Iterations 1: 1113437
+Iterations 2: 6702464
+Iterations 3: 46109769
+Iterations 4: 307801140
+Iterations 5: 1753219405
+Iterations 6: 6900087713
+Iterations 7: 17244410254
+Iterations 8: 27025745237
+Iterations 9: 26515126546
+Iterations 10: 16094824006
+Iterations 11: 5858324217
+Iterations 12: 1199439977
+Iterations 13: 121549890
+Iterations 14: 4601272
+Iterations 15: 28705
+
+
 20 bits:
 ===== GPU RESULTS (TRUNCATE MODE) =====
   Mean Iterations    : 8.86348
@@ -34,15 +247,15 @@ Iterations 16: 8002
 Tested a total of 1649266917376 pairs.
 
 ===== HISTOGRAM (TRUNCATE MODE) =====
- Iterations 1: 4454393
- Iterations 2: 26942907
- Iterations 3: 188522635
- Iterations 4: 1278954508
- Iterations 5: 3802058059
- Iterations 6: 1398058439
- Iterations 7: 1820689348
- Iterations 8: 782253763
- Iterations 9: 214979672
+Iterations 1: 4454393
+Iterations 2: 26942907
+Iterations 3: 188522635
+Iterations 4: 1278954508
+Iterations 5: 3802058059
+Iterations 6: 1398058439
+Iterations 7: 1820689348
+Iterations 8: 782253763
+Iterations 9: 214979672
 Iterations 10: 336585768
 Iterations 11: 4266565976
 Iterations 12: 2400803245
@@ -62,15 +275,15 @@ Iterations 17: 1395
 Tested a total of 6597068718080 pairs.
 
 ===== HISTOGRAM (TRUNCATE MODE) =====
- Iterations 1: 8909087
- Iterations 2: 53949201
- Iterations 3: 379956607
- Iterations 4: 2595914551
- Iterations 5: 4027870864
- Iterations 6: 960928884
- Iterations 7: 1143770650
- Iterations 8: 4228992149
- Iterations 9: 3795066602
+Iterations 1: 8909087
+Iterations 2: 53949201
+Iterations 3: 379956607
+Iterations 4: 2595914551
+Iterations 5: 4027870864
+Iterations 6: 960928884
+Iterations 7: 1143770650
+Iterations 8: 4228992149
+Iterations 9: 3795066602
 Iterations 10: 1878153789
 Iterations 11: 1013711861
 Iterations 12: 2367992046
@@ -109,6 +322,7 @@ Iterations 15: 722706543
 Iterations 16: 3042591925
 Iterations 17: 80990525
 Iterations 18: 383490
+
 
 24 bits:
 ===== GPU RESULTS (TRUNCATE MODE) =====
