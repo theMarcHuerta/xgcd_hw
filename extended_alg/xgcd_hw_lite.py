@@ -2,13 +2,10 @@
 import math
 ##########################################################################################
 ##########################################################################################
-# TO DOs: 
-# 1. Add checks for factoring out factors of 2 and adding it back in at the end
 ##########################################################################################
 ##########################################################################################
 
-def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncate', 
-                 integer_rounding=True, plus_minus=False, enable_plotting=False):
+def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4):
     """
     Compute the GCD (and extended GCD) of a_in and b_in using the custom XGCD bitwise approach 
     from Kavya's Thesis.
@@ -73,20 +70,12 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
         len_a = bit_length(a_val)
         len_b = bit_length(b_val)
         shift_amount = len_a - len_b
-        if shift_amount > 0:
-            b_shifted = b_val << shift_amount
-        else:
-            b_shifted = b_val
-            shift_amount = 0
-        return b_shifted, shift_amount
+        return shift_amount
     
     def get_fixed_top_bits(x_val, approx_bits):
         """
         Extract the top `approx_bits` bits of x_val as an integer.
         """
-        if x_val == 0:
-            return 0
-
         length = bit_length(x_val)
         if length <= approx_bits:
             return x_val << (approx_bits - length)
@@ -94,91 +83,72 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             shift_down = length - approx_bits
             return x_val >> shift_down
     
-    def lut_result(a_top, b_top, approx_bits, rounding_mode):
+    def lut_result(a_top, b_top, approx_bits):
         """
         Compute the ratio (a_top / b_top) in fixed-point with 'approx_bits' fractional bits.
         """
-        if b_top == 0:
-            return 0  # avoid division by zero
-
         numerator = a_top << approx_bits  # up-shift a_top by approx_bits
-        if rounding_mode == "round":
-            return (numerator + (b_top >> 1)) // b_top
-        else:
-            return numerator // b_top
+        return numerator // b_top
 
     ##########################################################################################
     ######################## ALGORITHM IMPLEMENTATION ########################################
     ##########################################################################################
 
-    avg_q = 0
-    iteration_count = 0 
-    bit_clears_list = []  # store number of bits cleared each iteration
-
     while b != 0:
-        iteration_count += 1
-
         # STEP 2) Align b with a
-        b_aligned, shift_amount = align_b(a, b)
-        if b_aligned == 0:
-            break
+        shift_amount = align_b(a, b)
 
         # STEP 3) Approximate division with approx_bits: extract top bits and compute quotient
         a_top = get_fixed_top_bits(a, approx_bits)
-        b_top = get_fixed_top_bits(b_aligned, approx_bits)
-        quotient = lut_result(a_top, b_top, approx_bits, rounding_mode)
+        b_top = get_fixed_top_bits(b, approx_bits)
+        quotient = lut_result(a_top, b_top, approx_bits)
         
+        b_shifted = b
+        u_shifted = u
+        v_shifted = v
         # STEP 4 & 5) Adjust quotient by shifting
-        Q_pre_round = (quotient << shift_amount) >> (approx_bits-1)
+        if (shift_amount > (approx_bits - 1)):
+            shift_vars_amount = shift_amount - (approx_bits - 1)
+            b_shifted = b << shift_vars_amount
+            u_shifted = u << shift_vars_amount
+            v_shifted = v << shift_vars_amount
+            shift_amount = (approx_bits - 1)
 
-        Q = Q_pre_round >> 1
-        # Q = a // b
-
-        # if (Q_pre_round&1 and integer_rounding):
-        #     Q += 1
-
-        Q += 1
+        Q = (quotient << shift_amount) >> (approx_bits)
 
         # STEP 6) Compute the residual: r = a - Q*b
-        b_adjusted = b * Q
-        residual = a - b_adjusted
+        b_mul = b_shifted * Q
+        u_mul = u_shifted * Q
+        v_mul = v_shifted * Q
+        residual = a - b_mul
+        # Alternative residual computation Q over estimate if it gives a smaller residual:
+        residual_two = residual - b
 
         was_negative = False
         if residual < 0:
             was_negative = True
             residual = -residual
-        
-        # Alternative residual computation (using Q_pre_round) if it gives a smaller residual:
-        b_adjusted_two = b * (Q_pre_round >> 1)
-        residual_two = a - b_adjusted_two
 
         was_negative_two = False
         if residual_two < 0:
             was_negative_two = True
             residual_two = -residual_two
 
+        # see whcih residual is smaller
         if residual_two < residual:
             was_negative = was_negative_two
             residual = residual_two
-            Q = (Q_pre_round >> 1)
-
-        avg_q += Q
-
-        msb_a = bit_length(a)
-        msb_res = bit_length(residual)
-        clears_this_iter = msb_a - msb_res
-        if clears_this_iter < 0:
-            clears_this_iter = 0
-        bit_clears_list.append(clears_this_iter)
+            u_mul += u
+            v_mul += v
 
         # [xgcd] Update coefficient pair for the new remainder.
         # Let new coefficients be:
-        new_x = x - Q * u
-        new_y = y - Q * v
+        new_x = x - u_mul
+        new_y = y - v_mul
 
         if (was_negative):
-            new_x = -x + Q * u
-            new_y = -y + Q * v
+            new_x = -x + u_mul
+            new_y = -y + v_mul
 
         # STEP 7) Update a and b (and their coefficients) for the next iteration.
         if residual > b:
@@ -191,64 +161,10 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4, rounding_mode='truncat
             a, b = b, residual
             x, y, u, v = u, v, new_x, new_y
 
-        # (Optional debugging output)
-        # print(f"A: {a}")        
-        # print(f"B: {b}")
-        # print(f"R: {residual}")
-        # print(f"Q: {Q}")
-        # print(f"C: {clears_this_iter} \n")
-
-    # Adjust the last bit clear count
-    bit_clears_list[-1] += bit_length(a)
     gcd_val = a
-    if iteration_count > 0:
-        avg_bit_clears = sum(bit_clears_list) / iteration_count
-    else:
-        avg_bit_clears = 0.0
-
-    # Optional Plotting (if enabled)
-    if enable_plotting and iteration_count > 0:
-        import matplotlib.pyplot as plt
-        plt.figure(figsize=(10, 4))
-        plt.subplot(1, 2, 1)
-        plt.plot(range(iteration_count), bit_clears_list, marker='o')
-        plt.title("Bit Clears per Iteration")
-        plt.xlabel("Iteration")
-        plt.ylabel("Bit Clears")
-        cumulative = []
-        running = 0
-        for c in bit_clears_list:
-            running += c
-            cumulative.append(running)
-        plt.subplot(1, 2, 2)
-        plt.plot(range(iteration_count), cumulative, marker='o', color='orange')
-        plt.title("Cumulative Sum of Bit Clears")
-        plt.xlabel("Iteration")
-        plt.ylabel("Cumulative Clears")
-        plt.tight_layout()
-        plt.show()
-
     # At termination, b is zero. The coefficients (x, y) associated with a satisfy:
     #    a_in*x + b_in*y = gcd_val
     # After the main loop, before returning:
     assert a_in * x + b_in * y == gcd_val, "Bézout identity is not satisfied!"
 
-    return (gcd_val, x, y, iteration_count, avg_bit_clears)
-
-# -------------------------------------------------------------------------
-# A small demo/test
-if __name__ == "__main__":
-    # Example values
-    a_in = 59057
-    b_in = 41112
-    result = xgcd_bitwise(a_in, b_in,
-                          total_bits=16,
-                          approx_bits=4,
-                          rounding_mode='truncate',
-                          integer_rounding=True,
-                          plus_minus=False,
-                          enable_plotting=False)
-    gcd_val, x, y, count, avg_clears = result
-    print(f"(Extended) GCD of {a_in} and {b_in} is {gcd_val}, reached in {count} iterations.")
-    print(f"  Coefficients: x = {x}, y = {y}")
-    print(f"  Average bit clears: {avg_clears:.3f}")
+    return (gcd_val, x, y)
