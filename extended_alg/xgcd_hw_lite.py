@@ -38,7 +38,6 @@ def xgcd_bitwise(a_in, b_in, total_bits=8, approx_bits=4):
     # Ensure a >= b initially
     if b > a:
         a, b = b, a
-        # Also swap coefficients if you want to maintain a_in and b_in association.
     
     # Quick check for trivial cases
     if b == 0:
